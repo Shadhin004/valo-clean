@@ -1,0 +1,79 @@
+{
+  "common": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "team": "Team",
+    "blog": "Blog",
+    "contact": "Contact",
+    "call_helpline": "Call Helpline",
+    "email_us": "Email Us",
+    "working_hours": "Tuesday - Saturday 8:00 Am - 5:00 Pm",
+    "follow_us": "Follow Us On:",
+    "read_more": "Read More",
+    "discover_more": "Discover More",
+    "get_pricing": "Get Pricing",
+    "satisfaction": "100% Satisfaction",
+    "copyright": "© 2026 Valo-Clean. All rights reserved."
+  },
+  "hero": {
+    "title_part1": "Cleaning Services",
+    "title_part2": "for your city",
+    "subtitle": "Best quality and spotless clean for every home and office."
+  },
+  "stats": {
+    "happy_clients": "Happy Clients",
+    "awards": "Awards Won",
+    "projects": "Completed Projects",
+    "members": "Team Members"
+  },
+  "about": {
+    "subtitle": "ABOUT CLEANING",
+    "title": "Our Cleaning Agency For Your City",
+    "desc": "When you work with Valo-Clean cleaning breathe easy because your home or workplace will soon shine. We use only the best equipment and eco-friendly products.",
+    "house_title": "House Cleaning",
+    "house_desc": "Thorough residential cleaning including dusting, vacuuming, and sanitizing all surfaces.",
+    "living_title": "Office Cleaning",
+    "living_desc": "Professional workspace and office cleaning for a healthier and better working environment.",
+    "notice": "Give Your Home A Deep Clean for aesthetic and health."
+  },
+  "services": {
+    "subtitle": "CLEANING SERVICES",
+    "title": "Our Excellent Services",
+    "home_title": "Home Cleaning",
+    "home_desc": "We keep your home clean and fresh from floor to ceiling. Customized plans according to your needs.",
+    "kitchen_title": "Kitchen Clean",
+    "kitchen_desc": "Deep cleaning and degreasing of stoves, ovens, cabinets, and countertops.",
+    "moveout_title": "Move Out Package",
+    "moveout_desc": "Hassle-free deep cleaning when moving homes. We ensure you get your security deposit back.",
+    "bed_title": "Bed & Mattress",
+    "bed_desc": "Deep washing and refreshing of mattresses, sofas, and other home textiles.",
+    "office_title": "Commercial Clean",
+    "office_desc": "Offices, stores, and commercial spaces kept clean by experienced professionals.",
+    "window_title": "Window Cleaning",
+    "window_desc": "Crystal clear and streak-free windows for homes and offices, fast and safe."
+  },
+  "team": {
+    "subtitle": "MEET OUR TEAM",
+    "title": "We have an expert team",
+    "member_role": "Cleaning Expert"
+  },
+  "contact": {
+    "subtitle": "CONTACT US",
+    "title": "Send Us a Message",
+    "name_label": "Your Name",
+    "email_label": "Email Address",
+    "phone_label": "Phone Number",
+    "subject_label": "Subject",
+    "message_label": "Your Message",
+    "send_btn": "Send Message",
+    "sending": "Sending...",
+    "success_msg": "Thank you! Your message has been sent successfully. We will contact you soon.",
+    "error_msg": "Oops! An error occurred and your message could not be sent. Please try again.",
+    "address_title": "Our Address",
+    "address_text": "Mannerheimintie 12, 00100 Helsinki, Finland",
+    "phone_title": "Phone Number",
+    "email_title": "Email Address"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "common": {
+    "home": "Hem",
+    "about": "Om Oss",
+    "services": "Tjänster",
+    "portfolio": "Galleri",
+    "team": "Teamet",
+    "blog": "Blogg",
+    "contact": "Kontakt",
+    "call_helpline": "Ring kundtjänst",
+    "email_us": "Skicka e-post",
+    "working_hours": "Tisdag - Lördag 8:00 - 17:00",
+    "follow_us": "Följ oss:",
+    "read_more": "Läs Mer",
+    "discover_more": "Upptäck Mer",
+    "get_pricing": "Få Prisförslag",
+    "satisfaction": "100% Nöjdhet",
+    "copyright": "© 2026 Valo-Clean. Alla rättigheter förbehållna."
+  },
+  "hero": {
+    "title_part1": "Städtjänster",
+    "title_part2": "för din stad",
+    "subtitle": "Bästa kvalitet och skinande rent för varje hem och kontor."
+  },
+  "stats": {
+    "happy_clients": "Nöjda Kunder",
+    "awards": "Priser Vunna",
+    "projects": "Slutförda Projekt",
+    "members": "Teammedlemmar"
+  },
+  "about": {
+    "subtitle": "OM STÄDNING",
+    "title": "Vår Städfirma I Din Stad",
+    "desc": "När du samarbetar med Valo-Clean kan du andas ut, eftersom ditt hem eller kontor snart kommer att glänsa av renhet. Vi använder endast de bästa redskapen och miljövänliga produkter.",
+    "house_title": "Hemstädning",
+    "house_desc": "Noggrann hemstädning som inkluderar dammtorkning, dammsugning och rengöring av alla ytor.",
+    "living_title": "Kontorsstädning",
+    "living_desc": "Professionell städning av kontor och lokaler för en hälsosammare och bättre arbetsmiljö.",
+    "notice": "Ge ditt hem en ordentlig djuprengöring för en fräschare och renare känsla."
+  },
+  "services": {
+    "subtitle": "VÅRA STÄDTJÄNSTER",
+    "title": "Våra Utmärkta Tjänster",
+    "home_title": "Hemstädning",
+    "home_desc": "Vi gör ditt hem skinande rent och fräscht från golv till tak. Anpassad städning efter dina önskemål.",
+    "kitchen_title": "Köksrengöring",
+    "kitchen_desc": "Effektiv grovrengöring och desinficering av spisar, ugnar, skåp och arbetsbänkar.",
+    "moveout_title": "Flyttstädning",
+    "moveout_desc": "Noggrann och komplett städning inför flytt. Vi garanterar att bostaden lämnas i toppskick.",
+    "bed_title": "Möbel- & Textiltvätt",
+    "bed_desc": "Djuprengöring och uppfräschning av madrasser, soffor och andra hemtextilier.",
+    "office_title": "Företagsstädning",
+    "office_desc": "Flexibel och professionell städning av kontor, butiker och andra kommersiella lokaler.",
+    "window_title": "Fönsterputsning",
+    "window_desc": "Rena och strimmelfria fönster för hem och kontor, snabbt, smidigt och säkert."
+  },
+  "team": {
+    "subtitle": "MÖT VÅRT TEAM",
+    "title": "Vi har ett kunnigt expertteam",
+    "member_role": "Städexpert"
+  },
+  "contact": {
+    "subtitle": "KONTAKTA OSS",
+    "title": "Skicka Ett Meddelande",
+    "name_label": "Ditt Namn",
+    "email_label": "E-postadress",
+    "phone_label": "Telefonnummer",
+    "subject_label": "Ämne",
+    "message_label": "Ditt Meddelande",
+    "send_btn": "Skicka Meddelande",
+    "sending": "Skickar...",
+    "success_msg": "Tack! Ditt meddelande har skickats. Vi hör av oss inom kort.",
+    "error_msg": "Hoppsan! Något gick fel när meddelandet skulle skickas. Försök igen.",
+    "address_title": "Vårt Kontor",
+    "address_text": "Mannerheimvägen 12, 00100 Helsingfors, Finland",
+    "phone_title": "Telefonnummer",
+    "email_title": "E-post"
+  }
+}

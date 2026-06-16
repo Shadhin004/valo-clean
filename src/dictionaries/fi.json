@@ -1,0 +1,79 @@
+{
+  "common": {
+    "home": "Koti",
+    "about": "Meistä",
+    "services": "Palvelut",
+    "portfolio": "Galleria",
+    "team": "Tiimi",
+    "blog": "Blogi",
+    "contact": "Yhteystiedot",
+    "call_helpline": "Soita asiakaspalveluun",
+    "email_us": "Lähetä sähköpostia",
+    "working_hours": "Tiistai - Lauantai 8:00 - 17:00",
+    "follow_us": "Seuraa meitä:",
+    "read_more": "Lue Lisää",
+    "discover_more": "Tutustu Lisää",
+    "get_pricing": "Pyydä Tarjous",
+    "satisfaction": "100% Tyytyväisyys",
+    "copyright": "© 2026 Valo-Clean. Kaikki oikeudet pidätetään."
+  },
+  "hero": {
+    "title_part1": "Siivouspalvelut",
+    "title_part2": "kaupungillesi",
+    "subtitle": "Parasta laatua ja puhdasta jälkeä jokaiseen kotiin ja toimistoon."
+  },
+  "stats": {
+    "happy_clients": "Tyytyväistä Asiakasta",
+    "awards": "Palkintoa Voitettu",
+    "projects": "Valmista Projektia",
+    "members": "Tiimin Jäsentä"
+  },
+  "about": {
+    "subtitle": "TIETOA SIIVOUKSESTA",
+    "title": "Siivoustoimistomme Kaupungissasi",
+    "desc": "Kun teet yhteistyötä Valo-Cleanin kanssa, voit hengittää helpommin, sillä kotisi tai toimitilasi loistaa pian puhtauttaan. Käytämme vain parhaita välineitä ja luontoystävällisiä aineita.",
+    "house_title": "Kotisiivous",
+    "house_desc": "Perusteellinen kotisiivous, joka sisältää pölyjen pyyhinnän, imuroinnin ja pintojen puhdistuksen.",
+    "living_title": "Toimistosiivous",
+    "living_desc": "Ammattimainen toimitilojen ja toimistojen siivous paremman työilmapiirin ja terveyden puolesta.",
+    "notice": "Anna kodillesi perusteellinen syväpuhdistus esteettisyyden ja puhtauden vuoksi."
+  },
+  "services": {
+    "subtitle": "SIIVOUSPALVELUMME",
+    "title": "Erinomaiset Palvelumme",
+    "home_title": "Kotisiivous",
+    "home_desc": "Teemme kodistasi puhtaan ja raikkaan lattiasta kattoon. Mukautettu siivousohjelma tarpeidesi mukaan.",
+    "kitchen_title": "Keittiön Tehopuhdistus",
+    "kitchen_desc": "Liesien, uunien, kaappien ja työtasojen rasvanpoisto ja desinfiointi.",
+    "moveout_title": "Muuttosiivous",
+    "moveout_desc": "Perusteellinen ja joustava siivouspalvelu muuttoihin. Varmistamme sujuvan ja stressittömän muuton.",
+    "bed_title": "Tekstiilipesu & Patjat",
+    "bed_desc": "Patjojen, sohvien ja muiden kodin tekstiilien syväpesu ja raikastus.",
+    "office_title": "Yrityssiivous",
+    "office_desc": "Toimistot, myymälät ja muut liiketilat puhtaaksi ammattitaidolla ja joustavasti.",
+    "window_title": "Ikkunanpesu",
+    "window_desc": "Kirkkaat ja raidattomat ikkunat kotiin ja konttoriin nopeasti ja turvallisesti."
+  },
+  "team": {
+    "subtitle": "KOKEILE TIIMIÄMME",
+    "title": "Meillä on asiantunteva tiimi",
+    "member_role": "Siivousasiantuntija"
+  },
+  "contact": {
+    "subtitle": "OTA YHTEYTTÄ",
+    "title": "Lähetä Meille Viesti",
+    "name_label": "Nimesi",
+    "email_label": "Sähköpostiosoite",
+    "phone_label": "Puhelinnumero",
+    "subject_label": "Aihe",
+    "message_label": "Viestisi",
+    "send_btn": "Lähetä Viesti",
+    "sending": "Lähetetään...",
+    "success_msg": "Kiitos! Viestisi on lähetetty onnistuneesti. Otamme yhteyttä pian.",
+    "error_msg": "Hups! Viestin lähetyksessä tapahtui virhe. Yritä uudelleen.",
+    "address_title": "Toimipisteemme",
+    "address_text": "Mannerheimintie 12, 00100 Helsinki, Suomi",
+    "phone_title": "Puhelinnumero",
+    "email_title": "Sähköposti"
+  }
+}
