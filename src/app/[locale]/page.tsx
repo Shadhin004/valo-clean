@@ -41,10 +41,10 @@ export default async function HomePage({ params }: PageProps) {
     },
     {
       num: '04',
-      title: dict.services.bed_title,
-      desc: dict.services.bed_desc,
+      title: dict.services.staircase_title,
+      desc: dict.services.staircase_desc,
       icon: '/assets/img/icon/service-icon-1-4.svg',
-      image: '/assets/img/service/service-img-1-4.jpg',
+      image: '/assets/img/service/staircase-cleaning.jpg',
     },
   ];
 

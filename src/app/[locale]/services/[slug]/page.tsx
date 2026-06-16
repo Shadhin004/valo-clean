@@ -93,10 +93,10 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
         : 'Our move-out cleaning service guarantees that the residence is cleaned meticulously according to the high standards of landlords and new tenants, including oven cleaning, wiping inside cabinets, floor washing, and window cleaning by agreement.',
       benefitsTitle: locale === 'fi' ? 'Miksi valita muuttosiivous?' : locale === 'sv' ? 'Varför välja flyttstädning?' : 'Why choose move-out cleaning?',
       benefitsDesc: locale === 'fi'
-        ? 'Ammattimainen siivous säästää voimiasi ja varmistaa takuuvuokran palautuksen ongelmitta.'
+        ? 'Ammattimainen siivous säästää voimiasi ja varmistaa virheettömän siirron ja huolettoman muuton.'
         : locale === 'sv'
-        ? 'Professionell städning sparar din energi och säkerställer att depositionen återbetalas utan problem.'
-        : 'Professional cleaning saves your energy and ensures the return of your security deposit without issues.',
+        ? 'Professionell städning sparar din energi och säkerställer en smidig övergång och ett perfekt städresultat.'
+        : 'Professional cleaning saves your energy and guarantees a pristine finish and a smooth handover to the next occupants.',
       benefitsList: locale === 'fi'
         ? ['Täysi puhtaustakuu asunnolle', 'Säästää arvokasta aikaasi', 'Kattaa liesien ja uunin puhdistuksen', 'Pölytön ja raikas asunto uudelle asukkaalle']
         : locale === 'sv'
@@ -106,30 +106,30 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
       img2: '/assets/img/service/service-img-1-2.jpg',
       img3: '/assets/img/service/service-img-1-5.jpg',
     },
-    'mattress-upholstery': {
-      title: dict.services.bed_title,
+    'staircase-cleaning': {
+      title: dict.services.staircase_title,
       desc1: locale === 'fi'
-        ? 'Uurramme uutta uraa patjojen ja huonekalujen puhdistuksessa. Poistamme huonepölypunkit ja lian syvältä tekstiilipinnoilta erikoispesureilla.'
+        ? 'Olemme erikoistuneet ammattimaiseen porrassiivoukseen asuinrakennuksissa, taloyhtiöissä ja liikekiinteistöissä. Puhdas porraskäytävä on turvallisuustekijä ja luo viihtyisän ensivaikutelman asukkaille ja vierailijoille.'
         : locale === 'sv'
-        ? 'Vi erbjuder djuprengöring av madrasser och möbler. Vi tar bort dammkvalster och smuts på djupet från textilier med specialtvättmaskiner.'
-        : 'We lead the way in mattress and furniture cleaning. We remove dust mites and deep dirt from upholstered surfaces using specialized extractors.',
+        ? 'Vi är specialiserade på professionell trappstädning för bostadsrättsföreningar, hyreshus och kommersiella fastigheter. En ren trappuppgång är avgörande för säkerheten och ger ett välkomnande första intryck.'
+        : 'We specialize in professional staircase and stairwell cleaning for residential buildings, housing cooperatives, and commercial properties. A clean staircase is crucial for safety and creates a welcoming first impression for residents and visitors.',
       desc2: locale === 'fi'
-        ? 'Tekstiilipesurimme imee lian ja pesuaineen tehokkaasti pois, jolloin patjat ja sohvat kuivuvat nopeasti ja ovat jälleen raikkaita nukkumista ja oleskelua varten.'
+        ? 'Tiimimme käyttää korkealaatuisia, ympäristöystävällisiä pesuaineita ja nykyaikaisia välineitä kaikentyyppisten portaiden syväpuhdistukseen, mukaan lukien betoni-, kivi-, puu- ja laattapinnat. Kiinnitämme erityistä huomiota myös kaiteisiin, käsijohteisiin, lasipintoihin ja ulko-oviin.'
         : locale === 'sv'
-        ? 'Vår mattvätt suger effektivt upp smuts och rengöringsmedel, vilket gör att madrasser och soffor torkar snabbt och blir fräscha att sova och sitta i igen.'
-        : 'Our textile extractor vacuums up dirt and detergent effectively, ensuring mattresses and sofas dry quickly and are fresh for sleeping and lounging again.',
-      benefitsTitle: locale === 'fi' ? 'Syväpuhdistus tekstiileille' : locale === 'sv' ? 'Djuprengöring för textilier' : 'Deep Cleaning for Upholstery',
+        ? 'Vårt team använder högkvalitativa, miljövänliga rengöringsmedel och modern utrustning för att rengöra alla typer av trappor – betong, sten, trä och kakel. Vi lägger extra fokus på ledstänger, räcken, glasytor och entrédörrar.'
+        : 'Our team uses high-quality, eco-friendly detergents and advanced equipment to deep clean all types of stairs, including concrete, stone, wood, and tiled surfaces. We also pay special attention to handrails, banisters, glass partitions, and entrance doors.',
+      benefitsTitle: locale === 'fi' ? 'Ammattimainen Porraskäytävien Ylläpito' : locale === 'sv' ? 'Professionell Trapphusvård' : 'Professional Stairwell Care',
       benefitsDesc: locale === 'fi'
-        ? 'Syväpesu kirkastaa kankaiden värit, poistaa pinttyneet tahrat ja eliminoi allergeenit.'
+        ? 'Säännöllinen ja huolellinen porrassiivous ehkäisee liukastumistapaturmia, pidentää lattiamateriaalien käyttöikää ja parantaa sisäilman laatua koko kiinteistössä.'
         : locale === 'sv'
-        ? 'Djuprengöringen fräschare upp tygfärger, tar bort svåra fläckar och eliminerar allergener.'
-        : 'Deep cleaning brightens fabric colors, lifts stubborn spots, and eliminates allergens.',
+        ? 'En välskött trappuppgång minskar halkrisken, förlänger golvets livslängd och förhindrar spridning av smuts och allergener till lägenheterna.'
+        : 'A well-maintained staircase reduces slip hazards, extends the lifespan of the flooring, and prevents the buildup of dust and allergens.',
       benefitsList: locale === 'fi'
-        ? ['Pölypunkkien eliminointi', 'Tahrojen ja hajujen poisto', 'Pidentää huonekalujen ikää', 'Hypoallergeeninen pesu']
+        ? ['Puhtaat ja kiiltävät porraspinnat', 'Desinfioidut kaiteet ja kosketuspinnat', 'Hiekan, suolan ja talvilian poisto', 'Säännöllinen ylläpito tai kertasiivous']
         : locale === 'sv'
-        ? ['Eliminering av dammkvalster', 'Borttagning av fläckar och lukt', 'Förlänger möblernas livslängd', 'Hypoallergen tvätt']
-        : ['Dust mite elimination', 'Stain and odor removal', 'Extends furniture lifespan', 'Hypoallergenic cleaning process'],
-      img1: '/assets/img/service/service-img-1-4.jpg',
+        ? ['Rena och välvårdade trappsteg', 'Desinficerade ledstänger och kontaktytor', 'Effektiv borttagning av grus, salt och smuts', 'Flexibla städscheman efter behov']
+        : ['Clean and polished stair surfaces', 'Sanitized handrails and main entry touchpoints', 'Removal of sand, salt, and winter grit', 'Regular or one-time cleaning schedules'],
+      img1: '/assets/img/service/staircase-cleaning.jpg',
       img2: '/assets/img/service/service-img-1-3.jpg',
       img3: '/assets/img/service/service-img-1-1.jpg',
     },
@@ -200,7 +200,7 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
     { slug: 'home-cleaning', title: dict.services.home_title },
     { slug: 'kitchen-cleaning', title: dict.services.kitchen_title },
     { slug: 'move-out-package', title: dict.services.moveout_title },
-    { slug: 'mattress-upholstery', title: dict.services.bed_title },
+    { slug: 'staircase-cleaning', title: dict.services.staircase_title },
     { slug: 'commercial-cleaning', title: dict.services.office_title },
     { slug: 'window-cleaning', title: dict.services.window_title },
   ];

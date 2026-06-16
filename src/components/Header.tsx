@@ -96,7 +96,7 @@ export default function Header({ locale, dict }: HeaderProps) {
               { slug: 'home-cleaning', title: dict.services.home_title },
               { slug: 'kitchen-cleaning', title: dict.services.kitchen_title },
               { slug: 'move-out-package', title: dict.services.moveout_title },
-              { slug: 'mattress-upholstery', title: dict.services.bed_title },
+              { slug: 'staircase-cleaning', title: dict.services.staircase_title },
               { slug: 'commercial-cleaning', title: dict.services.office_title },
               { slug: 'window-cleaning', title: dict.services.window_title },
             ];
@@ -147,7 +147,7 @@ export default function Header({ locale, dict }: HeaderProps) {
                 { slug: 'home-cleaning', title: dict.services.home_title },
                 { slug: 'kitchen-cleaning', title: dict.services.kitchen_title },
                 { slug: 'move-out-package', title: dict.services.moveout_title },
-                { slug: 'mattress-upholstery', title: dict.services.bed_title },
+                { slug: 'staircase-cleaning', title: dict.services.staircase_title },
                 { slug: 'commercial-cleaning', title: dict.services.office_title },
                 { slug: 'window-cleaning', title: dict.services.window_title },
               ]

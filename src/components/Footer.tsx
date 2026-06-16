@@ -120,7 +120,7 @@ export default function Footer({ locale, dict }: FooterProps) {
                       <Link href={`/${locale}/services`}>{dict.services.moveout_title}</Link>
                     </li>
                     <li>
-                      <Link href={`/${locale}/services`}>{dict.services.bed_title}</Link>
+                      <Link href={`/${locale}/services`}>{dict.services.staircase_title}</Link>
                     </li>
                     <li>
                       <Link href={`/${locale}/services`}>{dict.services.office_title}</Link>
