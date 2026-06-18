@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { getDictionary } from '@/dictionaries';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -10,6 +11,21 @@ import CounterWrapper from '@/components/CounterWrapper';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const title = locale === 'fi' 
+    ? 'Valo-Clean | Laadukkaat Siivouspalvelut Kotiin ja Toimistoon Helsinki' 
+    : locale === 'sv' 
+    ? 'Valo-Clean | Premium Städtjänster för Hem och Kontor i Helsingfors' 
+    : 'Valo-Clean | Premium Cleaning Services for Home & Office Helsinki';
+  const description = locale === 'fi'
+    ? 'Valo-Clean tarjoaa luotettavaa kotisiivousta, toimistosiivousta ja porrassiivousta pääkaupunkiseudulla. Pyydä ilmainen tarjous jo tänään!'
+    : locale === 'sv'
+    ? 'Valo-Clean erbjuder professionell hemstädning, kontorsstädning och trappstädning i Helsingfors. Kontakta oss för en fri offert idag!'
+    : 'Valo-Clean offers professional residential cleaning, office cleaning, and staircase cleaning in Helsinki. Request a free estimate today!';
+  return { title, description };
 }
 
 export default async function HomePage({ params }: PageProps) {

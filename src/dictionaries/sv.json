@@ -20,7 +20,7 @@
   "hero": {
     "title_part1": "Städtjänster",
     "title_part2": "för din stad",
-    "subtitle": "Bästa kvalitet och skinande rent för varje hem och kontor."
+    "subtitle": "Högkvalitativ hemstädning och kontorsstädning med garanti i Helsingforsområdet."
   },
   "stats": {
     "happy_clients": "Nöjda Kunder",
@@ -30,8 +30,8 @@
   },
   "about": {
     "subtitle": "OM STÄDNING",
-    "title": "Vår Städfirma I Din Stad",
-    "desc": "När du samarbetar med Valo-Clean kan du andas ut, eftersom ditt hem eller kontor snart kommer att glänsa av renhet. Vi använder endast de bästa redskapen och miljövänliga produkter.",
+    "title": "Din pålitliga och professionella städfirma i Helsingfors",
+    "desc": "Valo-Clean erbjuder professionell hemstädning, företagsstädning och flyttstädning. Vi använder miljövänliga produkter för ett skinande och hälsosamt resultat.",
     "house_title": "Hemstädning",
     "house_desc": "Noggrann hemstädning som inkluderar dammtorkning, dammsugning och rengöring av alla ytor.",
     "living_title": "Kontorsstädning",
@@ -40,7 +40,7 @@
   },
   "services": {
     "subtitle": "VÅRA STÄDTJÄNSTER",
-    "title": "Våra Utmärkta Tjänster",
+    "title": "Våra professionella städtjänster",
     "home_title": "Hemstädning",
     "home_desc": "Vi gör ditt hem skinande rent och fräscht från golv till tak. Anpassad städning efter dina önskemål.",
     "kitchen_title": "Köksrengöring",

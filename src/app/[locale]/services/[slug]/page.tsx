@@ -1,12 +1,37 @@
 import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import { getDictionary } from '@/dictionaries';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const dict = await getDictionary(locale);
+  
+  const serviceTitles: Record<string, string> = {
+    'home-cleaning': dict.services.home_title,
+    'kitchen-cleaning': dict.services.kitchen_title,
+    'move-out-package': dict.services.moveout_title,
+    'staircase-cleaning': dict.services.staircase_title,
+    'commercial-cleaning': dict.services.office_title,
+    'window-cleaning': dict.services.window_title,
+  };
+  
+  const serviceTitle = serviceTitles[slug] || 'Siivouspalvelu';
+  const title = `${serviceTitle} | Valo-Clean`;
+  const description = locale === 'fi'
+    ? `Lue lisää palvelustamme: ${serviceTitle}. Ammattitaitoista ja huolellista siivousjälkeä kiinteistöllesi.`
+    : locale === 'sv'
+    ? `Läs mer om städtjänsten: ${serviceTitle}. Professionell och noggrann städning för dina lokaler.`
+    : `Learn more about our service: ${serviceTitle}. Professional and thorough cleaning for your premises.`;
+  
+  return { title, description };
 }
 
 export default async function ServiceDetailsPage({ params }: PageProps) {

@@ -1,11 +1,27 @@
 import React from 'react';
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { getDictionary } from '@/dictionaries';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const title = locale === 'fi'
+    ? 'Palvelumme | Kotisiivous, Toimistosiivous & Porrassiivous'
+    : locale === 'sv'
+    ? 'Våra Tjänster | Hemstädning, Kontorsstädning & Trappstädning'
+    : 'Our Services | Residential, Commercial & Staircase Cleaning';
+  const description = locale === 'fi'
+    ? 'Tutustu monipuolisiin siivouspalveluihimme: kotisiivous, keittiön tehopuhdistus, muuttosiivous, porrassiivous, ikkunanpesu ja yrityssiivous.'
+    : locale === 'sv'
+    ? 'Upptäck våra städtjänster: hemstädning, köksrengöring, flyttstädning, trappstädning, fönsterputsning och företagsstädning.'
+    : 'Discover our wide range of cleaning services: residential cleaning, kitchen deep cleaning, move-out cleaning, staircase cleaning, window washing, and office cleaning.';
+  return { title, description };
 }
 
 export default async function ServicesPage({ params }: PageProps) {

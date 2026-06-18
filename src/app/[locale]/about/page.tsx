@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { getDictionary } from '@/dictionaries';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -7,6 +8,21 @@ import CounterWrapper from '@/components/CounterWrapper';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const title = locale === 'fi'
+    ? 'Tietoa Meistä | Valo-Clean - Siivousalan Asiantuntijat'
+    : locale === 'sv'
+    ? 'Om Oss | Valo-Clean - Din Professionella Städfirma'
+    : 'About Us | Valo-Clean - Professional Cleaning Experts';
+  const description = locale === 'fi'
+    ? 'Lue lisää siivouspalvelustamme. Valo-Clean on sitoutunut ekologisuuteen, korkeaan laatuun ja 100% asiakastyytyväisyyteen.'
+    : locale === 'sv'
+    ? 'Läs mer om vår städfirma. Valo-Clean är engagerade i ekologiska produkter, hög kvalitet och 100% nöjda kunder.'
+    : 'Learn more about our cleaning agency. Valo-Clean is committed to eco-friendly products, premium quality, and 100% customer satisfaction.';
+  return { title, description };
 }
 
 export default async function AboutPage({ params }: PageProps) {

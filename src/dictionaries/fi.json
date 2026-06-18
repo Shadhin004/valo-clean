@@ -20,7 +20,7 @@
   "hero": {
     "title_part1": "Siivouspalvelut",
     "title_part2": "kaupungillesi",
-    "subtitle": "Parasta laatua ja puhdasta jälkeä jokaiseen kotiin ja toimistoon."
+    "subtitle": "Laadukasta ja luotettavaa kotisiivousta sekä toimistosiivousta pääkaupunkiseudulla."
   },
   "stats": {
     "happy_clients": "Tyytyväistä Asiakasta",
@@ -30,8 +30,8 @@
   },
   "about": {
     "subtitle": "TIETOA SIIVOUKSESTA",
-    "title": "Siivoustoimistomme Kaupungissasi",
-    "desc": "Kun teet yhteistyötä Valo-Cleanin kanssa, voit hengittää helpommin, sillä kotisi tai toimitilasi loistaa pian puhtauttaan. Käytämme vain parhaita välineitä ja luontoystävällisiä aineita.",
+    "title": "Luotettava ja ammattitaitoinen siivouspalvelu pääkaupunkiseudulla",
+    "desc": "Valo-Clean tarjoaa ensiluokkaiset kotisiivoukset, yrityssiivoukset ja muuttosiivoukset. Käytämme allergiaystävällisiä puhdistusaineita ja nykyaikaisia menetelmiä.",
     "house_title": "Kotisiivous",
     "house_desc": "Perusteellinen kotisiivous, joka sisältää pölyjen pyyhinnän, imuroinnin ja pintojen puhdistuksen.",
     "living_title": "Toimistosiivous",
@@ -40,7 +40,7 @@
   },
   "services": {
     "subtitle": "SIIVOUSPALVELUMME",
-    "title": "Erinomaiset Palvelumme",
+    "title": "Monipuoliset siivouspalvelumme",
     "home_title": "Kotisiivous",
     "home_desc": "Teemme kodistasi puhtaan ja raikkaan lattiasta kattoon. Mukautettu siivousohjelma tarpeidesi mukaan.",
     "kitchen_title": "Keittiön Tehopuhdistus",
