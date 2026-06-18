@@ -20,7 +20,7 @@ export default async function ServicesPage({ params }: PageProps) {
       title: dict.services.home_title,
       desc: dict.services.home_desc,
       icon: '/assets/img/icon/service-icon-1-1.svg',
-      image: '/assets/img/service/service-img-1-1.jpg',
+      image: '/assets/img/service/home-cleaning.jpg',
     },
     {
       num: '02',
@@ -28,7 +28,7 @@ export default async function ServicesPage({ params }: PageProps) {
       title: dict.services.kitchen_title,
       desc: dict.services.kitchen_desc,
       icon: '/assets/img/icon/service-icon-1-2.svg',
-      image: '/assets/img/service/service-img-1-2.jpg',
+      image: '/assets/img/service/kitchen-cleaning.jpg',
     },
     {
       num: '03',
@@ -36,7 +36,7 @@ export default async function ServicesPage({ params }: PageProps) {
       title: dict.services.moveout_title,
       desc: dict.services.moveout_desc,
       icon: '/assets/img/icon/service-icon-1-3.svg',
-      image: '/assets/img/service/service-img-1-3.jpg',
+      image: '/assets/img/service/move-out-cleaning.jpg',
     },
     {
       num: '04',
@@ -52,7 +52,7 @@ export default async function ServicesPage({ params }: PageProps) {
       title: dict.services.office_title,
       desc: dict.services.office_desc,
       icon: '/assets/img/icon/service-icon-1-4.svg',
-      image: '/assets/img/service/service-img-1-5.jpg',
+      image: '/assets/img/service/commercial-cleaning.jpg',
     },
     {
       num: '06',
@@ -60,7 +60,7 @@ export default async function ServicesPage({ params }: PageProps) {
       title: dict.services.window_title,
       desc: dict.services.window_desc,
       icon: '/assets/img/icon/service-icon-1-1.svg',
-      image: '/assets/img/service/service-img-1-1.jpg',
+      image: '/assets/img/service/window-cleaning.jpg',
     },
   ];
 

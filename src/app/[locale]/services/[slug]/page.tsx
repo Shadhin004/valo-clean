@@ -48,9 +48,9 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
         : locale === 'sv'
         ? ['Mer fritid i vardagen', 'Bättre kvalitet på inomhusluften', 'Ett rent och representativt hem', 'Pålitlig och försäkrad städare']
         : ['More free time in everyday life', 'Better indoor air quality', 'A clean and presentable home always', 'Trusted and insured cleaner'],
-      img1: '/assets/img/service/service-img-1-1.jpg',
-      img2: '/assets/img/service/service-img-1-2.jpg',
-      img3: '/assets/img/service/service-img-1-3.jpg',
+      img1: '/assets/img/service/home-cleaning.jpg',
+      img2: '/assets/img/service/kitchen-cleaning.jpg',
+      img3: '/assets/img/service/move-out-cleaning.jpg',
     },
     'kitchen-cleaning': {
       title: dict.services.kitchen_title,
@@ -75,9 +75,9 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
         : locale === 'sv'
         ? ['Fettfri spisfläkt och ugn', 'Desinficerade arbetsbänkar och diskhoar', 'Bättre brandsäkerhet', 'En fräsch doft i köket']
         : ['Grease-free extractor hood and oven', 'Sanitized worktops and sinks', 'Better fire safety', 'Fresh smell in the kitchen'],
-      img1: '/assets/img/service/service-img-1-2.jpg',
-      img2: '/assets/img/service/service-img-1-1.jpg',
-      img3: '/assets/img/service/service-img-1-4.jpg',
+      img1: '/assets/img/service/kitchen-cleaning.jpg',
+      img2: '/assets/img/service/home-cleaning.jpg',
+      img3: '/assets/img/service/window-cleaning.jpg',
     },
     'move-out-package': {
       title: dict.services.moveout_title,
@@ -102,9 +102,9 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
         : locale === 'sv'
         ? ['Full renhetsgaranti för bostaden', 'Sparar din värdefulla tid', 'Inkluderar ugns- och spisrengöring', 'Dammfri och fräsch bostad för nästa boende']
         : ['Full cleanliness guarantee', 'Saves your valuable time', 'Includes oven and stove cleaning', 'Dust-free and fresh space for next tenant'],
-      img1: '/assets/img/service/service-img-1-3.jpg',
-      img2: '/assets/img/service/service-img-1-2.jpg',
-      img3: '/assets/img/service/service-img-1-5.jpg',
+      img1: '/assets/img/service/move-out-cleaning.jpg',
+      img2: '/assets/img/service/kitchen-cleaning.jpg',
+      img3: '/assets/img/service/commercial-cleaning.jpg',
     },
     'staircase-cleaning': {
       title: dict.services.staircase_title,
@@ -130,8 +130,8 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
         ? ['Rena och välvårdade trappsteg', 'Desinficerade ledstänger och kontaktytor', 'Effektiv borttagning av grus, salt och smuts', 'Flexibla städscheman efter behov']
         : ['Clean and polished stair surfaces', 'Sanitized handrails and main entry touchpoints', 'Removal of sand, salt, and winter grit', 'Regular or one-time cleaning schedules'],
       img1: '/assets/img/service/staircase-cleaning.jpg',
-      img2: '/assets/img/service/service-img-1-3.jpg',
-      img3: '/assets/img/service/service-img-1-1.jpg',
+      img2: '/assets/img/service/move-out-cleaning.jpg',
+      img3: '/assets/img/service/home-cleaning.jpg',
     },
     'commercial-cleaning': {
       title: dict.services.office_title,
@@ -156,9 +156,9 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
         : locale === 'sv'
         ? ['Hälsosam arbetsmiljö', 'Flexibelt städschema', 'Kontraktsstädning efter behov', 'Moderna redskap och medel']
         : ['Healthy workforce environment', 'Flexible cleaning hours', 'Contract cleaning tailored for you', 'Modern equipment and supplies'],
-      img1: '/assets/img/service/service-img-1-5.jpg',
-      img2: '/assets/img/service/service-img-1-4.jpg',
-      img3: '/assets/img/service/service-img-1-2.jpg',
+      img1: '/assets/img/service/commercial-cleaning.jpg',
+      img2: '/assets/img/service/window-cleaning.jpg',
+      img3: '/assets/img/service/kitchen-cleaning.jpg',
     },
     'window-cleaning': {
       title: dict.services.window_title,
@@ -183,9 +183,9 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
         : locale === 'sv'
         ? ['Strimmelfritt och klart resultat', 'Rena karmar och persienner', 'Professionell säkerhetsutrustning', 'Snabb och prisvärd tjänst']
         : ['Streak-free bright finish', 'Clean frames and blinds included', 'Professional safety equipment', 'Fast and cost-efficient service'],
-      img1: '/assets/img/service/service-img-1-1.jpg',
-      img2: '/assets/img/service/service-img-1-5.jpg',
-      img3: '/assets/img/service/service-img-1-3.jpg',
+      img1: '/assets/img/service/window-cleaning.jpg',
+      img2: '/assets/img/service/commercial-cleaning.jpg',
+      img3: '/assets/img/service/move-out-cleaning.jpg',
     },
   };
 

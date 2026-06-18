@@ -48,10 +48,10 @@ export default async function AboutPage({ params }: PageProps) {
             <div className="col-lg-6">
               <div className="img-box1 position-relative">
                 <div className="img1">
-                  <img src="/assets/img/about/about-img-1-1.jpg" alt="About" className="img-fluid rounded" />
+                  <img src="/assets/img/about/about-main.jpg" alt="About" className="img-fluid rounded" />
                 </div>
                 <div className="img2" style={{ position: 'absolute', right: '-20px', bottom: '-20px', width: '60%', border: '8px solid white', borderRadius: '8px' }}>
-                  <img src="/assets/img/about/about-img-1-2.jpg" alt="About Detail" className="img-fluid rounded" />
+                  <img src="/assets/img/about/about-detail.jpg" alt="About Detail" className="img-fluid rounded" />
                 </div>
               </div>
             </div>

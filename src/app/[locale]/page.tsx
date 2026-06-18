@@ -23,21 +23,21 @@ export default async function HomePage({ params }: PageProps) {
       title: dict.services.home_title,
       desc: dict.services.home_desc,
       icon: '/assets/img/icon/service-icon-1-1.svg',
-      image: '/assets/img/service/service-img-1-1.jpg',
+      image: '/assets/img/service/home-cleaning.jpg',
     },
     {
       num: '02',
       title: dict.services.kitchen_title,
       desc: dict.services.kitchen_desc,
       icon: '/assets/img/icon/service-icon-1-2.svg',
-      image: '/assets/img/service/service-img-1-2.jpg',
+      image: '/assets/img/service/kitchen-cleaning.jpg',
     },
     {
       num: '03',
       title: dict.services.moveout_title,
       desc: dict.services.moveout_desc,
       icon: '/assets/img/icon/service-icon-1-3.svg',
-      image: '/assets/img/service/service-img-1-3.jpg',
+      image: '/assets/img/service/move-out-cleaning.jpg',
     },
     {
       num: '04',
@@ -118,10 +118,10 @@ export default async function HomePage({ params }: PageProps) {
             <div className="col-xl-6">
               <div className="img-box1 position-relative">
                 <div className="img1">
-                  <img src="/assets/img/about/about-img-1-1.jpg" alt="About Image 1" className="img-fluid rounded" />
+                  <img src="/assets/img/about/about-main.jpg" alt="About Image 1" className="img-fluid rounded" />
                 </div>
                 <div className="img2" style={{ position: 'absolute', right: '-20px', bottom: '-20px', width: '60%', border: '8px solid white', borderRadius: '8px' }}>
-                  <img src="/assets/img/about/about-img-1-2.jpg" alt="About Image 2" className="img-fluid rounded" />
+                  <img src="/assets/img/about/about-detail.jpg" alt="About Image 2" className="img-fluid rounded" />
                 </div>
                 <div className="img-icon d-none d-md-block" style={{ position: 'absolute', left: '-30px', top: '-30px' }}>
                   <img src="/assets/img/icon/about-icon1.svg" alt="icon" />
