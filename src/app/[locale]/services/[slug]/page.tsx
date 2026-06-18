@@ -23,6 +23,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     'window-cleaning': dict.services.window_title,
   };
   
+  const serviceImages: Record<string, string> = {
+    'home-cleaning': '/assets/img/service/home-cleaning.jpg',
+    'kitchen-cleaning': '/assets/img/service/kitchen-cleaning.jpg',
+    'move-out-package': '/assets/img/service/move-out-cleaning.jpg',
+    'staircase-cleaning': '/assets/img/service/staircase-cleaning.jpg',
+    'commercial-cleaning': '/assets/img/service/commercial-cleaning.jpg',
+    'window-cleaning': '/assets/img/service/window-cleaning.jpg',
+  };
+  
   const serviceTitle = serviceTitles[slug] || 'Siivouspalvelu';
   const title = `${serviceTitle} | Valo-Clean`;
   const description = locale === 'fi'
@@ -31,7 +40,36 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ? `Läs mer om städtjänsten: ${serviceTitle}. Professionell och noggrann städning för dina lokaler.`
     : `Learn more about our service: ${serviceTitle}. Professional and thorough cleaning for your premises.`;
   
-  return { title, description };
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://valo-clean.fi';
+  const ogImage = serviceImages[slug] || '/assets/img/valo-clean-logo.png';
+
+  return {
+    title,
+    description,
+    metadataBase: new URL(siteUrl),
+    openGraph: {
+      title,
+      description,
+      url: `/${locale}/services/${slug}`,
+      siteName: 'Valo-Clean',
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: serviceTitle,
+        },
+      ],
+      locale: locale === 'fi' ? 'fi_FI' : locale === 'sv' ? 'sv_SE' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
 }
 
 export default async function ServiceDetailsPage({ params }: PageProps) {

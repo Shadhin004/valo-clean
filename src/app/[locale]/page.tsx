@@ -25,7 +25,36 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : locale === 'sv'
     ? 'Valo-Clean erbjuder professionell hemstädning, kontorsstädning och trappstädning i Helsingfors. Kontakta oss för en fri offert idag!'
     : 'Valo-Clean offers professional residential cleaning, office cleaning, and staircase cleaning in Helsinki. Request a free estimate today!';
-  return { title, description };
+  
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://valo-clean.fi';
+
+  return {
+    title,
+    description,
+    metadataBase: new URL(siteUrl),
+    openGraph: {
+      title,
+      description,
+      url: `/${locale}`,
+      siteName: 'Valo-Clean',
+      images: [
+        {
+          url: '/assets/img/valo-clean-logo.png',
+          width: 1200,
+          height: 630,
+          alt: 'Valo-Clean',
+        },
+      ],
+      locale: locale === 'fi' ? 'fi_FI' : locale === 'sv' ? 'sv_SE' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/assets/img/valo-clean-logo.png'],
+    },
+  };
 }
 
 export default async function HomePage({ params }: PageProps) {
@@ -36,6 +65,7 @@ export default async function HomePage({ params }: PageProps) {
   const services = [
     {
       num: '01',
+      slug: 'home-cleaning',
       title: dict.services.home_title,
       desc: dict.services.home_desc,
       icon: '/assets/img/icon/service-icon-1-1.svg',
@@ -43,6 +73,7 @@ export default async function HomePage({ params }: PageProps) {
     },
     {
       num: '02',
+      slug: 'kitchen-cleaning',
       title: dict.services.kitchen_title,
       desc: dict.services.kitchen_desc,
       icon: '/assets/img/icon/service-icon-1-2.svg',
@@ -50,6 +81,7 @@ export default async function HomePage({ params }: PageProps) {
     },
     {
       num: '03',
+      slug: 'move-out-package',
       title: dict.services.moveout_title,
       desc: dict.services.moveout_desc,
       icon: '/assets/img/icon/service-icon-1-3.svg',
@@ -57,6 +89,7 @@ export default async function HomePage({ params }: PageProps) {
     },
     {
       num: '04',
+      slug: 'staircase-cleaning',
       title: dict.services.staircase_title,
       desc: dict.services.staircase_desc,
       icon: '/assets/img/icon/service-icon-1-4.svg',
@@ -210,13 +243,19 @@ export default async function HomePage({ params }: PageProps) {
               <div key={index} className="col-lg-3 col-md-6">
                 <div className="vs-service__style1 bg-white h-100 border rounded overflow-hidden shadow-sm hover-shadow transition">
                   <div className="vs-service__img position-relative" style={{ height: '200px' }}>
-                    <img src={service.image} alt={service.title} className="w-100 h-100" style={{ objectFit: 'cover' }} />
+                    <Link href={`/${locale}/services/${service.slug}`}>
+                      <img src={service.image} alt={service.title} className="w-100 h-100" style={{ objectFit: 'cover' }} />
+                    </Link>
                   </div>
                   <div className="vs-service__body p-4">
                     <div className="vs-service__header d-flex justify-content-between align-items-center mb-3">
                       <div>
                         <p className="vs-service__subtitle mb-0 text-muted">{dict.services.subtitle} {service.num}</p>
-                        <h4 className="vs-service__title h6 mb-0 mt-1">{service.title}</h4>
+                        <h4 className="vs-service__title h6 mb-0 mt-1">
+                          <Link href={`/${locale}/services/${service.slug}`} className="text-dark hover-text-success" style={{ textDecoration: 'none' }}>
+                            {service.title}
+                          </Link>
+                        </h4>
                       </div>
                       <div className="vs-service__icon bg-light p-2 rounded-circle" style={{ width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img src={service.icon} alt="icon" style={{ width: '24px' }} />

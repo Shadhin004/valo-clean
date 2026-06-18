@@ -22,7 +22,36 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : locale === 'sv'
     ? 'Läs mer om vår städfirma. Valo-Clean är engagerade i ekologiska produkter, hög kvalitet och 100% nöjda kunder.'
     : 'Learn more about our cleaning agency. Valo-Clean is committed to eco-friendly products, premium quality, and 100% customer satisfaction.';
-  return { title, description };
+  
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://valo-clean.fi';
+
+  return {
+    title,
+    description,
+    metadataBase: new URL(siteUrl),
+    openGraph: {
+      title,
+      description,
+      url: `/${locale}/about`,
+      siteName: 'Valo-Clean',
+      images: [
+        {
+          url: '/assets/img/valo-clean-logo.png',
+          width: 1200,
+          height: 630,
+          alt: 'Valo-Clean',
+        },
+      ],
+      locale: locale === 'fi' ? 'fi_FI' : locale === 'sv' ? 'sv_SE' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/assets/img/valo-clean-logo.png'],
+    },
+  };
 }
 
 export default async function AboutPage({ params }: PageProps) {
