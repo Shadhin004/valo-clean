@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ? 'Upptäck våra städtjänster: hemstädning, köksrengöring, flyttstädning, trappstädning, fönsterputsning och företagsstädning.'
     : 'Discover our wide range of cleaning services: residential cleaning, kitchen deep cleaning, move-out cleaning, staircase cleaning, window washing, and office cleaning.';
   
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://valo-clean.fi';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nordoclean.fi';
 
   return {
     title,
@@ -32,13 +32,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
       url: `/${locale}/services`,
-      siteName: 'Valo-Clean',
+      siteName: 'Nordo Clean',
       images: [
         {
-          url: '/assets/img/valo-clean-logo.png',
+          url: '/assets/img/nordo-clean-logo.png',
           width: 1200,
           height: 630,
-          alt: 'Valo-Clean',
+          alt: 'Nordo Clean',
         },
       ],
       locale: locale === 'fi' ? 'fi_FI' : locale === 'sv' ? 'sv_SE' : 'en_US',
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: 'summary_large_image',
       title,
       description,
-      images: ['/assets/img/valo-clean-logo.png'],
+      images: ['/assets/img/nordo-clean-logo.png'],
     },
   };
 }

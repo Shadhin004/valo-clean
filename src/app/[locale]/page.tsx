@@ -16,17 +16,17 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const title = locale === 'fi' 
-    ? 'Valo-Clean | Laadukkaat Siivouspalvelut Kotiin ja Toimistoon Helsinki' 
+    ? 'Nordo Clean | Laadukkaat Siivouspalvelut Kotiin ja Toimistoon Helsinki' 
     : locale === 'sv' 
-    ? 'Valo-Clean | Premium Städtjänster för Hem och Kontor i Helsingfors' 
-    : 'Valo-Clean | Premium Cleaning Services for Home & Office Helsinki';
+    ? 'Nordo Clean | Premium Städtjänster för Hem och Kontor i Helsingfors' 
+    : 'Nordo Clean | Premium Cleaning Services for Home & Office Helsinki';
   const description = locale === 'fi'
-    ? 'Valo-Clean tarjoaa luotettavaa kotisiivousta, toimistosiivousta ja porrassiivousta pääkaupunkiseudulla. Pyydä ilmainen tarjous jo tänään!'
+    ? 'Nordo Clean tarjoaa luotettavaa kotisiivousta, toimistosiivousta ja porrassiivousta pääkaupunkiseudulla. Pyydä ilmainen tarjous jo tänään!'
     : locale === 'sv'
-    ? 'Valo-Clean erbjuder professionell hemstädning, kontorsstädning och trappstädning i Helsingfors. Kontakta oss för en fri offert idag!'
-    : 'Valo-Clean offers professional residential cleaning, office cleaning, and staircase cleaning in Helsinki. Request a free estimate today!';
+    ? 'Nordo Clean erbjuder professionell hemstädning, kontorsstädning och trappstädning i Helsingfors. Kontakta oss för en fri offert idag!'
+    : 'Nordo Clean offers professional residential cleaning, office cleaning, and staircase cleaning in Helsinki. Request a free estimate today!';
   
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://valo-clean.fi';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nordoclean.fi';
 
   return {
     title,
@@ -36,13 +36,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
       url: `/${locale}`,
-      siteName: 'Valo-Clean',
+      siteName: 'Nordo Clean',
       images: [
         {
-          url: '/assets/img/valo-clean-logo.png',
+          url: '/assets/img/nordo-clean-logo.png',
           width: 1200,
           height: 630,
-          alt: 'Valo-Clean',
+          alt: 'Nordo Clean',
         },
       ],
       locale: locale === 'fi' ? 'fi_FI' : locale === 'sv' ? 'sv_SE' : 'en_US',
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: 'summary_large_image',
       title,
       description,
-      images: ['/assets/img/valo-clean-logo.png'],
+      images: ['/assets/img/nordo-clean-logo.png'],
     },
   };
 }

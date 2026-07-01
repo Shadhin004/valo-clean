@@ -91,7 +91,7 @@ export default async function ContactPage({ params }: PageProps) {
                     <div>
                       <h5 className="h6 fw-bold mb-1">{dict.contact.email_title}</h5>
                       <p className="small text-muted mb-0">
-                        <a href="mailto:info@valoclean.fi" className="text-dark">info@valoclean.fi</a>
+                        <a href="mailto:info@nordoclean.fi" className="text-dark">info@nordoclean.fi</a>
                       </p>
                     </div>
                   </div>

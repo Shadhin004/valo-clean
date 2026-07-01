@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import '@/app/globals.css'; // Standard next.js global overrides
 
 export const metadata: Metadata = {
-  title: 'Valo-Clean | Siivouspalvelut',
+  title: 'Nordo Clean | Siivouspalvelut',
   description: 'Premium cleaning services for your home and office.',
 };
 

@@ -182,7 +182,7 @@ export default function Header({ locale, dict }: HeaderProps) {
                   <ul>
                     <li>
                       <i className="far fa-envelope"></i>
-                      <a href="mailto:info@valoclean.fi">info@valoclean.fi</a>
+                      <a href="mailto:info@nordoclean.fi">info@nordoclean.fi</a>
                     </li>
                     <li className="d-lg-inline d-none">
                       <i className="far fa-clock"></i>

@@ -13,17 +13,17 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const title = locale === 'fi'
-    ? 'Tietoa Meistä | Valo-Clean - Siivousalan Asiantuntijat'
+    ? 'Tietoa Meistä | Nordo Clean - Siivousalan Asiantuntijat'
     : locale === 'sv'
-    ? 'Om Oss | Valo-Clean - Din Professionella Städfirma'
-    : 'About Us | Valo-Clean - Professional Cleaning Experts';
+    ? 'Om Oss | Nordo Clean - Din Professionella Städfirma'
+    : 'About Us | Nordo Clean - Professional Cleaning Experts';
   const description = locale === 'fi'
-    ? 'Lue lisää siivouspalvelustamme. Valo-Clean on sitoutunut ekologisuuteen, korkeaan laatuun ja 100% asiakastyytyväisyyteen.'
+    ? 'Lue lisää siivouspalvelustamme. Nordo Clean on sitoutunut ekologisuuteen, korkeaan laatuun ja 100% asiakastyytyväisyyteen.'
     : locale === 'sv'
-    ? 'Läs mer om vår städfirma. Valo-Clean är engagerade i ekologiska produkter, hög kvalitet och 100% nöjda kunder.'
-    : 'Learn more about our cleaning agency. Valo-Clean is committed to eco-friendly products, premium quality, and 100% customer satisfaction.';
+    ? 'Läs mer om vår städfirma. Nordo Clean är engagerade i ekologiska produkter, hög kvalitet och 100% nöjda kunder.'
+    : 'Learn more about our cleaning agency. Nordo Clean is committed to eco-friendly products, premium quality, and 100% customer satisfaction.';
   
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://valo-clean.fi';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nordoclean.fi';
 
   return {
     title,
@@ -33,13 +33,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
       url: `/${locale}/about`,
-      siteName: 'Valo-Clean',
+      siteName: 'Nordo Clean',
       images: [
         {
-          url: '/assets/img/valo-clean-logo.png',
+          url: '/assets/img/nordo-clean-logo.png',
           width: 1200,
           height: 630,
-          alt: 'Valo-Clean',
+          alt: 'Nordo Clean',
         },
       ],
       locale: locale === 'fi' ? 'fi_FI' : locale === 'sv' ? 'sv_SE' : 'en_US',
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: 'summary_large_image',
       title,
       description,
-      images: ['/assets/img/valo-clean-logo.png'],
+      images: ['/assets/img/nordo-clean-logo.png'],
     },
   };
 }

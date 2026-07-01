@@ -58,7 +58,7 @@ export default function HeroCarousel({ locale, dict }: HeroCarouselProps) {
                 {dict.common.satisfaction}
               </div>
               <h1 className="vs-hero__title wow animate__fadeInUp" style={{ visibility: 'visible', textTransform: 'capitalize' }}>
-                {dict.hero.title_part1} <span className="vs-hero__title--highlight">Valo-Clean</span> {dict.hero.title_part2}
+                {dict.hero.title_part1} <span className="vs-hero__title--highlight">Nordo Clean</span> {dict.hero.title_part2}
               </h1>
               <p className="text-white mb-4 fs-5 wow animate__fadeInUp" style={{ visibility: 'visible', maxWidth: '500px' }}>
                 {dict.hero.subtitle}

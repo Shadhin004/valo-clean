@@ -33,15 +33,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
   
   const serviceTitle = serviceTitles[slug] || 'Siivouspalvelu';
-  const title = `${serviceTitle} | Valo-Clean`;
+  const title = `${serviceTitle} | Nordo Clean`;
   const description = locale === 'fi'
     ? `Lue lisää palvelustamme: ${serviceTitle}. Ammattitaitoista ja huolellista siivousjälkeä kiinteistöllesi.`
     : locale === 'sv'
     ? `Läs mer om städtjänsten: ${serviceTitle}. Professionell och noggrann städning för dina lokaler.`
     : `Learn more about our service: ${serviceTitle}. Professional and thorough cleaning for your premises.`;
   
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://valo-clean.fi';
-  const ogImage = serviceImages[slug] || '/assets/img/valo-clean-logo.png';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nordoclean.fi';
+  const ogImage = serviceImages[slug] || '/assets/img/nordo-clean-logo.png';
 
   return {
     title,
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
       url: `/${locale}/services/${slug}`,
-      siteName: 'Valo-Clean',
+      siteName: 'Nordo Clean',
       images: [
         {
           url: ogImage,
