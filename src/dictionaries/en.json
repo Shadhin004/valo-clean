@@ -14,6 +14,7 @@
     "read_more": "Read More",
     "discover_more": "Discover More",
     "get_pricing": "Get Pricing",
+    "calculator": "Calculator",
     "satisfaction": "100% Satisfaction",
     "copyright": "© 2026 Nordo Clean. All rights reserved."
   },
@@ -75,5 +76,30 @@
     "address_text": "Mannerheimintie 12, 00100 Helsinki, Finland",
     "phone_title": "Phone Number",
     "email_title": "Email Address"
+  },
+  "calculator": {
+    "title": "Price Calculator",
+    "subtitle": "CALCULATE ESTIMATED PRICE",
+    "desc": "Select the service, cleaning level, and space size to get an instant estimated price for your cleaning needs.",
+    "select_service": "1. Select service",
+    "select_level": "2. Select cleaning level",
+    "soft_clean": "Soft Clean",
+    "soft_desc": "Basic light maintenance cleaning: dusting, vacuuming, mopping floors, and emptying waste bins.",
+    "medium_clean": "Medium Clean",
+    "medium_desc": "Thorough standard cleaning: soft clean tasks plus deep kitchen/bathroom cleaning.",
+    "hard_clean": "Hard Clean",
+    "hard_desc": "Deep scrub / intensive cleaning: stubborn stain removal, oven/exhaust hood cleaning, descaling.",
+    "enter_area": "3. Enter area size (m²)",
+    "contact_info": "4. Fill contact details for proposal",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "send_proposal": "Send me the price estimate and a detailed proposal to my email",
+    "calculate_btn": "Request Proposal",
+    "estimated_price": "Estimated Price",
+    "vat_included": "incl. VAT 25.5%",
+    "minimum_applied": "Minimum service charge applied",
+    "success_title": "Proposal Request Sent!",
+    "success_desc": "Thank you! Your proposal request has been processed and sent to your email. We will get in touch with you shortly.",
+    "error_desc": "Error sending proposal. Please double-check your inputs or try again later."
   }
 }

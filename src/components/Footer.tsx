@@ -128,6 +128,11 @@ export default function Footer({ locale, dict }: FooterProps) {
                     <li>
                       <Link href={`/${locale}/services`}>{dict.services.window_title}</Link>
                     </li>
+                    <li className="mt-2">
+                      <Link href={`/${locale}/calculator`} style={{ color: '#00d084', fontWeight: 'bold' }}>
+                        <i className="fas fa-calculator me-2"></i>{dict.calculator.title}
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </div>

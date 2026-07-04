@@ -14,6 +14,7 @@
     "read_more": "Läs Mer",
     "discover_more": "Upptäck Mer",
     "get_pricing": "Få Prisförslag",
+    "calculator": "Kalkylator",
     "satisfaction": "100% Nöjdhet",
     "copyright": "© 2026 Nordo Clean. Alla rättigheter förbehållna."
   },
@@ -75,5 +76,30 @@
     "address_text": "Mannerheimvägen 12, 00100 Helsingfors, Finland",
     "phone_title": "Telefonnummer",
     "email_title": "E-post"
+  },
+  "calculator": {
+    "title": "Priskalkylator",
+    "subtitle": "BERÄKNA UPPSKATTAT PRIS",
+    "desc": "Välj önskad tjänst, städnivå och storlek på utrymmet för att få en omedelbar prisuppskattning för din städning.",
+    "select_service": "1. Välj tjänst",
+    "select_level": "2. Välj städnivå",
+    "soft_clean": "Lätt städning",
+    "soft_desc": "Lätt underhållsstädning: dammtorkning, dammsugning, torkning av golv och tömning av papperskorgar.",
+    "medium_clean": "Normal städning",
+    "medium_desc": "Noggrann basstädning: allt i lätt städning samt noggrann rengöring av kök och badrum.",
+    "hard_clean": "Grovstädning",
+    "hard_desc": "Djuprengöring / grovstädning: borttagning av svår smuts, rengöring av ugn och spisfläkt, avkalkning.",
+    "enter_area": "3. Ange yta (m²)",
+    "contact_info": "4. Fyll i kontaktuppgifter för prisförslag",
+    "email": "E-postadress",
+    "phone": "Telefonnummer",
+    "send_proposal": "Skicka prisuppskattning och ett formellt förslag till min e-post",
+    "calculate_btn": "Skicka offertförfrågan",
+    "estimated_price": "Uppskattat pris",
+    "vat_included": "inkl. MOMS 25,5%",
+    "minimum_applied": "Tjänstens minimiavgift har tillämpats",
+    "success_title": "Offertförfrågan skickad!",
+    "success_desc": "Tack! Din offertförfrågan har behandlats och skickats till din e-post. Vi kontaktar dig inom kort.",
+    "error_desc": "Fel vid sändning. Kontrollera dina uppgifter eller försök igen senare."
   }
 }

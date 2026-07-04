@@ -14,6 +14,7 @@
     "read_more": "Lue Lisää",
     "discover_more": "Tutustu Lisää",
     "get_pricing": "Pyydä Tarjous",
+    "calculator": "Laskuri",
     "satisfaction": "100% Tyytyväisyys",
     "copyright": "© 2026 Nordo Clean. Kaikki oikeudet pidätetään."
   },
@@ -75,5 +76,30 @@
     "address_text": "Mannerheimintie 12, 00100 Helsinki, Suomi",
     "phone_title": "Puhelinnumero",
     "email_title": "Sähköposti"
+  },
+  "calculator": {
+    "title": "Hinta-arviolaskuri",
+    "subtitle": "LASKE ARVIOITU HINTA",
+    "desc": "Valitse haluamasi palvelu, puhdistustaso ja tilan koko saadaksesi välittömän hinta-arvion siivouksellesi.",
+    "select_service": "1. Valitse palvelu",
+    "select_level": "2. Valitse siivouksen taso",
+    "soft_clean": "Kevyt siivous",
+    "soft_desc": "Kevyt ylläpitosiivous: pölyjen pyyhintä, imurointi, lattioiden pyyhintä ja roskakorien tyhjennys.",
+    "medium_clean": "Normaali siivous",
+    "medium_desc": "Perusteellinen perussiivous: kevyen siivouksen lisäksi keittiön ja kylpyhuoneen huolellinen pesu.",
+    "hard_clean": "Suursiivous",
+    "hard_desc": "Tehopuhdistus / suursiivous: pinttyneen lian poisto, uunin ja liesituulettimen puhdistus, kalkinpoisto.",
+    "enter_area": "3. Anna tilan koko (m²)",
+    "contact_info": "4. Täytä yhteystiedot tarjouksen lähettämistä varten",
+    "email": "Sähköposti",
+    "phone": "Puhelinnumero",
+    "send_proposal": "Haluan hinta-arvion ja virallisen tarjouksen sähköpostiini",
+    "calculate_btn": "Lähetä tarjouspyyntö",
+    "estimated_price": "Arvioitu hinta",
+    "vat_included": "sis. ALV 25,5%",
+    "minimum_applied": "Palvelun vähimmäisveloitus otettu käyttöön",
+    "success_title": "Tarjouspyyntö lähetetty!",
+    "success_desc": "Kiitos! Tarjouspyyntösi on käsitelty ja lähetetty sähköpostiisi. Otamme sinuun yhteyttä pian.",
+    "error_desc": "Virhe lähetyksessä. Tarkista antamasi tiedot tai yritä uudelleen myöhemmin."
   }
 }
