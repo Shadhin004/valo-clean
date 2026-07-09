@@ -33,9 +33,8 @@ const CONDITION_MULTIPLIERS: Record<string, number> = {
 
 const BATHROOM_RATE = 35.00;
 const FLOOR_MULTIPLIER = 0.10; // +10% per floor above 1
-const WINDOW_RATE = 6.00;
+const WINDOW_RATE = 25.00;
 
-const ADDON_WINDOW_FLAT = 45.00;
 const ADDON_BASEMENT_FLAT = 60.00;
 const ADDON_BALCONY_FLAT = 40.00;
 const TRAVEL_FEE_OUTER = 25.00;
@@ -49,12 +48,11 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
   const [propertyType, setPropertyType] = useState<string>('apartment');
   const [bathrooms, setBathrooms] = useState<number>(1);
   const [floors, setFloors] = useState<number>(1);
-  const [windows, setWindows] = useState<number>(10);
+  const [windows, setWindows] = useState<number>(0);
   const [condition, setCondition] = useState<string>('normal');
   const [zipCode, setZipCode] = useState<string>('');
 
   // Add-ons state
-  const [addonWindows, setAddonWindows] = useState<boolean>(false);
   const [addonBasement, setAddonBasement] = useState<boolean>(false);
   const [addonBalcony, setAddonBalcony] = useState<boolean>(false);
 
@@ -68,7 +66,7 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
   const showPropertyType = ['home-cleaning', 'move-out-package', 'kitchen-cleaning'].includes(selectedService);
   const showBathrooms = ['home-cleaning', 'move-out-package', 'commercial-cleaning'].includes(selectedService);
   const showFloors = ['home-cleaning', 'move-out-package', 'staircase-cleaning', 'commercial-cleaning'].includes(selectedService);
-  const showWindows = selectedService === 'window-cleaning';
+  const showWindows = ['home-cleaning', 'move-out-package', 'window-cleaning'].includes(selectedService);
   const showAddons = ['home-cleaning', 'move-out-package', 'window-cleaning'].includes(selectedService);
 
   // Compute pricing values on the fly during render for instant feedback
@@ -97,13 +95,12 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
   let hasActiveAddons = false;
 
   let computedWindowCost = 0;
-  if (selectedService === 'window-cleaning') {
+  if (['home-cleaning', 'move-out-package', 'window-cleaning'].includes(selectedService)) {
     computedWindowCost = windows * WINDOW_RATE;
     addonsCost += computedWindowCost;
-    hasActiveAddons = true;
-  } else if (addonWindows && showAddons) {
-    addonsCost += ADDON_WINDOW_FLAT;
-    hasActiveAddons = true;
+    if (windows > 0) {
+      hasActiveAddons = true;
+    }
   }
 
   let computedBasementCost = 0;
@@ -165,7 +162,7 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
           windows: showWindows ? windows : 0,
           condition,
           zipCode,
-          addonWindows: addonWindows && selectedService !== 'window-cleaning',
+          addonWindows: false,
           addonBasement: addonBasement && selectedService !== 'window-cleaning',
           addonBalcony,
         }),
@@ -236,13 +233,14 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
                       <div
                         onClick={() => {
                           setSelectedService(service.slug);
-                          // Reset conflicting add-ons when switching
+                          // Reset and adjust values when switching
                           if (service.slug === 'window-cleaning') {
-                            setAddonWindows(false);
+                            setWindows(10);
                             setAddonBasement(false);
-                          }
-                          if (service.slug === 'staircase-cleaning') {
-                            setAddonWindows(false);
+                          } else if (['home-cleaning', 'move-out-package'].includes(service.slug)) {
+                            setWindows(0);
+                          } else {
+                            setWindows(0);
                             setAddonBasement(false);
                             setAddonBalcony(false);
                           }
@@ -272,53 +270,10 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
               </div>
             </div>
 
-            {/* Step 2: Clean Level */}
-            <div className="mb-5">
-              <h4 className="fw-bold mb-3 d-flex align-items-center" style={{ fontSize: '18px', color: '#1a1a1a' }}>
-                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#00d084', color: '#fff', borderRadius: '50%', width: '26px', height: '26px', fontSize: '12px', fontWeight: 'bold', marginRight: '8px', flexShrink: 0 }}>2</span>
-                {dict.calculator.select_level}
-              </h4>
-              
-              <div className="d-flex rounded-3 bg-light p-1 mb-3" style={{ border: '1px solid #eef2f5' }}>
-                {(['soft', 'medium', 'hard'] as const).map((level) => {
-                  const isSelected = selectedLevel === level;
-                  let levelTitle = '';
-                  if (level === 'soft') levelTitle = dict.calculator.soft_clean;
-                  if (level === 'medium') levelTitle = dict.calculator.medium_clean;
-                  if (level === 'hard') levelTitle = dict.calculator.hard_clean;
-
-                  return (
-                    <button
-                      key={level}
-                      type="button"
-                      onClick={() => setSelectedLevel(level)}
-                      className="btn flex-fill py-2 rounded-2 border-0 fw-bold transition"
-                      style={{
-                        fontSize: '13px',
-                        backgroundColor: isSelected ? '#00d084' : 'transparent',
-                        color: isSelected ? '#fff' : '#555',
-                        boxShadow: isSelected ? '0 4px 10px rgba(0, 208, 132, 0.2)' : 'none',
-                      }}
-                    >
-                      {levelTitle}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div className="p-3 bg-light rounded-3 border-start border-4 border-success">
-                <p className="mb-0 text-muted" style={{ fontSize: '13px' }}>
-                  {selectedLevel === 'soft' && dict.calculator.soft_desc}
-                  {selectedLevel === 'medium' && dict.calculator.medium_desc}
-                  {selectedLevel === 'hard' && dict.calculator.hard_desc}
-                </p>
-              </div>
-            </div>
-
-            {/* Step 3: Property Details */}
+            {/* Step 2: Property Details */}
             <div className="mb-5">
               <h4 className="fw-bold mb-4 d-flex align-items-center" style={{ fontSize: '18px', color: '#1a1a1a' }}>
-                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#00d084', color: '#fff', borderRadius: '50%', width: '26px', height: '26px', fontSize: '12px', fontWeight: 'bold', marginRight: '8px', flexShrink: 0 }}>3</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#00d084', color: '#fff', borderRadius: '50%', width: '26px', height: '26px', fontSize: '12px', fontWeight: 'bold', marginRight: '8px', flexShrink: 0 }}>2</span>
                 {dict.calculator.enter_details}
               </h4>
 
@@ -475,77 +430,53 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
                   </div>
                 )}
 
-                {/* Windows counter (Only shown if Window cleaning is selected) */}
+                {/* Windows counter */}
                 {showWindows && (
                   <div className="col-md-6 text-start">
                     <label htmlFor="windows_input" className="form-label small fw-bold text-muted mb-1">{dict.calculator.windows} ({windows})</label>
-                    <div className="row g-2 align-items-center">
-                      <div className="col-8">
-                        <input
-                          type="range"
-                          min="1"
-                          max="80"
-                          className="form-range"
-                          value={windows}
-                          onChange={(e) => setWindows(parseInt(e.target.value))}
-                          style={{ accentColor: '#00d084' }}
-                        />
-                      </div>
-                      <div className="col-4">
-                        <input
-                          id="windows_input"
-                          type="number"
-                          className="form-control text-center fw-bold"
-                          value={windows}
-                          onChange={(e) => {
-                            const val = parseInt(e.target.value);
-                            setWindows(isNaN(val) ? 1 : val);
-                          }}
-                          style={{ height: '45px', borderColor: '#eef2f5', borderRadius: '8px' }}
-                        />
-                      </div>
+                    <div className="d-flex align-items-center gap-2">
+                      <button
+                        type="button"
+                        className="btn btn-outline-secondary"
+                        onClick={() => {
+                          const minVal = selectedService === 'window-cleaning' ? 1 : 0;
+                          setWindows(Math.max(minVal, windows - 1));
+                        }}
+                        style={{ height: '45px', width: '45px', borderRadius: '8px' }}
+                      >
+                        -
+                      </button>
+                      <input
+                        id="windows_input"
+                        type="number"
+                        className="form-control text-center fw-bold"
+                        readOnly
+                        value={windows}
+                        style={{ height: '45px', borderColor: '#eef2f5', borderRadius: '8px' }}
+                      />
+                      <button
+                        type="button"
+                        className="btn btn-outline-secondary"
+                        onClick={() => setWindows(Math.min(100, windows + 1))}
+                        style={{ height: '45px', width: '45px', borderRadius: '8px' }}
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
                 )}
               </div>
             </div>
 
-            {/* Step 4: Add-on choices (Only shown if service is Home/Move-out or Balcony option on Window cleaning) */}
+            {/* Step 3: Add-on choices (Only shown if service is Home/Move-out or Balcony option on Window cleaning) */}
             {showAddons && (
               <div className="mb-4">
                 <h4 className="fw-bold mb-4 d-flex align-items-center" style={{ fontSize: '18px', color: '#1a1a1a' }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#00d084', color: '#fff', borderRadius: '50%', width: '26px', height: '26px', fontSize: '12px', fontWeight: 'bold', marginRight: '8px', flexShrink: 0 }}>4</span>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#00d084', color: '#fff', borderRadius: '50%', width: '26px', height: '26px', fontSize: '12px', fontWeight: 'bold', marginRight: '8px', flexShrink: 0 }}>3</span>
                   {dict.calculator.add_ons}
                 </h4>
 
                 <div className="row g-3">
-                  {/* Window Cleaning Add-on (Hidden for window cleaning service itself) */}
-                  {selectedService !== 'window-cleaning' && (
-                    <div className="col-12 text-start">
-                      <div
-                        onClick={() => setAddonWindows(!addonWindows)}
-                        className="p-3 rounded-3 border d-flex align-items-center justify-content-between transition"
-                        style={{
-                          cursor: 'pointer',
-                          backgroundColor: addonWindows ? 'rgba(0, 208, 132, 0.02)' : '#fff',
-                          borderColor: addonWindows ? '#00d084' : '#eef2f5',
-                          borderWidth: '2px',
-                        }}
-                      >
-                        <div className="d-flex align-items-center gap-3">
-                          <input
-                            type="checkbox"
-                            checked={addonWindows}
-                            readOnly
-                            style={{ accentColor: '#00d084', transform: 'scale(1.2)' }}
-                          />
-                          <div>
-                            <span className="fw-bold d-block text-dark" style={{ fontSize: '14px' }}>{dict.calculator.addon_windows}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
 
                   {/* Basement Cleaning Add-on (Hidden for window cleaning) */}
                   {selectedService !== 'window-cleaning' && (
@@ -730,7 +661,7 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
             {/* Proposal Details Form */}
             <div className="bg-white p-4 p-md-5 rounded-4 border shadow-sm flex-fill d-flex flex-column">
               <h4 className="fw-bold mb-4 d-flex align-items-center" style={{ fontSize: '18px', color: '#1a1a1a' }}>
-                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#00d084', color: '#fff', borderRadius: '50%', width: '26px', height: '26px', fontSize: '12px', fontWeight: 'bold', marginRight: '8px', flexShrink: 0 }}>5</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#00d084', color: '#fff', borderRadius: '50%', width: '26px', height: '26px', fontSize: '12px', fontWeight: 'bold', marginRight: '8px', flexShrink: 0 }}>4</span>
                 {dict.calculator.contact_info}
               </h4>
 

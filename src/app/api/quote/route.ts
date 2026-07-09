@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const {
       service,
-      level,
+      level = 'medium',
       area,
       email,
       phone,
@@ -130,14 +130,10 @@ export async function POST(req: NextRequest) {
     let addonsCost = 0;
     
     // Windows cleaning logic
-    if (service === 'window-cleaning') {
-      const windowRateKey = 'PRICE_PER_WINDOW';
-      const windowRate = process.env[windowRateKey] ? parseFloat(process.env[windowRateKey]!) : 6.00;
+    const windowRateKey = 'PRICE_PER_WINDOW';
+    const windowRate = process.env[windowRateKey] ? parseFloat(process.env[windowRateKey]!) : 25.00;
+    if (['home-cleaning', 'move-out-package', 'window-cleaning'].includes(service)) {
       addonsCost += windowsNum * windowRate;
-    } else if (addonWindows) {
-      const addonWinKey = 'ADDON_WINDOW_CLEANING_FLAT';
-      const addonWinFlat = process.env[addonWinKey] ? parseFloat(process.env[addonWinKey]!) : 45.00;
-      addonsCost += addonWinFlat;
     }
 
     // Basement add-on
@@ -189,7 +185,7 @@ export async function POST(req: NextRequest) {
     const breakdownRowsHtml = `
       <tr>
         <th>${locale === 'fi' ? 'Palvelu' : locale === 'sv' ? 'Tjänst' : 'Service'}</th>
-        <td>${serviceName} (${cleanLevelName})</td>
+        <td>${serviceName}</td>
       </tr>
       <tr>
         <th>${locale === 'fi' ? 'Pinta-ala' : locale === 'sv' ? 'Storlek' : 'Area Size'}</th>
@@ -212,15 +208,10 @@ export async function POST(req: NextRequest) {
         <th>${locale === 'fi' ? 'Kylpyhuoneet' : locale === 'sv' ? 'Badrum' : 'Bathrooms'}</th>
         <td>${bathroomsNum} ${locale === 'fi' ? 'kpl' : 'st'} (Lisä: +${bathroomsCost.toFixed(2)} €)</td>
       </tr>` : ''}
-      ${service === 'window-cleaning' && windowsNum > 0 ? `
+      ${windowsNum > 0 ? `
       <tr>
         <th>${locale === 'fi' ? 'Ikkunat' : locale === 'sv' ? 'Fönster' : 'Windows'}</th>
-        <td>${windowsNum} ${locale === 'fi' ? 'kpl' : 'st'} (+${(windowsNum * 6.0).toFixed(2)} €)</td>
-      </tr>` : ''}
-      ${addonWindows && service !== 'window-cleaning' ? `
-      <tr>
-        <th>${locale === 'fi' ? 'Ikkunanpesu (Lisävalinta)' : locale === 'sv' ? 'Fönsterputsning (Tillägg)' : 'Window Cleaning (Add-on)'}</th>
-        <td>${locale === 'fi' ? 'Kyllä' : locale === 'sv' ? 'Ja' : 'Yes'} (+45.00 €)</td>
+        <td>${windowsNum} ${locale === 'fi' ? 'kpl' : 'st'} (+${(windowsNum * windowRate).toFixed(2)} €)</td>
       </tr>` : ''}
       ${addonBasement && basementCost > 0 ? `
       <tr>

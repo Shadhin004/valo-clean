@@ -60,12 +60,19 @@ export default function HeroCarousel({ locale, dict }: HeroCarouselProps) {
               <h1 className="vs-hero__title wow animate__fadeInUp" style={{ visibility: 'visible', textTransform: 'capitalize' }}>
                 {dict.hero.title_part1} <span className="vs-hero__title--highlight">Nordo Clean</span> {dict.hero.title_part2}
               </h1>
-              <p className="text-white mb-4 fs-5 wow animate__fadeInUp" style={{ visibility: 'visible', maxWidth: '500px' }}>
+              <p className="text-white mb-4 fs-5 wow animate__fadeInUp" style={{ visibility: 'visible', maxWidth: '550px' }}>
                 {dict.hero.subtitle}
+                <strong style={{ display: 'block', marginTop: '12px', color: '#00d084' }}>
+                  {locale === 'fi' 
+                    ? 'Laske tarkka hinta-arvio sekunneissa laskurillamme!' 
+                    : locale === 'sv' 
+                    ? 'Beräkna en exakt prisuppskattning på några sekunder!' 
+                    : 'Calculate an exact price estimate in seconds!'}
+                </strong>
               </p>
-              <Link className="vs-btn2 wow animate__fadeInUp" style={{ visibility: 'visible' }} href={`/${locale}/contact`}>
-                {dict.common.get_pricing}
-                <i className="far fa-long-arrow-right ms-2"></i>
+              <Link className="vs-btn2 wow animate__fadeInUp" style={{ visibility: 'visible' }} href={`/${locale}/calculator`}>
+                {locale === 'fi' ? 'Laske Hinta Heti' : locale === 'sv' ? 'Beräkna Pris Direkt' : 'Check Price Instantly'}
+                <i className="fas fa-calculator ms-2"></i>
               </Link>
               <span className="dot-shape"></span>
             </div>
