@@ -577,7 +577,7 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
               {/* Price Breakdown Details */}
               <div className="border-top border-white-10 pt-3 flex-fill z-index position-relative" style={{ fontSize: '13px' }}>
                 <h5 className="h6 fw-bold mb-3 text-white-50 text-uppercase tracking-wide">
-                  {locale === 'fi' ? 'Arvion erittely' : locale === 'sv' ? 'Kalkylspecifikation' : 'Estimate Specification'}
+                  {locale === 'fi' ? 'Arvion erittely' : locale === 'sv' ? 'Kalkylspecifikation' : 'Estimate specification'}
                 </h5>
                 
                 <div className="d-flex justify-content-between mb-2">
@@ -587,28 +587,28 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
 
                 {showPropertyType && typeMultiplier !== 1.0 && (
                   <div className="d-flex justify-content-between mb-2 text-success" style={{ color: '#00d084 !important' }}>
-                    <span>{locale === 'fi' ? 'Asuntotyyppikerroin' : locale === 'sv' ? 'Bostadstyp faktor' : 'Property Type Factor'} ({propertyType})</span>
+                    <span>{locale === 'fi' ? 'Asuntotyyppikerroin' : locale === 'sv' ? 'Bostadstyp faktor' : 'Property type factor'} ({propertyType})</span>
                     <span>+{((typeMultiplier - 1.0) * 100).toFixed(0)}%</span>
                   </div>
                 )}
 
                 {conditionMultiplier !== 1.0 && (
                   <div className="d-flex justify-content-between mb-2 text-success" style={{ color: '#00d084 !important' }}>
-                    <span>{locale === 'fi' ? 'Kuntokerroin' : locale === 'sv' ? 'Skick faktor' : 'Condition Factor'} ({condition})</span>
+                    <span>{locale === 'fi' ? 'Kuntokerroin' : locale === 'sv' ? 'Skick faktor' : 'Condition factor'} ({condition})</span>
                     <span>+{((conditionMultiplier - 1.0) * 100).toFixed(0)}%</span>
                   </div>
                 )}
 
                 {showFloors && floorsNum > 1 && (
                   <div className="d-flex justify-content-between mb-2 text-success" style={{ color: '#00d084 !important' }}>
-                    <span>{locale === 'fi' ? 'Kerroskerroin' : locale === 'sv' ? 'Våning faktor' : 'Floor Factor'} ({floorsNum} {locale === 'fi' ? 'krs' : locale === 'sv' ? 'vån' : 'floors'})</span>
+                    <span>{locale === 'fi' ? 'Kerroskerroin' : locale === 'sv' ? 'Våning faktor' : 'Floor factor'} ({floorsNum} {locale === 'fi' ? 'krs' : locale === 'sv' ? 'vån' : 'floors'})</span>
                     <span>+{((floorFactor - 1.0) * 100).toFixed(0)}%</span>
                   </div>
                 )}
 
                 {bathroomsCost > 0 && (
                   <div className="d-flex justify-content-between mb-2">
-                    <span className="text-white-50">{locale === 'fi' ? 'Kylpyhuonelisä' : locale === 'sv' ? 'Badrumstillägg' : 'Additional Bathrooms'} ({bathroomsNum - 1})</span>
+                    <span className="text-white-50">{locale === 'fi' ? 'Kylpyhuonelisä' : locale === 'sv' ? 'Badrumstillägg' : 'Additional bathrooms'} ({bathroomsNum - 1})</span>
                     <span>+{bathroomsCost.toFixed(2)} €</span>
                   </div>
                 )}
@@ -622,7 +622,7 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
 
                 {travelCost > 0 && (
                   <div className="d-flex justify-content-between mb-2 text-warning" style={{ color: '#ffb900' }}>
-                    <span>{locale === 'fi' ? 'Matkakulu' : locale === 'sv' ? 'Resekostnad' : 'Travel Cost'}</span>
+                    <span>{locale === 'fi' ? 'Matkakulu' : locale === 'sv' ? 'Resekostnad' : 'Travel cost'}</span>
                     <span>+{travelCost.toFixed(2)} €</span>
                   </div>
                 )}
@@ -686,7 +686,7 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
                   id="phone_input"
                   type="tel"
                   className="form-control"
-                  placeholder="+358 40 123 4567"
+                  placeholder="+358 40 521 8220"
                   required
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}

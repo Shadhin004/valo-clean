@@ -127,7 +127,7 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
         : locale === 'sv'
         ? 'Vi använder säkra rengöringsmedel som är lämpliga för livsmedelsytor, som effektivt tar bort bakterier och får rostfria ytor samt skåpluckor att glänsa igen.'
         : 'We use safe cleaning products suitable for food-contact surfaces, which effectively eliminate bacteria and make stainless steel and cabinet doors shine again.',
-      benefitsTitle: locale === 'fi' ? 'Puhdas ja turvallinen keittiö' : locale === 'sv' ? 'Ett rent och säkert kök' : 'Clean & Safe Kitchen',
+      benefitsTitle: locale === 'fi' ? 'Puhdas ja turvallinen keittiö' : locale === 'sv' ? 'Ett rent och säkert kök' : 'Clean & safe kitchen',
       benefitsDesc: locale === 'fi'
         ? 'Puhdas keittiö parantaa ruokaturvallisuutta ja pidentää keittiökoneiden käyttöikää poistamalla pinttyneen rasvan.'
         : locale === 'sv'
@@ -181,7 +181,7 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
         : locale === 'sv'
         ? 'Vårt team använder högkvalitativa, miljövänliga rengöringsmedel och modern utrustning för att rengöra alla typer av trappor – betong, sten, trä och kakel. Vi lägger extra fokus på ledstänger, räcken, glasytor och entrédörrar.'
         : 'Our team uses high-quality, eco-friendly detergents and advanced equipment to deep clean all types of stairs, including concrete, stone, wood, and tiled surfaces. We also pay special attention to handrails, banisters, glass partitions, and entrance doors.',
-      benefitsTitle: locale === 'fi' ? 'Ammattimainen Porraskäytävien Ylläpito' : locale === 'sv' ? 'Professionell Trapphusvård' : 'Professional Stairwell Care',
+      benefitsTitle: locale === 'fi' ? 'Ammattimainen porraskäytävien ylläpito' : locale === 'sv' ? 'Professionell trapphusvård' : 'Professional stairwell care',
       benefitsDesc: locale === 'fi'
         ? 'Säännöllinen ja huolellinen porrassiivous ehkäisee liukastumistapaturmia, pidentää lattiamateriaalien käyttöikää ja parantaa sisäilman laatua koko kiinteistössä.'
         : locale === 'sv'
@@ -208,7 +208,7 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
         : locale === 'sv'
         ? 'Vi skräddarsyr schemat för kontraktsstädningen så att städningen sker utanför era öppettider, utan att störa er dagliga verksamhet.'
         : 'We customize contract cleaning schedules so that cleaning takes place outside your business hours, without disrupting your daily operations.',
-      benefitsTitle: locale === 'fi' ? 'Edustavat toimitilat' : locale === 'sv' ? 'Representativa lokaler' : 'Professional Workspaces',
+      benefitsTitle: locale === 'fi' ? 'Edustavat toimitilat' : locale === 'sv' ? 'Representativa lokaler' : 'Professional workspaces',
       benefitsDesc: locale === 'fi'
         ? 'Siisti toimisto antaa luotettavan kuvan asiakkaillenne ja takaa terveellisen työympäristön työntekijöillenne.'
         : locale === 'sv'
@@ -235,7 +235,7 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
         : locale === 'sv'
         ? 'Vi putsar fönster utan ränder med hjälp av högkvalitativa redskap och vattenavvisande medel som håller glasen rena längre.'
         : 'We wash windows streak-free using quality tools and water-repellent solutions that keep glass clean for longer.',
-      benefitsTitle: locale === 'fi' ? 'Kirkkaat ja puhtaat näkymät' : locale === 'sv' ? 'Klara och rena vyer' : 'Crystal Clear Views',
+      benefitsTitle: locale === 'fi' ? 'Kirkkaat ja puhtaat näkymät' : locale === 'sv' ? 'Klara och rena vyer' : 'Crystal clear views',
       benefitsDesc: locale === 'fi'
         ? 'Kirkkaat ikkunat päästävät luonnonvalon sisään ja saavat koko kiinteistön näyttämään huolitellulta.'
         : locale === 'sv'
@@ -312,7 +312,7 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
                 {/* List Widget */}
                 <div className="widget widget_categories style2 border p-4 rounded mb-4 bg-light">
                   <h3 className="widget_title h5 fw-bold mb-3 border-bottom pb-2">
-                    {locale === 'fi' ? 'Kaikki Palvelut' : locale === 'sv' ? 'Alla Tjänster' : 'All Services'}
+                    {locale === 'fi' ? 'Kaikki palvelut' : locale === 'sv' ? 'Alla tjänster' : 'All services'}
                   </h3>
                   <div className="widget_content">
                     <ul className="list-unstyled mb-0">
@@ -351,7 +351,7 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
                 >
                   <div className="position-relative z-index">
                     <h4 className="fw-bold mb-3">
-                      {locale === 'fi' ? 'Ota Yhteyttä Jo Tänään' : locale === 'sv' ? 'Kontakta oss idag' : 'Let\'s Contact With Us'}
+                      {locale === 'fi' ? 'Ota yhteyttä jo tänään' : locale === 'sv' ? 'Kontakta oss idag' : 'Get in touch with us'}
                     </h4>
                     <span className="icon-btn bg-success p-3 rounded-circle d-inline-flex mb-3" style={{ width: '60px', height: '60px', alignItems: 'center', justifyContent: 'center' }}>
                       <img src="/assets/img/icon/call-icon.svg" alt="call" style={{ width: '28px', filter: 'brightness(0) invert(1)' }} />
@@ -361,7 +361,7 @@ export default async function ServiceDetailsPage({ params }: PageProps) {
                         {locale === 'fi' ? 'Tarvitsetko apua? Soita asiantuntijalle' : locale === 'sv' ? 'Behöver du hjälp? Ring en expert' : 'Need help? Talk to our expert'}
                       </p>
                       <h5 className="fw-bold">
-                        <a href="tel:+358401234567" className="text-white" style={{ textDecoration: 'none' }}>+358 40 123 4567</a>
+                        <a href="tel:+358405218220" className="text-white" style={{ textDecoration: 'none' }}>+358 40 521 8220</a>
                       </h5>
                     </div>
                   </div>

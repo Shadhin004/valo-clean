@@ -129,7 +129,7 @@
   .contact-text{
     font-weight: 700;
     color: $theme-color;
-    text-transform: capitalize;
+    
     font-family: $title-font;
   }
   .icon{
@@ -160,7 +160,7 @@
     .media-body{
       .media-title{
         color:$white-color;
-        text-transform: capitalize;
+        
         font-size: 18px;
       }
       .media-info{
@@ -237,7 +237,7 @@
   a {
     font-weight: 700;
     color: $title-color;
-    text-transform: capitalize;
+    
 
     &:hover {
       color: $white-color;
@@ -258,7 +258,7 @@
   a {
     display: block;
     text-decoration: none;
-    text-transform: capitalize;
+    
     color: $white-color;
     font-size: 16px;
     font-weight: 500;

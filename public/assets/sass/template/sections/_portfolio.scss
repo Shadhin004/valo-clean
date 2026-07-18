@@ -113,12 +113,12 @@
         padding-top: 45px;
     }
     .portfolio-title{
-        text-transform: capitalize;
+        
         line-height: 128%;
     }
     .portfolio-text{
         font-weight: 500;
-        text-transform: capitalize;
+        
     }
     .play-btn > i{
         width: 96px;
@@ -135,7 +135,7 @@
                 background-color: $title-color;
                 color: $white-color;
                 padding: 20px 30px;
-                text-transform: capitalize;
+                
                 font-weight: 700;
                 margin-bottom: 0;
 
@@ -200,7 +200,7 @@
         font-size: 16px;
         font-weight: 600;
         color: $text-color;
-        text-transform: capitalize;
+        
         line-height: 160%;
         position: relative;
         &:not(:last-child){
@@ -239,7 +239,7 @@
         color: $white-color;
         font-size: 30px;
         font-weight: 600;
-        text-transform: capitalize;
+        
         max-width: 12ch;
         margin: 0 auto 20px;
     }
@@ -258,7 +258,7 @@
     .contact-title{
         color: $white-color;
         font-size: 16px;
-        text-transform: capitalize;
+        
         margin-bottom: 2px;
     }
     .contact-text{

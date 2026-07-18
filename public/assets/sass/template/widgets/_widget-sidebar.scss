@@ -54,7 +54,7 @@
       letter-spacing: 0.4px;
       font-size: 16px;
       font-weight: 600;
-      text-transform: capitalize;
+      
       height: 100%;
       font-family: $body-font;
       &::placeholder {
@@ -62,7 +62,7 @@
         letter-spacing: 0.4px;
         font-size: 16px;
         font-weight: 400;
-        text-transform: capitalize;
+        
       }
     }
 
@@ -211,7 +211,7 @@
     color: $text-color;
     background-color: $light-color;
     font-weight: 600;
-    text-transform: capitalize;
+    
     font-size: 16px;
     letter-spacing: 0.4px;
     margin: 0;
@@ -241,7 +241,7 @@
   }
 
   .post-title {
-    text-transform: capitalize;
+    
     font-size: 18px;
     font-weight: 500;
     line-height: 24px;
@@ -476,7 +476,7 @@
     letter-spacing: 0.4px;
     font-family: var(--title-font);
     color: $text-color;
-    text-transform: capitalize;
+    
     line-height: 160%;
   }
   span {

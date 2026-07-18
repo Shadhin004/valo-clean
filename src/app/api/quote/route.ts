@@ -154,10 +154,10 @@ export async function POST(req: NextRequest) {
       addonsCost += balconyCost;
     }
 
-    // 7. Travel fee if ZIP code is outside Helsinki/Espoo/Vantaa (does not start with 00, 01, 02)
+    // 7. Travel fee if ZIP code is outside Mustasaari/Vaasa (does not start with 65)
     let travelCost = 0;
     const trimmedZip = zipCode.trim();
-    const isOuterRegion = trimmedZip !== '' && !/^(00|01|02)/.test(trimmedZip);
+    const isOuterRegion = trimmedZip !== '' && !/^65/.test(trimmedZip);
     if (isOuterRegion) {
       const travelKey = 'TRAVEL_FEE_OUTER_REGION';
       const travelFee = process.env[travelKey] ? parseFloat(process.env[travelKey]!) : 25.00;
@@ -192,7 +192,7 @@ export async function POST(req: NextRequest) {
         <td>${areaNum} m² (Perushinta: ${basePrice.toFixed(2)} € ${isMinApplied ? `[${locale === 'fi' ? 'Minimihinta' : locale === 'sv' ? 'Minimipris' : 'Min Price'}]` : ''})</td>
       </tr>
       <tr>
-        <th>${locale === 'fi' ? 'Asunnon tyyppi' : locale === 'sv' ? 'Bostadstyp' : 'Property Type'}</th>
+        <th>${locale === 'fi' ? 'Asunnon tyyppi' : locale === 'sv' ? 'Bostadstyp' : 'Property type'}</th>
         <td>${propertyTypeName} (${typeMultiplier.toFixed(2)}x)</td>
       </tr>
       <tr>
@@ -215,21 +215,21 @@ export async function POST(req: NextRequest) {
       </tr>` : ''}
       ${addonBasement && basementCost > 0 ? `
       <tr>
-        <th>${locale === 'fi' ? 'Kellari / Varasto (Lisävalinta)' : locale === 'sv' ? 'Källare / Förråd (Tillägg)' : 'Basement / Storage (Add-on)'}</th>
+        <th>${locale === 'fi' ? 'Kellari / Varasto (Lisävalinta)' : locale === 'sv' ? 'Källare / Förråd (Tillägg)' : 'Basement / storage (add-on)'}</th>
         <td>${locale === 'fi' ? 'Kyllä' : locale === 'sv' ? 'Ja' : 'Yes'} (+${basementCost.toFixed(2)} €)</td>
       </tr>` : ''}
       ${addonBalcony && balconyCost > 0 ? `
       <tr>
-        <th>${locale === 'fi' ? 'Parveke / Terassi (Lisävalinta)' : locale === 'sv' ? 'Balkong / Veranda (Tillägg)' : 'Balcony / Porch (Add-on)'}</th>
+        <th>${locale === 'fi' ? 'Parveke / Terassi (Lisävalinta)' : locale === 'sv' ? 'Balkong / Veranda (Tillägg)' : 'Balcony / porch (add-on)'}</th>
         <td>${locale === 'fi' ? 'Kyllä' : locale === 'sv' ? 'Ja' : 'Yes'} (+${balconyCost.toFixed(2)} €)</td>
       </tr>` : ''}
       ${travelCost > 0 ? `
       <tr>
-        <th>${locale === 'fi' ? 'Matkakulu' : locale === 'sv' ? 'Resekostnad' : 'Travel Fee'}</th>
+        <th>${locale === 'fi' ? 'Matkakulu' : locale === 'sv' ? 'Resekostnad' : 'Travel fee'}</th>
         <td>Postinumero: ${trimmedZip} (+${travelCost.toFixed(2)} €)</td>
       </tr>` : `
       <tr>
-        <th>${locale === 'fi' ? 'Postinumero' : locale === 'sv' ? 'Postnummer' : 'Postal Code'}</th>
+        <th>${locale === 'fi' ? 'Postinumero' : locale === 'sv' ? 'Postnummer' : 'Postal code'}</th>
         <td>${trimmedZip || '-'}</td>
       </tr>`}
     `;
@@ -285,7 +285,7 @@ export async function POST(req: NextRequest) {
                 <td>${vatAmount.toFixed(2)} €</td>
               </tr>
               <tr class="price-total" style="background-color: rgba(0, 208, 132, 0.05);">
-                <th>${locale === 'fi' ? 'Arvioitu hinta yhteensä' : locale === 'sv' ? 'Arimerat totalpris' : 'Estimated Total Price'}</th>
+                <th>${locale === 'fi' ? 'Arvioitu hinta yhteensä' : locale === 'sv' ? 'Arimerat totalpris' : 'Estimated total price'}</th>
                 <td>${totalPrice.toFixed(2)} €</td>
               </tr>
             </table>
@@ -310,8 +310,8 @@ export async function POST(req: NextRequest) {
             </p>
           </div>
           <div class="footer">
-            <p>Nordo Clean Oy | Mannerheimintie 12, 00100 Helsinki</p>
-            <p>Puh: +358 40 123 4567 | info@nordoclean.fi</p>
+            <p>Nordo Clean Oy | Mustasaari, Vaasa</p>
+            <p>Puh: +358 40 521 8220 | info@nordoclean.fi</p>
           </div>
         </div>
       </body>

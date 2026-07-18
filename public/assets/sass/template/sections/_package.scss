@@ -92,7 +92,7 @@
             color: #67B846;
             display: inline-flex;
             font-size: 20px;
-            text-transform: capitalize;
+            
             font-weight: 500;
             strong{
                 color: $white-color;
@@ -107,7 +107,7 @@
         left: 42px;
     }
     .vs-btn2{
-        text-transform: capitalize;
+        
         border: 2px solid #65B047;
         padding: 2px 4px 2px 24px;
         background: rgb(23,167,191);
@@ -157,7 +157,7 @@
         li{
             color: $text-color2;
             font-weight: 600;
-            text-transform: capitalize;
+            
             font-size: 16px;
             line-height: 160%;
             &:last-child{

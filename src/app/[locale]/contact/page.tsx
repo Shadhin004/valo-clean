@@ -48,7 +48,7 @@ export default async function ContactPage({ params }: PageProps) {
             <div className="col-lg-5">
               <div className="contact-info-wrap bg-light p-4 rounded border">
                 <span className="sec-subtitle text-success">{dict.contact.subtitle}</span>
-                <h2 className="fw-bold my-3">{locale === 'fi' ? 'Olemme Täällä Auttamassa' : locale === 'sv' ? 'Vi Är Här För Att Hjälpa' : 'We Are Here to Help'}</h2>
+                <h2 className="fw-bold my-3">{locale === 'fi' ? 'Olemme täällä auttamassa' : locale === 'sv' ? 'Vi är här för att hjälpa' : 'We are here to help'}</h2>
                 <p className="text-muted mb-4">
                   {locale === 'fi'
                     ? 'Kysyttävää palveluistamme? Täytä yhteydenottolomake tai soita meille suoraan. Vastaamme kaikkiin tiedusteluihin mahdollisimman pian.'
@@ -78,7 +78,7 @@ export default async function ContactPage({ params }: PageProps) {
                     <div>
                       <h5 className="h6 fw-bold mb-1">{dict.contact.phone_title}</h5>
                       <p className="small text-muted mb-0">
-                        <a href="tel:+358401234567" className="text-dark">+358 40 123 4567</a>
+                        <a href="tel:+358405218220" className="text-dark">+358 40 521 8220</a>
                       </p>
                     </div>
                   </div>
@@ -116,7 +116,7 @@ export default async function ContactPage({ params }: PageProps) {
         <div className="container">
           <div className="rounded overflow-hidden border" style={{ height: '350px' }}>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1984.3855523824338!2d24.938379!3d60.16985599999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46920bcd33924f2b%3A0xb36a3e6cb13554e2!2sMannerheimintie%2012%2C%2000100%20Helsinki!5e0!3m2!1sfi!2sfi!4v1700000000000!5m2!1sfi!2sfi"
+              src="https://maps.google.com/maps?q=Mustasaari,%20Vaasa&t=&z=13&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}

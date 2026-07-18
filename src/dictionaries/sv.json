@@ -1,7 +1,7 @@
 {
   "common": {
     "home": "Hem",
-    "about": "Om Oss",
+    "about": "Om oss",
     "services": "Tjänster",
     "portfolio": "Galleri",
     "team": "Teamet",
@@ -9,29 +9,33 @@
     "contact": "Kontakt",
     "call_helpline": "Ring kundtjänst",
     "email_us": "Skicka e-post",
-    "working_hours": "Tisdag - Lördag 8:00 - 17:00",
+    "working_hours": "Tisdag - lördag 8:00 - 17:00",
     "follow_us": "Följ oss:",
-    "read_more": "Läs Mer",
-    "discover_more": "Upptäck Mer",
-    "get_pricing": "Få Prisförslag",
+    "read_more": "Läs mer",
+    "discover_more": "Upptäck mer",
+    "get_pricing": "Få prisförslag",
     "calculator": "Kalkylator",
-    "satisfaction": "100% Nöjdhet",
+    "satisfaction": "100% nöjdhet",
     "copyright": "© 2026 Nordo Clean. Alla rättigheter förbehållna."
   },
   "hero": {
     "title_part1": "Städtjänster",
     "title_part2": "för din stad",
-    "subtitle": "Högkvalitativ hemstädning och kontorsstädning med garanti i Helsingforsområdet."
+    "subtitle": "Högkvalitativ hemstädning och kontorsstädning med garanti i Korsholm och Vasa."
   },
   "stats": {
-    "happy_clients": "Nöjda Kunder",
-    "awards": "Priser Vunna",
-    "projects": "Slutförda Projekt",
-    "members": "Teammedlemmar"
+    "title_1": "100% Nöjdhet",
+    "desc_1": "Garanterad kvalitet",
+    "title_2": "Miljövänligt",
+    "desc_2": "Säkra gröna produkter",
+    "title_3": "Fullt försäkrad",
+    "desc_3": "För din trygghet",
+    "title_4": "Utbildad personal",
+    "desc_4": "Certifierade experter"
   },
   "about": {
     "subtitle": "OM STÄDNING",
-    "title": "Din pålitliga och professionella städfirma i Helsingfors",
+    "title": "Din pålitliga och professionella städfirma i Korsholm och Vasa",
     "desc": "Nordo Clean erbjuder professionell hemstädning, företagsstädning och flyttstädning. Vi använder miljövänliga produkter för ett skinande och hälsosamt resultat.",
     "house_title": "Hemstädning",
     "house_desc": "Noggrann hemstädning som inkluderar dammtorkning, dammsugning och rengöring av alla ytor.",
@@ -58,22 +62,24 @@
   "team": {
     "subtitle": "MÖT VÅRT TEAM",
     "title": "Vi har ett kunnigt expertteam",
-    "member_role": "Städexpert"
+    "member_role": "Städexpert",
+    "founder_role": "Grundare",
+    "manager_role": "Operativ chef"
   },
   "contact": {
     "subtitle": "KONTAKTA OSS",
-    "title": "Skicka Ett Meddelande",
-    "name_label": "Ditt Namn",
+    "title": "Skicka ett meddelande",
+    "name_label": "Ditt namn",
     "email_label": "E-postadress",
     "phone_label": "Telefonnummer",
     "subject_label": "Ämne",
-    "message_label": "Ditt Meddelande",
-    "send_btn": "Skicka Meddelande",
+    "message_label": "Ditt meddelande",
+    "send_btn": "Skicka meddelande",
     "sending": "Skickar...",
     "success_msg": "Tack! Ditt meddelande har skickats. Vi hör av oss inom kort.",
     "error_msg": "Hoppsan! Något gick fel när meddelandet skulle skickas. Försök igen.",
-    "address_title": "Vårt Kontor",
-    "address_text": "Mannerheimvägen 12, 00100 Helsingfors, Finland",
+    "address_title": "Vårt kontor",
+    "address_text": "Korsholm, Vasa, Finland",
     "phone_title": "Telefonnummer",
     "email_title": "E-post"
   },
@@ -98,9 +104,9 @@
     "floors": "Antal våningar i bostaden",
     "windows": "Antal fönster",
     "condition": "Bostadens skick",
-    "condition_normal": "Normalt (Allmän renlighet)",
-    "condition_dirty": "Smutsigt (Kräver mer tid)",
-    "condition_very_dirty": "Mycket smutsigt (Grov rengöring)",
+    "condition_normal": "Normalt (allmän renlighet)",
+    "condition_dirty": "Smutsigt (kräver mer tid)",
+    "condition_very_dirty": "Mycket smutsigt (grov rengöring)",
     "zip_code": "Postnummer",
     "zip_placeholder": "t.ex. 00100",
     "add_ons": "3. Tilläggstjänster",

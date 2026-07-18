@@ -71,7 +71,7 @@ export default function HeroCarousel({ locale, dict }: HeroCarouselProps) {
                 </strong>
               </p>
               <Link className="vs-btn2 wow animate__fadeInUp" style={{ visibility: 'visible' }} href={`/${locale}/calculator`}>
-                {locale === 'fi' ? 'Laske Hinta Heti' : locale === 'sv' ? 'Beräkna Pris Direkt' : 'Check Price Instantly'}
+                {locale === 'fi' ? 'Laske hinta heti' : locale === 'sv' ? 'Beräkna pris direkt' : 'Check price instantly'}
                 <i className="fas fa-calculator ms-2"></i>
               </Link>
               <span className="dot-shape"></span>

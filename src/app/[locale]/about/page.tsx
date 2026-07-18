@@ -13,10 +13,10 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const title = locale === 'fi'
-    ? 'Tietoa Meistä | Nordo Clean - Siivousalan Asiantuntijat'
+    ? 'Tietoa meistä | Nordo Clean - Siivousalan asiantuntijat'
     : locale === 'sv'
-    ? 'Om Oss | Nordo Clean - Din Professionella Städfirma'
-    : 'About Us | Nordo Clean - Professional Cleaning Experts';
+    ? 'Om oss | Nordo Clean - Din professionella städfirma'
+    : 'About us | Nordo Clean - Professional cleaning experts';
   const description = locale === 'fi'
     ? 'Lue lisää siivouspalvelustamme. Nordo Clean on sitoutunut ekologisuuteen, korkeaan laatuun ja 100% asiakastyytyväisyyteen.'
     : locale === 'sv'
@@ -144,16 +144,56 @@ export default async function AboutPage({ params }: PageProps) {
         <div className="container">
           <div className="row g-4 justify-content-center">
             <div className="col-sm-6 col-md-3">
-              <CounterWrapper targetCount={950} title={dict.stats.happy_clients} icon="/assets/img/icon/counter-icon-1-1.svg" />
+              <div className="media-style my-2">
+                <div className="media-inner d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                  <span className="counter-icon mb-2 mb-sm-0 me-sm-3">
+                    <img src="/assets/img/icon/counter-icon-1-1.svg" alt="icon" style={{ width: '45px' }} />
+                  </span>
+                  <div className="media-counter text-center text-sm-start">
+                    <h4 className="media-title h6 mb-1 fw-bold text-dark">{dict.stats.title_1}</h4>
+                    <p className="media-text text-muted mb-0 small">{dict.stats.desc_1}</p>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="col-sm-6 col-md-3">
-              <CounterWrapper targetCount={45} title={dict.stats.awards} icon="/assets/img/icon/counter-icon-1-2.svg" />
+              <div className="media-style my-2">
+                <div className="media-inner d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                  <span className="counter-icon mb-2 mb-sm-0 me-sm-3">
+                    <img src="/assets/img/icon/counter-icon-1-2.svg" alt="icon" style={{ width: '45px' }} />
+                  </span>
+                  <div className="media-counter text-center text-sm-start">
+                    <h4 className="media-title h6 mb-1 fw-bold text-dark">{dict.stats.title_2}</h4>
+                    <p className="media-text text-muted mb-0 small">{dict.stats.desc_2}</p>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="col-sm-6 col-md-3">
-              <CounterWrapper targetCount={400} title={dict.stats.projects} icon="/assets/img/icon/counter-icon-1-3.svg" />
+              <div className="media-style my-2">
+                <div className="media-inner d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                  <span className="counter-icon mb-2 mb-sm-0 me-sm-3">
+                    <img src="/assets/img/icon/counter-icon-1-3.svg" alt="icon" style={{ width: '45px' }} />
+                  </span>
+                  <div className="media-counter text-center text-sm-start">
+                    <h4 className="media-title h6 mb-1 fw-bold text-dark">{dict.stats.title_3}</h4>
+                    <p className="media-text text-muted mb-0 small">{dict.stats.desc_3}</p>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="col-sm-6 col-md-3">
-              <CounterWrapper targetCount={100} title={dict.stats.members} icon="/assets/img/icon/counter-icon-1-4.svg" />
+              <div className="media-style my-2">
+                <div className="media-inner d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                  <span className="counter-icon mb-2 mb-sm-0 me-sm-3">
+                    <img src="/assets/img/icon/counter-icon-1-4.svg" alt="icon" style={{ width: '45px' }} />
+                  </span>
+                  <div className="media-counter text-center text-sm-start">
+                    <h4 className="media-title h6 mb-1 fw-bold text-dark">{dict.stats.title_4}</h4>
+                    <p className="media-text text-muted mb-0 small">{dict.stats.desc_4}</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -162,7 +202,7 @@ export default async function AboutPage({ params }: PageProps) {
       {/* Trust Quote Banner */}
       <section className="py-5 bg-white text-center">
         <div className="container py-4">
-          <h2 className="fw-bold mb-3">{locale === 'fi' ? 'Valitse Luotettava Kotimainen Kumppani' : locale === 'sv' ? 'Välj En Pålitlig Partner' : 'Choose a Trusted Partner'}</h2>
+          <h2 className="fw-bold mb-3">{locale === 'fi' ? 'Valitse luotettava kotimainen kumppani' : locale === 'sv' ? 'Välj en pålitlig partner' : 'Choose a trusted partner'}</h2>
           <p className="text-muted mx-auto" style={{ maxWidth: '600px' }}>
             {locale === 'fi'
               ? 'Tyytyväisyytesi on meille ensiarvoisen tärkeää. Räätälöimme siivouksemme vastaamaan toiveitasi.'

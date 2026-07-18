@@ -47,12 +47,12 @@ export default function Footer({ locale, dict }: FooterProps) {
   const offset = CIRCUMFERENCE * (1 - scrollProgress / 100);
 
   const galleryImages = [
-    '/assets/img/gallery/gallery-img-1-1.jpg',
-    '/assets/img/gallery/gallery-img-1-2.jpg',
-    '/assets/img/gallery/gallery-img-1-3.jpg',
-    '/assets/img/gallery/gallery-img-1-4.jpg',
-    '/assets/img/gallery/gallery-img-1-5.jpg',
-    '/assets/img/gallery/gallery-img-1-6.jpg',
+    '/assets/img/service/home-cleaning.jpg',
+    '/assets/img/service/commercial-cleaning.jpg',
+    '/assets/img/service/kitchen-cleaning.jpg',
+    '/assets/img/service/move-out-cleaning.jpg',
+    '/assets/img/service/staircase-cleaning.jpg',
+    '/assets/img/service/window-cleaning.jpg',
   ];
 
   return (
@@ -87,7 +87,7 @@ export default function Footer({ locale, dict }: FooterProps) {
                       </span>
                       <div className="contact-content">
                         <h6 className="contact-title mb-0">
-                          <a href="tel:+358401234567" className="text-white">+358 40 123 4567</a>
+                          <a href="tel:+358405218220" className="text-white">+358 40 521 8220</a>
                         </h6>
                         <p className="contact-text text-white-50 mb-0">call 24/7</p>
                       </div>

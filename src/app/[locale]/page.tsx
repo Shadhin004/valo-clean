@@ -16,15 +16,15 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const title = locale === 'fi' 
-    ? 'Nordo Clean | Laadukkaat Siivouspalvelut Kotiin ja Toimistoon Helsinki' 
+    ? 'Nordo Clean | Laadukkaat siivouspalvelut kotiin ja toimistoon Mustasaari & Vaasa' 
     : locale === 'sv' 
-    ? 'Nordo Clean | Premium Städtjänster för Hem och Kontor i Helsingfors' 
-    : 'Nordo Clean | Premium Cleaning Services for Home & Office Helsinki';
+    ? 'Nordo Clean | Premium städtjänster för hem och kontor i Korsholm & Vasa' 
+    : 'Nordo Clean | Premium cleaning services for home & office Mustasaari & Vaasa';
   const description = locale === 'fi'
-    ? 'Nordo Clean tarjoaa luotettavaa kotisiivousta, toimistosiivousta ja porrassiivousta pääkaupunkiseudulla. Pyydä ilmainen tarjous jo tänään!'
+    ? 'Nordo Clean tarjoaa luotettavaa kotisiivousta, toimistosiivousta ja porrassiivousta Mustasaaren ja Vaasan alueella. Pyydä ilmainen tarjous jo tänään!'
     : locale === 'sv'
-    ? 'Nordo Clean erbjuder professionell hemstädning, kontorsstädning och trappstädning i Helsingfors. Kontakta oss för en fri offert idag!'
-    : 'Nordo Clean offers professional residential cleaning, office cleaning, and staircase cleaning in Helsinki. Request a free estimate today!';
+    ? 'Nordo Clean erbjuder professionell hemstädning, kontorsstädning och trappstädning i Korsholm och Vasa. Kontakta oss för en fri offert idag!'
+    : 'Nordo Clean offers professional residential cleaning, office cleaning, and staircase cleaning in Mustasaari and Vaasa. Request a free estimate today!';
   
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nordoclean.fi';
 
@@ -98,11 +98,11 @@ export default async function HomePage({ params }: PageProps) {
   ];
 
   // Team data
-  const team = [
-    { name: 'Albert K.', role: dict.team.member_role, img: '/assets/img/team/team-img-1-1.png' },
-    { name: 'Emilia S.', role: dict.team.member_role, img: '/assets/img/team/team-img-1-2.png' },
-    { name: 'Mikko L.', role: dict.team.member_role, img: '/assets/img/team/team-img-1-3.png' },
-    { name: 'Sanni H.', role: dict.team.member_role, img: '/assets/img/team/team-img-1-4.png' },
+  const team: { name: string; role: string; img: string; phone?: string }[] = [
+    { name: 'Emma Rosenlund', role: dict.team.founder_role, phone: '+358 40 521 8220', img: '/assets/img/team/emma-rosenlund.png' },
+    { name: 'Tanveer Khan', role: dict.team.manager_role, phone: '+358 31 722 5412', img: '/assets/img/team/tanveer-khan.png' },
+    { name: 'Albert K.', role: dict.team.member_role, img: '/assets/img/team/team-img-1-3.png' },
+    { name: 'Emilia S.', role: dict.team.member_role, img: '/assets/img/team/team-img-1-4.png' },
   ];
 
   return (
@@ -142,16 +142,56 @@ export default async function HomePage({ params }: PageProps) {
               <div className="counter-style1">
                 <div className="row g-4 justify-content-lg-between justify-content-center align-items-center">
                   <div className="col-sm-6 col-md-3 text-center">
-                    <CounterWrapper targetCount={950} title={dict.stats.happy_clients} icon="/assets/img/icon/counter-icon-1-1.svg" />
+                    <div className="media-style my-2">
+                      <div className="media-inner d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                        <span className="counter-icon mb-2 mb-sm-0 me-sm-3">
+                          <img src="/assets/img/icon/counter-icon-1-1.svg" alt="icon" style={{ width: '45px' }} />
+                        </span>
+                        <div className="media-counter text-center text-sm-start">
+                          <h4 className="media-title h6 mb-1 fw-bold text-white">{dict.stats.title_1}</h4>
+                          <p className="media-text text-muted mb-0 small">{dict.stats.desc_1}</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-sm-6 col-md-3 text-center">
-                    <CounterWrapper targetCount={45} title={dict.stats.awards} icon="/assets/img/icon/counter-icon-1-2.svg" />
+                    <div className="media-style my-2">
+                      <div className="media-inner d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                        <span className="counter-icon mb-2 mb-sm-0 me-sm-3">
+                          <img src="/assets/img/icon/counter-icon-1-2.svg" alt="icon" style={{ width: '45px' }} />
+                        </span>
+                        <div className="media-counter text-center text-sm-start">
+                          <h4 className="media-title h6 mb-1 fw-bold text-white">{dict.stats.title_2}</h4>
+                          <p className="media-text text-muted mb-0 small">{dict.stats.desc_2}</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-sm-6 col-md-3 text-center">
-                    <CounterWrapper targetCount={400} title={dict.stats.projects} icon="/assets/img/icon/counter-icon-1-3.svg" />
+                    <div className="media-style my-2">
+                      <div className="media-inner d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                        <span className="counter-icon mb-2 mb-sm-0 me-sm-3">
+                          <img src="/assets/img/icon/counter-icon-1-3.svg" alt="icon" style={{ width: '45px' }} />
+                        </span>
+                        <div className="media-counter text-center text-sm-start">
+                          <h4 className="media-title h6 mb-1 fw-bold text-white">{dict.stats.title_3}</h4>
+                          <p className="media-text text-muted mb-0 small">{dict.stats.desc_3}</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-sm-6 col-md-3 text-center">
-                    <CounterWrapper targetCount={100} title={dict.stats.members} icon="/assets/img/icon/counter-icon-1-4.svg" />
+                    <div className="media-style my-2">
+                      <div className="media-inner d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                        <span className="counter-icon mb-2 mb-sm-0 me-sm-3">
+                          <img src="/assets/img/icon/counter-icon-1-4.svg" alt="icon" style={{ width: '45px' }} />
+                        </span>
+                        <div className="media-counter text-center text-sm-start">
+                          <h4 className="media-title h6 mb-1 fw-bold text-white">{dict.stats.title_4}</h4>
+                          <p className="media-text text-muted mb-0 small">{dict.stats.desc_4}</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -209,10 +249,12 @@ export default async function HomePage({ params }: PageProps) {
                     <i className="far fa-long-arrow-right ms-2"></i>
                   </Link>
                   <div className="author-box d-flex align-items-center">
-                    <img src="/assets/img/about/author-img.jpg" alt="author" className="rounded-circle me-3" style={{ width: '50px', height: '50px' }} />
+                    <img src="/assets/img/team/emma-rosenlund.png" alt="author" className="rounded-circle me-3" style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
                     <div>
-                      <h6 className="mb-0">Markus K.</h6>
-                      <p className="text-muted mb-0" style={{ fontSize: '12px' }}>Co-founder</p>
+                      <h6 className="mb-0">Emma Rosenlund</h6>
+                      <p className="text-muted mb-0" style={{ fontSize: '12px' }}>
+                        {dict.team.founder_role} | <a href="tel:+358405218220" className="text-muted hover-text-success" style={{ textDecoration: 'none' }}>+358 40 521 8220</a>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -277,33 +319,7 @@ export default async function HomePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Client Logos / Trust Section */}
-      <section className="py-5 bg-white border-top border-bottom">
-        <div className="container">
-          <div className="row g-4 align-items-center justify-content-center text-center">
-            <div className="col-xl-3 text-xl-start">
-              <h5 className="mb-1 text-uppercase text-muted" style={{ letterSpacing: '1px', fontSize: '14px' }}>
-                {dict.common.satisfaction}
-              </h5>
-              <h4 className="fw-bold">{locale === 'fi' ? 'Luottokumppanimme' : locale === 'sv' ? 'Våra Partners' : 'Our Trusted Partners'}</h4>
-            </div>
-            <div className="col-xl-9">
-              <div className="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-4 align-items-center justify-content-center">
-                {['brand-1.png', 'brand-2.png', 'brand-3.png', 'brand-4.png', 'brand-5.png'].map((brand, idx) => (
-                  <div key={idx} className="col d-flex justify-content-center">
-                    <img
-                      src={`/assets/img/brand/${brand}`}
-                      alt={`Brand ${idx + 1}`}
-                      className="img-fluid"
-                      style={{ maxHeight: '40px', opacity: 0.7, filter: 'grayscale(100%)' }}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Team Section */}
       <section className="space py-5 bg-light">
@@ -320,13 +336,22 @@ export default async function HomePage({ params }: PageProps) {
           <div className="row g-4 justify-content-center">
             {team.map((member, index) => (
               <div key={index} className="col-lg-3 col-sm-6">
-                <div className="vs-team__style1 text-center bg-white border rounded p-4 h-100 shadow-sm">
-                  <div className="vs-team__img mx-auto mb-3" style={{ width: '150px', height: '150px', overflow: 'hidden', borderRadius: '50%' }}>
-                    <img src={member.img} alt={member.name} className="w-100 h-100" style={{ objectFit: 'cover' }} />
+                <div className="vs-team__style1 text-center bg-white border rounded p-4 h-100 shadow-sm d-flex flex-column justify-content-between">
+                  <div>
+                    <div className="vs-team__img mx-auto mb-3" style={{ width: '150px', height: '150px', overflow: 'hidden', borderRadius: '50%' }}>
+                      <img src={member.img} alt={member.name} className="w-100 h-100" style={{ objectFit: 'cover' }} />
+                    </div>
+                    <h4 className="h6 mb-1">{member.name}</h4>
+                    <p className="text-success small mb-1">{member.role}</p>
+                    {member.phone && (
+                      <p className="text-muted small mb-3">
+                        <a href={`tel:${member.phone.replace(/\s+/g, '')}`} className="text-muted hover-text-success" style={{ textDecoration: 'none' }}>
+                          <i className="fa-solid fa-phone me-1"></i> {member.phone}
+                        </a>
+                      </p>
+                    )}
                   </div>
-                  <h4 className="h6 mb-1">{member.name}</h4>
-                  <p className="text-success small mb-3">{member.role}</p>
-                  <div className="d-flex justify-content-center gap-2">
+                  <div className="d-flex justify-content-center gap-2 mt-2">
                     <a href="#" className="text-muted"><i className="fab fa-facebook-f"></i></a>
                     <a href="#" className="text-muted"><i className="fab fa-linkedin-in"></i></a>
                     <a href="#" className="text-muted"><i className="fab fa-instagram"></i></a>

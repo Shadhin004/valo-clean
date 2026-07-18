@@ -99,14 +99,14 @@
     .title-area{
         margin-bottom: 0;
         .team-title{
-            text-transform: capitalize;
+            
             margin-bottom: 0;
             font-size: 36px;
             line-height: 128%;
         }
         .team-degi{
             font-size: 16px;
-            text-transform: capitalize;
+            
             color: $theme-color;
             font-weight: 600;
             font-family: $title-font;
@@ -126,12 +126,12 @@
     }
     .team-text{
         font-weight: 500;
-        text-transform: capitalize;
+        
     }
     .sec-title{
         font-size: 36px;
         font-weight: 600;
-        text-transform: capitalize;
+        
         line-height: 128%;
         .title-highlight{
             display: inline-block;

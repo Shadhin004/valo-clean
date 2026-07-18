@@ -84,7 +84,7 @@ blockquote.vs-quote {
     font-family: var(--title-font);
     line-height: 140%;
     color: $title-color;
-    text-transform: capitalize;
+    
     letter-spacing: 0.9px;
   }
   .quote-author {
@@ -301,7 +301,7 @@ blockquote.vs-quote {
     margin-bottom: 4px;
   }
   .blog-text {
-    text-transform: capitalize;
+    
     line-height: 160%;
     font-weight: 500;
   }
@@ -444,7 +444,7 @@ blockquote.vs-quote {
     &__heading {
       margin-bottom: 0;
       color: var(--white-color);
-      text-transform: capitalize;
+      
       letter-spacing: 0.6px;
       display: flex;
       align-items: center;
@@ -467,7 +467,7 @@ blockquote.vs-quote {
     margin-bottom: 15px;
     padding-right: 0;
     color: $white-color;
-    text-transform: capitalize;
+    
     line-height: 160%;
   }
   &__social {
@@ -536,7 +536,7 @@ blockquote.vs-quote {
     .blog-inner-author{
       .blog-date{
         color: #5F5D76;
-        text-transform: capitalize;
+        
         &:hover{
           color: $theme-color;
         }

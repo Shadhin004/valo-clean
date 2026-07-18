@@ -5,7 +5,7 @@
         padding-right: 70px;
     }
     .about-text{
-        text-transform: capitalize;
+        
         font-weight: 600;
     }
     &.style3{
@@ -220,7 +220,7 @@
         display: block;
     }
     .item-text{
-        text-transform: capitalize;
+        
         font-weight: 600;
         font-size: 15px;
         margin-bottom: 0;
@@ -286,7 +286,7 @@
     margin-bottom: 28px;
     .nav-link{
         border: none;
-        text-transform: capitalize;
+        
         font-weight: 700;
         color: $title-color;
         font-family: $title-font;
@@ -341,7 +341,7 @@
         color: $text-color;
         font-size: 16px;
         font-weight: 500;
-        text-transform: capitalize;
+        
         &:not(:last-child){
             margin-bottom: 14px;
         }

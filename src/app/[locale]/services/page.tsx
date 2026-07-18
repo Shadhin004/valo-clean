@@ -12,10 +12,10 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const title = locale === 'fi'
-    ? 'Palvelumme | Kotisiivous, Toimistosiivous & Porrassiivous'
+    ? 'Palvelumme | Kotisiivous, toimistosiivous & porrassiivous'
     : locale === 'sv'
-    ? 'Våra Tjänster | Hemstädning, Kontorsstädning & Trappstädning'
-    : 'Our Services | Residential, Commercial & Staircase Cleaning';
+    ? 'Våra tjänster | Hemstädning, kontorsstädning & trappstädning'
+    : 'Our services | Residential, commercial & staircase cleaning';
   const description = locale === 'fi'
     ? 'Tutustu monipuolisiin siivouspalveluihimme: kotisiivous, keittiön tehopuhdistus, muuttosiivous, porrassiivous, ikkunanpesu ja yrityssiivous.'
     : locale === 'sv'
@@ -184,7 +184,7 @@ export default async function ServicesPage({ params }: PageProps) {
       <section className="py-5 bg-light border-top text-center">
         <div className="container py-3">
           <h3 className="fw-bold mb-3">
-            {locale === 'fi' ? 'Tarvitsetko Ammattitaitoista Siivoojaa?' : locale === 'sv' ? 'Behöver du professionell städhjälp?' : 'Need Professional Cleaning Assistance?'}
+            {locale === 'fi' ? 'Tarvitsetko ammattitaitoista siivoojaa?' : locale === 'sv' ? 'Behöver du professionell städhjälp?' : 'Need professional cleaning assistance?'}
           </h3>
           <p className="text-muted mx-auto mb-4" style={{ maxWidth: '600px' }}>
             {locale === 'fi'

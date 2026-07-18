@@ -266,14 +266,14 @@ export default function Header({ locale, dict }: HeaderProps) {
                         <button className="searchBoxTggler" onClick={() => setIsSearchOpen(true)}>
                           <i className="fal fa-search"></i>
                         </button>
-                        <a className="icon-btn" href="tel:+358401234567">
+                        <a className="icon-btn" href="tel:+358405218220">
                           <i className="fa-solid fa-phone"></i>
                         </a>
                       </div>
                       <div className="contact-content">
                         <p className="contact-text">{dict.common.call_helpline}</p>
                         <h6 className="contact-title">
-                          <a href="tel:+358401234567">+358 40 123 4567</a>
+                          <a href="tel:+358405218220">+358 40 521 8220</a>
                         </h6>
                       </div>
                     </div>
