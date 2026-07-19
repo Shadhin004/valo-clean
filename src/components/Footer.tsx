@@ -89,7 +89,7 @@ export default function Footer({ locale, dict }: FooterProps) {
                         <h6 className="contact-title mb-0">
                           <a href="tel:+358405218220" className="text-white">+358 40 521 8220</a>
                         </h6>
-                        <p className="contact-text text-white-50 mb-0">call 24/7</p>
+                        <p className="contact-text text-white-50 mb-0">{dict.common.call_hours}</p>
                       </div>
                     </div>
 

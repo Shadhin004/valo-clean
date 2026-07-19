@@ -101,8 +101,6 @@ export default async function HomePage({ params }: PageProps) {
   const team: { name: string; role: string; img: string; phone?: string }[] = [
     { name: 'Emma Rosenlund', role: dict.team.founder_role, phone: '+358 40 521 8220', img: '/assets/img/team/emma-rosenlund.png' },
     { name: 'Tanveer Khan', role: dict.team.manager_role, phone: '+358 31 722 5412', img: '/assets/img/team/tanveer-khan.png' },
-    { name: 'Albert K.', role: dict.team.member_role, img: '/assets/img/team/team-img-1-3.png' },
-    { name: 'Emilia S.', role: dict.team.member_role, img: '/assets/img/team/team-img-1-4.png' },
   ];
 
   return (
@@ -325,7 +323,7 @@ export default async function HomePage({ params }: PageProps) {
 
           <div className="row g-4 justify-content-center">
             {team.map((member, index) => (
-              <div key={index} className="col-lg-3 col-sm-6">
+              <div key={index} className="col-lg-4 col-sm-6">
                 <div className="vs-team__style1 text-center bg-white border rounded p-4 h-100 shadow-sm d-flex flex-column justify-content-between">
                   <div>
                     <div className="vs-team__img mx-auto mb-3" style={{ width: '150px', height: '150px', overflow: 'hidden', borderRadius: '50%' }}>
