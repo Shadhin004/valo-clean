@@ -16,7 +16,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         {/* Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -32,7 +32,7 @@ export default async function LocaleLayout({
         <link rel="stylesheet" href="/assets/css/animate.min.css" />
         <link rel="stylesheet" href="/assets/css/style.css" />
       </head>
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }

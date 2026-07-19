@@ -9,7 +9,7 @@
     "contact": "Contact",
     "call_helpline": "Call helpline",
     "email_us": "Email us",
-    "working_hours": "Tuesday - Saturday 8:00 am - 5:00 pm",
+    "working_hours": "Monday - Friday 8:00 am - 5:00 pm",
     "follow_us": "Follow us on:",
     "read_more": "Read more",
     "discover_more": "Discover more",
@@ -121,9 +121,13 @@
     "estimated_price": "Estimated price",
     "vat_included": "incl. VAT 25.5%",
     "minimum_applied": "Minimum service charge applied",
-    "travel_fee_applied": "Outer region travel fee added (+25 €)",
+    "travel_fee_applied": "Travel cost added",
     "success_title": "Proposal Request Sent!",
     "success_desc": "Thank you! Your proposal request has been processed and sent to your email. We will get in touch with you shortly.",
-    "error_desc": "Error sending proposal. Please double-check your inputs or try again later."
+    "error_desc": "Error sending proposal. Please double-check your inputs or try again later.",
+    "glass_type": "Window glass type",
+    "glass_2": "2-glass windows",
+    "glass_3": "3-glass windows",
+    "business_notice": "Are you a business? Contact us directly to get a customized commercial cleaning quote."
   }
 }

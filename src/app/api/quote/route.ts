@@ -9,16 +9,18 @@ const SERVICE_ENV_MAP: Record<string, string> = {
   'staircase-cleaning': 'STAIRCASE_CLEANING',
   'commercial-cleaning': 'COMMERCIAL_CLEANING',
   'window-cleaning': 'WINDOW_CLEANING',
+  'office-cleaning': 'OFFICE_CLEANING',
 };
 
 // Fallback rates if .env is missing or invalid
 const FALLBACK_RATES: Record<string, { soft: number; medium: number; hard: number; min: number }> = {
-  'HOME_CLEANING': { soft: 2.2, medium: 3.2, hard: 4.8, min: 80.0 },
+  'HOME_CLEANING': { soft: 1.0, medium: 1.3, hard: 1.8, min: 70.0 },
   'KITCHEN_CLEANING': { soft: 4.5, medium: 6.5, hard: 9.0, min: 120.0 },
   'MOVE_OUT_PACKAGE': { soft: 3.5, medium: 5.0, hard: 7.0, min: 150.0 },
   'STAIRCASE_CLEANING': { soft: 1.6, medium: 2.4, hard: 3.6, min: 100.0 },
   'COMMERCIAL_CLEANING': { soft: 1.8, medium: 2.6, hard: 4.0, min: 110.0 },
   'WINDOW_CLEANING': { soft: 2.8, medium: 4.0, hard: 5.8, min: 70.0 },
+  'OFFICE_CLEANING': { soft: 1.8, medium: 2.6, hard: 4.0, min: 110.0 },
 };
 
 // Display names for translations in email
@@ -29,6 +31,7 @@ const SERVICE_NAMES: Record<string, Record<string, string>> = {
   'staircase-cleaning': { fi: 'Porrassiivous', sv: 'Trappstädning', en: 'Staircase Cleaning' },
   'commercial-cleaning': { fi: 'Yrityssiivous', sv: 'Företagsstädning', en: 'Commercial Cleaning' },
   'window-cleaning': { fi: 'Ikkunanpesu', sv: 'Fönsterputsning', en: 'Window Cleaning' },
+  'office-cleaning': { fi: 'Toimistosiivous', sv: 'Kontorsstädning', en: 'Office Cleaning' },
 };
 
 const CLEAN_LEVELS: Record<string, Record<string, string>> = {
@@ -49,6 +52,30 @@ const CONDITION_NAMES: Record<string, Record<string, string>> = {
   very_dirty: { fi: 'Erittäin likainen', sv: 'Mycket smutsigt', en: 'Very Dirty' },
 };
 
+const getTravelCostForZip = (zip: string): number => {
+  const trimmed = zip.trim();
+  if (trimmed === '') return 0;
+  if (!/^65/.test(trimmed)) {
+    return 50.00; // Outside Vaasa/Mustasaari
+  }
+  
+  // Group 0: Same/Adjacent (0 €)
+  const group0 = ['65710', '65610', '65100'];
+  // Group 1: Near Area (10 €)
+  const group1 = ['65170', '65200', '65230', '65280', '65300', '65320', '65350', '65370', '65380', '65630', '65650', '65730'];
+  // Group 2: Mid Area (20 €)
+  const group2 = ['65410', '65450', '65460', '65470', '65480', '65760'];
+  // Group 3: Far Area (35 €)
+  const group3 = ['65800', '65830', '65840', '65850', '65860'];
+
+  if (group0.includes(trimmed)) return 0;
+  if (group1.includes(trimmed)) return 10.00;
+  if (group2.includes(trimmed)) return 20.00;
+  if (group3.includes(trimmed)) return 35.00;
+  
+  return 15.00; // Fallback standard fee for other 65xxx zip codes
+};
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -64,6 +91,7 @@ export async function POST(req: NextRequest) {
       bathrooms = 1,
       floors = 1,
       windows = 0,
+      windowGlassType = '2-glass',
       condition = 'normal',
       zipCode = '',
       addonWindows = false,
@@ -72,12 +100,12 @@ export async function POST(req: NextRequest) {
     } = body;
 
     // Validate inputs
-    if (!service || !level || !area || !email || !phone) {
+    if (!service || !level || !email || !phone) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    const areaNum = parseFloat(area);
-    if (isNaN(areaNum) || areaNum <= 0) {
+    const areaNum = parseFloat(area) || 0;
+    if (service !== 'window-cleaning' && (isNaN(areaNum) || areaNum <= 0)) {
       return NextResponse.json({ error: 'Invalid area size' }, { status: 400 });
     }
 
@@ -98,25 +126,35 @@ export async function POST(req: NextRequest) {
     const ratePerM2 = process.env[rateKey] ? parseFloat(process.env[rateKey]!) : fallbacks[level as 'soft' | 'medium' | 'hard'];
     const minPrice = process.env[minKey] ? parseFloat(process.env[minKey]!) : fallbacks.min;
 
-    // 1. Base price based on area size
-    const rawBase = ratePerM2 * areaNum;
+    // Window Glass Type Rates
+    const window2GlassRate = process.env.PRICE_WINDOW_2GLASS ? parseFloat(process.env.PRICE_WINDOW_2GLASS) : 6.00;
+    const window3GlassRate = process.env.PRICE_WINDOW_3GLASS ? parseFloat(process.env.PRICE_WINDOW_3GLASS) : 9.00;
+    const windowRate = windowGlassType === '3-glass' ? window3GlassRate : window2GlassRate;
+
+    // 1. Base price based on area size or window count
+    let rawBase = 0;
+    if (service === 'window-cleaning') {
+      rawBase = windowsNum * windowRate;
+    } else {
+      rawBase = ratePerM2 * areaNum;
+    }
     const isMinApplied = rawBase < minPrice;
     const basePrice = isMinApplied ? minPrice : rawBase;
 
     // 2. Property Type Multiplier
     const typeKey = `MULTIPLIER_PROPERTY_${propertyType.toUpperCase()}`;
     const fallbackTypeMult = propertyType === 'townhouse' ? 1.10 : propertyType === 'house' ? 1.20 : 1.00;
-    const typeMultiplier = process.env[typeKey] ? parseFloat(process.env[typeKey]!) : fallbackTypeMult;
+    const typeMultiplier = service === 'window-cleaning' ? 1.00 : (process.env[typeKey] ? parseFloat(process.env[typeKey]!) : fallbackTypeMult);
 
     // 3. Condition Multiplier
     const condKey = `MULTIPLIER_CONDITION_${condition.toUpperCase()}`;
     const fallbackCondMult = condition === 'dirty' ? 1.25 : condition === 'very_dirty' ? 1.50 : 1.00;
-    const conditionMultiplier = process.env[condKey] ? parseFloat(process.env[condKey]!) : fallbackCondMult;
+    const conditionMultiplier = service === 'window-cleaning' ? 1.00 : (process.env[condKey] ? parseFloat(process.env[condKey]!) : fallbackCondMult);
 
     // 4. Floors Multiplier (+10% per floor above 1)
     const floorKey = 'MULTIPLIER_PER_FLOOR';
     const floorMultiplier = process.env[floorKey] ? parseFloat(process.env[floorKey]!) : 0.10;
-    const floorFactor = 1.0 + Math.max(0, floorsNum - 1) * floorMultiplier;
+    const floorFactor = service === 'window-cleaning' ? 1.00 : (1.0 + Math.max(0, floorsNum - 1) * floorMultiplier);
 
     // Apply multipliers to base price
     const subtotalBeforeAddons = basePrice * typeMultiplier * conditionMultiplier * floorFactor;
@@ -124,15 +162,13 @@ export async function POST(req: NextRequest) {
     // 5. Bathrooms flat fee (€35 per bathroom beyond the first one)
     const bathRateKey = 'PRICE_PER_BATHROOM';
     const bathroomRate = process.env[bathRateKey] ? parseFloat(process.env[bathRateKey]!) : 35.00;
-    const bathroomsCost = Math.max(0, bathroomsNum - 1) * bathroomRate;
+    const bathroomsCost = service === 'window-cleaning' ? 0 : Math.max(0, bathroomsNum - 1) * bathroomRate;
 
     // 6. Add-on fees
     let addonsCost = 0;
     
-    // Windows cleaning logic
-    const windowRateKey = 'PRICE_PER_WINDOW';
-    const windowRate = process.env[windowRateKey] ? parseFloat(process.env[windowRateKey]!) : 25.00;
-    if (['home-cleaning', 'move-out-package', 'window-cleaning'].includes(service)) {
+    // Windows cleaning logic (if added to other services)
+    if (['home-cleaning', 'move-out-package'].includes(service)) {
       addonsCost += windowsNum * windowRate;
     }
 
@@ -154,15 +190,9 @@ export async function POST(req: NextRequest) {
       addonsCost += balconyCost;
     }
 
-    // 7. Travel fee if ZIP code is outside Mustasaari/Vaasa (does not start with 65)
-    let travelCost = 0;
+    // 7. Travel fee based on dynamic distance groups from Smedsby 65710
     const trimmedZip = zipCode.trim();
-    const isOuterRegion = trimmedZip !== '' && !/^65/.test(trimmedZip);
-    if (isOuterRegion) {
-      const travelKey = 'TRAVEL_FEE_OUTER_REGION';
-      const travelFee = process.env[travelKey] ? parseFloat(process.env[travelKey]!) : 25.00;
-      travelCost = travelFee;
-    }
+    const travelCost = getTravelCostForZip(trimmedZip);
 
     // Sum totals (excl. VAT)
     const totalExclVat = subtotalBeforeAddons + bathroomsCost + addonsCost + travelCost;
@@ -187,10 +217,18 @@ export async function POST(req: NextRequest) {
         <th>${locale === 'fi' ? 'Palvelu' : locale === 'sv' ? 'Tjänst' : 'Service'}</th>
         <td>${serviceName}</td>
       </tr>
+      ${service === 'window-cleaning' ? `
+      <tr>
+        <th>${locale === 'fi' ? 'Ikkunat' : locale === 'sv' ? 'Fönster' : 'Windows'}</th>
+        <td>${windowsNum} ${locale === 'fi' ? 'kpl' : 'st'} (${windowGlassType === '3-glass' ? (locale === 'fi' ? '3-kertaiset' : locale === 'sv' ? '3-glas' : '3-glass') : (locale === 'fi' ? '2-kertaiset' : locale === 'sv' ? '2-glas' : '2-glass')}) (Perushinta: ${basePrice.toFixed(2)} € ${isMinApplied ? `[${locale === 'fi' ? 'Minimihinta' : locale === 'sv' ? 'Minimipris' : 'Min Price'}]` : ''})</td>
+      </tr>
+      ` : `
       <tr>
         <th>${locale === 'fi' ? 'Pinta-ala' : locale === 'sv' ? 'Storlek' : 'Area Size'}</th>
         <td>${areaNum} m² (Perushinta: ${basePrice.toFixed(2)} € ${isMinApplied ? `[${locale === 'fi' ? 'Minimihinta' : locale === 'sv' ? 'Minimipris' : 'Min Price'}]` : ''})</td>
       </tr>
+      `}
+      ${service !== 'window-cleaning' ? `
       <tr>
         <th>${locale === 'fi' ? 'Asunnon tyyppi' : locale === 'sv' ? 'Bostadstyp' : 'Property type'}</th>
         <td>${propertyTypeName} (${typeMultiplier.toFixed(2)}x)</td>
@@ -203,15 +241,16 @@ export async function POST(req: NextRequest) {
         <th>${locale === 'fi' ? 'Kerrokset' : locale === 'sv' ? 'Våningar' : 'Floors'}</th>
         <td>${floorsNum} ${locale === 'fi' ? 'kpl' : 'st'} (${floorFactor.toFixed(2)}x)</td>
       </tr>
-      ${bathroomsNum > 1 ? `
+      ` : ''}
+      ${service !== 'window-cleaning' && bathroomsNum > 1 ? `
       <tr>
         <th>${locale === 'fi' ? 'Kylpyhuoneet' : locale === 'sv' ? 'Badrum' : 'Bathrooms'}</th>
         <td>${bathroomsNum} ${locale === 'fi' ? 'kpl' : 'st'} (Lisä: +${bathroomsCost.toFixed(2)} €)</td>
       </tr>` : ''}
-      ${windowsNum > 0 ? `
+      ${service !== 'window-cleaning' && windowsNum > 0 ? `
       <tr>
         <th>${locale === 'fi' ? 'Ikkunat' : locale === 'sv' ? 'Fönster' : 'Windows'}</th>
-        <td>${windowsNum} ${locale === 'fi' ? 'kpl' : 'st'} (+${(windowsNum * windowRate).toFixed(2)} €)</td>
+        <td>${windowsNum} ${locale === 'fi' ? 'kpl' : 'st'} (${windowGlassType === '3-glass' ? (locale === 'fi' ? '3-lasiset' : locale === 'sv' ? '3-glas' : '3-glass') : (locale === 'fi' ? '2-lasiset' : locale === 'sv' ? '2-glas' : '2-glass')}) (+${(windowsNum * windowRate).toFixed(2)} €)</td>
       </tr>` : ''}
       ${addonBasement && basementCost > 0 ? `
       <tr>
@@ -220,7 +259,7 @@ export async function POST(req: NextRequest) {
       </tr>` : ''}
       ${addonBalcony && balconyCost > 0 ? `
       <tr>
-        <th>${locale === 'fi' ? 'Parveke / Terassi (Lisävalinta)' : locale === 'sv' ? 'Balkong / Veranda (Tillägg)' : 'Balcony / porch (add-on)'}</th>
+        <th>${locale === 'fi' ? 'Parveke / Terassi (Lisävalinta)' : locale === 'sv' ? 'Balkong / Veranda (Tillägg)' : 'Balkong / Veranda (Tillägg)'}</th>
         <td>${locale === 'fi' ? 'Kyllä' : locale === 'sv' ? 'Ja' : 'Yes'} (+${balconyCost.toFixed(2)} €)</td>
       </tr>` : ''}
       ${travelCost > 0 ? `

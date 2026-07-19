@@ -9,7 +9,7 @@
     "contact": "Yhteystiedot",
     "call_helpline": "Soita asiakaspalveluun",
     "email_us": "Lähetä sähköpostia",
-    "working_hours": "Tiistai - Lauantai 8:00 - 17:00",
+    "working_hours": "Maanantai - Perjantai 8:00 - 17:00",
     "follow_us": "Seuraa meitä:",
     "read_more": "Lue lisää",
     "discover_more": "Tutustu lisää",
@@ -121,9 +121,13 @@
     "estimated_price": "Arvioitu hinta",
     "vat_included": "sis. ALV 25,5%",
     "minimum_applied": "Palvelun vähimmäisveloitus otettu käyttöön",
-    "travel_fee_applied": "Matkakulu pääkaupunkiseudun ulkopuolelle lisätty (+25 €)",
+    "travel_fee_applied": "Matkakulu lisätty",
     "success_title": "Tarjouspyyntö lähetetty!",
     "success_desc": "Kiitos! Tarjouspyyntösi on käsitelty ja lähetetty sähköpostiisi. Otamme sinuun yhteyttä pian.",
-    "error_desc": "Virhe lähetyksessä. Tarkista antamasi tiedot tai yritä uudelleen myöhemmin."
+    "error_desc": "Virhe lähetyksessä. Tarkista antamasi tiedot tai yritä uudelleen myöhemmin.",
+    "glass_type": "Ikkunoiden lasisuus",
+    "glass_2": "2-kertaiset lasit",
+    "glass_3": "3-kertaiset lasit",
+    "business_notice": "Oletko yritysasiakas? Ota yhteyttä suoraan saadaksesi räätälöidyn tarjouksen yrityssiivouksesta."
   }
 }

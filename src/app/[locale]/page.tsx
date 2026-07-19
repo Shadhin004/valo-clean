@@ -118,16 +118,6 @@ export default async function HomePage({ params }: PageProps) {
           <div className="row align-items-center justify-content-sm-center g-4">
             <div className="col-md-auto">
               <div className="vs-counter__inner d-flex align-items-center flex-wrap">
-                <div className="play-video me-4 mb-3 mb-sm-0">
-                  <a
-                    href="https://www.youtube.com/watch?v=moYayPRgaY0"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="play-btn2"
-                  >
-                    <i className="fas fa-play"></i>
-                  </a>
-                </div>
                 <div className="vs-counter__content">
                   <div className="title-area title-anime">
                     <span className="sec-subtitle justify-content-center">{dict.about.subtitle}</span>

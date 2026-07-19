@@ -9,7 +9,7 @@
     "contact": "Kontakt",
     "call_helpline": "Ring kundtjänst",
     "email_us": "Skicka e-post",
-    "working_hours": "Tisdag - lördag 8:00 - 17:00",
+    "working_hours": "Måndag - fredag 8:00 - 17:00",
     "follow_us": "Följ oss:",
     "read_more": "Läs mer",
     "discover_more": "Upptäck mer",
@@ -121,9 +121,13 @@
     "estimated_price": "Uppskattat pris",
     "vat_included": "inkl. MOMS 25,5%",
     "minimum_applied": "Tjänstens minimiavgift har tillämpats",
-    "travel_fee_applied": "Resekostnad utanför huvudstadsregionen har tillagts (+25 €)",
+    "travel_fee_applied": "Resekostnad tillagd",
     "success_title": "Offertförfrågan skickad!",
     "success_desc": "Tack! Din offertförfrågan har behandlats och skickats till din e-post. Vi kontaktar dig inom kort.",
-    "error_desc": "Fel vid sändning. Kontrollera dina uppgifter eller försök igen senare."
+    "error_desc": "Fel vid sändning. Kontrollera dina uppgifter eller försök igen senare.",
+    "glass_type": "Fönstertyp (glas)",
+    "glass_2": "2-glasfönster",
+    "glass_3": "3-glasfönster",
+    "business_notice": "Är du ett företag? Kontakta oss direkt för en anpassad offert för företagsstädning."
   }
 }

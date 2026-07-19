@@ -1028,7 +1028,7 @@ textarea.is-invalid {
   padding: 12px 0;
   line-height: 1;
   font-size: 16px;
-  
+
   color: var(--title-color);
   font-weight: 700;
 }
@@ -1238,7 +1238,7 @@ textarea.is-invalid {
   display: inline-block;
   border: none;
   text-align: center;
-  
+
   vertical-align: middle;
   font-size: 18px;
   font-weight: 600;
@@ -1262,7 +1262,7 @@ textarea.is-invalid {
   display: inline-block;
   border: none;
   text-align: center;
-  
+
   vertical-align: middle;
   font-size: 18px;
   font-weight: 600;
@@ -1406,7 +1406,7 @@ textarea.is-invalid {
   display: inline-block;
   line-height: 1;
   position: relative;
-  
+
   transition: all ease 0.3s;
 }
 
@@ -1596,7 +1596,7 @@ textarea.is-invalid {
 .title-area .sec-title {
   font-size: 46px;
   margin-bottom: 0;
-  
+
   line-height: 122%;
   font-weight: 700;
 }
@@ -1668,7 +1668,6 @@ textarea.is-invalid {
   background-color: var(--theme-color);
   color: var(--black-color);
   padding: 0.35em 0.55em;
-  border-radius: 50%;
 }
 
 .bg-colo1 {
@@ -2506,7 +2505,7 @@ a.text-theme:hover,
   display: block;
   font-family: var(--title-font);
   color: var(--text-color);
-  
+
   font-size: 16px;
   padding: 5px 0px 18px 0px;
   margin-bottom: 12px;
@@ -2655,7 +2654,7 @@ a.text-theme:hover,
   letter-spacing: 0.4px;
   font-size: 16px;
   font-weight: 600;
-  
+
   height: 100%;
   font-family: var(--body-font);
 }
@@ -2665,7 +2664,7 @@ a.text-theme:hover,
   letter-spacing: 0.4px;
   font-size: 16px;
   font-weight: 400;
-  
+
 }
 
 .widget .search-form button {
@@ -2810,7 +2809,7 @@ a.text-theme:hover,
   color: var(--text-color);
   background-color: var(--light-color);
   font-weight: 600;
-  
+
   font-size: 16px;
   letter-spacing: 0.4px;
   margin: 0;
@@ -2841,7 +2840,7 @@ a.text-theme:hover,
 }
 
 .recent-post .post-title {
-  
+
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
@@ -3076,7 +3075,7 @@ a.text-theme:hover,
   letter-spacing: 0.4px;
   font-family: var(--title-font);
   color: var(--text-color);
-  
+
   line-height: 160%;
 }
 
@@ -3204,7 +3203,7 @@ a.text-theme:hover,
   margin-bottom: 45px;
   padding: 0;
   border: none;
-  
+
 }
 
 .footer-widget.widget_meta,
@@ -4220,7 +4219,7 @@ a.text-theme:hover,
   .vs-header .main-menu {
     padding-left: 0px;
     font-size: 13px;
-    
+
   }
 
   .vs-header .main-menu>ul>li {
@@ -4513,7 +4512,7 @@ a.text-theme:hover,
 .contact-box .contact-text {
   font-weight: 700;
   color: var(--theme-color);
-  
+
   font-family: var(--title-font);
 }
 
@@ -4545,7 +4544,7 @@ a.text-theme:hover,
 
 .media-style1 .media-body .media-title {
   color: var(--white-color);
-  
+
   font-size: 18px;
 }
 
@@ -4628,7 +4627,7 @@ a.text-theme:hover,
 .copyright-text a {
   font-weight: 700;
   color: var(--title-color);
-  
+
 }
 
 .copyright-text a:hover {
@@ -4647,7 +4646,7 @@ a.text-theme:hover,
 .copyright-menu a {
   display: block;
   text-decoration: none;
-  
+
   color: var(--white-color);
   font-size: 16px;
   font-weight: 500;
@@ -4984,7 +4983,7 @@ blockquote.vs-quote p {
   font-family: var(--title-font);
   line-height: 140%;
   color: var(--title-color);
-  
+
   letter-spacing: 0.9px;
 }
 
@@ -5210,7 +5209,7 @@ blockquote.vs-quote .quote-author {
 }
 
 .blog-single .blog-text {
-  
+
   line-height: 160%;
   font-weight: 500;
 }
@@ -5346,7 +5345,7 @@ blockquote.vs-quote .quote-author {
 .post-admin .post-header__heading {
   margin-bottom: 0;
   color: var(--white-color);
-  
+
   letter-spacing: 0.6px;
   display: flex;
   align-items: center;
@@ -5369,7 +5368,7 @@ blockquote.vs-quote .quote-author {
   margin-bottom: 15px;
   padding-right: 0;
   color: var(--white-color);
-  
+
   line-height: 160%;
 }
 
@@ -5444,7 +5443,7 @@ blockquote.vs-quote .quote-author {
 
 .vs-blog__style1 .blog-inner-author .blog-date {
   color: #5F5D76;
-  
+
 }
 
 .vs-blog__style1 .blog-inner-author .blog-date:hover {
@@ -5637,7 +5636,7 @@ blockquote.vs-quote .quote-author {
   padding: 20px 25px;
   font-size: 15px;
   font-weight: 600;
-  
+
   color: var(--title-color);
 }
 
@@ -5659,7 +5658,7 @@ blockquote.vs-quote .quote-author {
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.4px;
-  
+
   color: var(--text-color);
 }
 
@@ -5685,7 +5684,7 @@ blockquote.vs-quote .quote-author {
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.4px;
-  
+
   line-height: 160%;
 }
 
@@ -5840,7 +5839,7 @@ blockquote.vs-quote .quote-author {
   align-items: center;
   color: var(--title-color);
   line-height: 140%;
-  
+
   gap: 18px;
   font-family: var(--title-font);
 }
@@ -5853,7 +5852,7 @@ blockquote.vs-quote .quote-author {
 .vs-comments-wrap .text:last-of-type {
   color: var(--text-color);
   letter-spacing: 0.4px;
-  
+
   margin: 0 0 0px 0;
   font-weight: 500;
   line-height: 160%;
@@ -6057,7 +6056,7 @@ blockquote.vs-quote .quote-author {
   font-size: 18px;
   font-weight: 500;
   color: var(--text-color2);
-  
+
   margin-bottom: 35px;
 }
 
@@ -6136,7 +6135,7 @@ blockquote.vs-quote .quote-author {
 }
 
 .vs-hero-style2 .vs-hero__title {
-  
+
   margin-bottom: 15px;
 }
 
@@ -6532,7 +6531,7 @@ blockquote.vs-quote .quote-author {
 }
 
 .about-box1 .item-text {
-  
+
   font-weight: 600;
   font-size: 15px;
   margin-bottom: 0;
@@ -6610,7 +6609,7 @@ blockquote.vs-quote .quote-author {
 
 .nav-tabs .nav-link {
   border: none;
-  
+
   font-weight: 700;
   color: var(--title-color);
   font-family: var(--title-font);
@@ -6672,7 +6671,7 @@ blockquote.vs-quote .quote-author {
   color: var(--text-color);
   font-size: 16px;
   font-weight: 500;
-  
+
 }
 
 .tab-list li:not(:last-child) {
@@ -7064,13 +7063,11 @@ blockquote.vs-quote .quote-author {
   margin-bottom: 10px;
 }
 
-.service-style2 .vs-service__title a {
-  
-}
+.service-style2 .vs-service__title a {}
 
 .service-style2 .vs-service__text {
   margin-bottom: 16px;
-  
+
   font-weight: 500;
 }
 
@@ -7155,7 +7152,7 @@ blockquote.vs-quote .quote-author {
 .service-style3 .service-content .service-title {
   font-size: 24px;
   font-weight: 500;
-  
+
   position: relative;
   z-index: 1;
 }
@@ -7171,7 +7168,7 @@ blockquote.vs-quote .quote-author {
 .service-style3 .service-content .service-text {
   font-size: 15px;
   font-weight: 500;
-  
+
   color: var(--white-color);
   position: relative;
   z-index: 1;
@@ -7253,7 +7250,7 @@ blockquote.vs-quote .quote-author {
 
 .service-style4 .service-title {
   font-size: 24px;
-  
+
   font-weight: 600;
   line-height: 140%;
   margin-bottom: 10px;
@@ -7604,7 +7601,7 @@ blockquote.vs-quote .quote-author {
 
 .counter-style1 .media-text {
   color: var(--text-color2);
-  
+
   margin-bottom: 0;
   font-weight: 500;
   line-height: 160%;
@@ -7832,7 +7829,7 @@ blockquote.vs-quote .quote-author {
 .vs-testi__inner .title-area .sec-text {
   color: var(--text-color2);
   font-weight: 600;
-  
+
 }
 
 .vs-testi__top {
@@ -7846,7 +7843,7 @@ blockquote.vs-quote .quote-author {
   font-size: 20px;
   margin-bottom: 0;
   font-weight: 700;
-  
+
   line-height: 150%;
 }
 
@@ -7869,7 +7866,7 @@ blockquote.vs-quote .quote-author {
   color: var(--text-color2);
   font-weight: 600;
   margin-bottom: 0;
-  
+
 }
 
 .vs-testi__icon i {
@@ -7973,7 +7970,7 @@ blockquote.vs-quote .quote-author {
 
 .testi-layout3 .testi-items .testi-text {
   font-weight: 600;
-  
+
   margin-bottom: 35px;
   padding-right: 50px;
 }
@@ -8068,7 +8065,7 @@ blockquote.vs-quote .quote-author {
   font-size: 24px;
   font-weight: 500;
   color: var(--white-color);
-  
+
   font-style: italic;
   margin-bottom: 25px;
 }
@@ -8085,7 +8082,7 @@ blockquote.vs-quote .quote-author {
   color: var(--theme-color);
   font-size: 16px;
   font-weight: 700;
-  
+
 }
 
 .testi-style2 .slick-dots {
@@ -8286,7 +8283,7 @@ blockquote.vs-quote .quote-author {
   }
 
   .vs-testi__form1 .vs-btn {
-    
+
     padding: 20px;
   }
 }
@@ -8563,7 +8560,7 @@ blockquote.vs-quote .quote-author {
 }
 
 .team-details .title-area .team-title {
-  
+
   margin-bottom: 0;
   font-size: 36px;
   line-height: 128%;
@@ -8571,7 +8568,7 @@ blockquote.vs-quote .quote-author {
 
 .team-details .title-area .team-degi {
   font-size: 16px;
-  
+
   color: var(--theme-color);
   font-weight: 600;
   font-family: var(--title-font);
@@ -8593,13 +8590,13 @@ blockquote.vs-quote .quote-author {
 
 .team-details .team-text {
   font-weight: 500;
-  
+
 }
 
 .team-details .sec-title {
   font-size: 36px;
   font-weight: 600;
-  
+
   line-height: 128%;
 }
 
@@ -8750,7 +8747,7 @@ blockquote.vs-quote .quote-author {
   position: relative;
   max-width: 100%;
   color: var(--title-color);
-  
+
   background-color: var(--white-color);
   outline: none;
   box-shadow: none;
@@ -8818,7 +8815,7 @@ blockquote.vs-quote .quote-author {
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 0;
-  
+
   line-height: 170%;
 }
 
@@ -9081,7 +9078,7 @@ blockquote.vs-quote .quote-author {
   font-size: 15px;
   color: var(--text-color);
   font-weight: 600;
-  
+
 }
 
 .social-style2 {
@@ -9247,7 +9244,7 @@ blockquote.vs-quote .quote-author {
 
 .book-layout1 .title-text {
   font-size: 18px;
-  
+
   font-weight: 600;
   height: 80px;
   line-height: 80px;
@@ -9500,7 +9497,7 @@ blockquote.vs-quote .quote-author {
 }
 
 .search-btn .form-control::placeholder {
-  
+
   color: #97969A;
 }
 
@@ -9565,7 +9562,7 @@ blockquote.vs-quote .quote-author {
   }
 
   .search-btn .form-control::placeholder {
-    
+
     color: #97969A;
     font-size: 12px;
   }
@@ -9707,13 +9704,13 @@ blockquote.vs-quote .quote-author {
 }
 
 .portfolio-Details .portfolio-title {
-  
+
   line-height: 128%;
 }
 
 .portfolio-Details .portfolio-text {
   font-weight: 500;
-  
+
 }
 
 .portfolio-Details .play-btn>i {
@@ -9732,7 +9729,7 @@ blockquote.vs-quote .quote-author {
   background-color: var(--title-color);
   color: var(--white-color);
   padding: 20px 30px;
-  
+
   font-weight: 700;
   margin-bottom: 0;
 }
@@ -9794,7 +9791,7 @@ blockquote.vs-quote .quote-author {
   font-size: 16px;
   font-weight: 600;
   color: var(--text-color);
-  
+
   line-height: 160%;
   position: relative;
 }
@@ -9836,7 +9833,7 @@ blockquote.vs-quote .quote-author {
   color: var(--white-color);
   font-size: 30px;
   font-weight: 600;
-  
+
   max-width: 12ch;
   margin: 0 auto 20px;
 }
@@ -9858,7 +9855,7 @@ blockquote.vs-quote .quote-author {
 .contact-box2 .contact-title {
   color: var(--white-color);
   font-size: 16px;
-  
+
   margin-bottom: 2px;
 }
 
@@ -10002,7 +9999,7 @@ blockquote.vs-quote .quote-author {
   color: #67B846;
   display: inline-flex;
   font-size: 20px;
-  
+
   font-weight: 500;
 }
 
@@ -10019,7 +10016,7 @@ blockquote.vs-quote .quote-author {
 }
 
 .package-style1 .vs-btn2 {
-  
+
   border: 2px solid #65B047;
   padding: 2px 4px 2px 24px;
   background: rgb(23, 167, 191);
@@ -10073,7 +10070,7 @@ blockquote.vs-quote .quote-author {
 .list-style1 ul li {
   color: var(--text-color2);
   font-weight: 600;
-  
+
   font-size: 16px;
   line-height: 160%;
 }

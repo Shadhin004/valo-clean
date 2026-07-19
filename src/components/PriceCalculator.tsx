@@ -10,11 +10,8 @@ interface PriceCalculatorProps {
 
 // Client-side rates & minimums configuration matching the .env defaults
 const CLIENT_RATES: Record<string, { soft: number; medium: number; hard: number; min: number }> = {
-  'home-cleaning': { soft: 2.2, medium: 3.2, hard: 4.8, min: 80.0 },
-  'kitchen-cleaning': { soft: 4.5, medium: 6.5, hard: 9.0, min: 120.0 },
+  'home-cleaning': { soft: 1.0, medium: 1.3, hard: 1.8, min: 70.0 },
   'move-out-package': { soft: 3.5, medium: 5.0, hard: 7.0, min: 150.0 },
-  'staircase-cleaning': { soft: 1.6, medium: 2.4, hard: 3.6, min: 100.0 },
-  'commercial-cleaning': { soft: 1.8, medium: 2.6, hard: 4.0, min: 110.0 },
   'window-cleaning': { soft: 2.8, medium: 4.0, hard: 5.8, min: 70.0 },
 };
 
@@ -33,11 +30,34 @@ const CONDITION_MULTIPLIERS: Record<string, number> = {
 
 const BATHROOM_RATE = 35.00;
 const FLOOR_MULTIPLIER = 0.10; // +10% per floor above 1
-const WINDOW_RATE = 25.00;
+const WINDOW_2GLASS_RATE = 6.00;
+const WINDOW_3GLASS_RATE = 9.00;
 
-const ADDON_BASEMENT_FLAT = 60.00;
-const ADDON_BALCONY_FLAT = 40.00;
 const TRAVEL_FEE_OUTER = 25.00;
+
+const getTravelCostForZip = (zip: string): number => {
+  const trimmed = zip.trim();
+  if (trimmed === '') return 0;
+  if (!/^65/.test(trimmed)) {
+    return 50.00; // Outside Vaasa/Mustasaari
+  }
+  
+  // Group 0: Same/Adjacent (0 €)
+  const group0 = ['65710', '65610', '65100'];
+  // Group 1: Near Area (10 €)
+  const group1 = ['65170', '65200', '65230', '65280', '65300', '65320', '65350', '65370', '65380', '65630', '65650', '65730'];
+  // Group 2: Mid Area (20 €)
+  const group2 = ['65410', '65450', '65460', '65470', '65480', '65760'];
+  // Group 3: Far Area (35 €)
+  const group3 = ['65800', '65830', '65840', '65850', '65860'];
+
+  if (group0.includes(trimmed)) return 0;
+  if (group1.includes(trimmed)) return 10.00;
+  if (group2.includes(trimmed)) return 20.00;
+  if (group3.includes(trimmed)) return 35.00;
+  
+  return 15.00; // Fallback standard fee for other 65xxx zip codes
+};
 
 export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) {
   const [selectedService, setSelectedService] = useState<string>('move-out-package');
@@ -49,12 +69,9 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
   const [bathrooms, setBathrooms] = useState<number>(1);
   const [floors, setFloors] = useState<number>(1);
   const [windows, setWindows] = useState<number>(0);
+  const [windowGlassType, setWindowGlassType] = useState<string>('2-glass');
   const [condition, setCondition] = useState<string>('normal');
   const [zipCode, setZipCode] = useState<string>('');
-
-  // Add-ons state
-  const [addonBasement, setAddonBasement] = useState<boolean>(false);
-  const [addonBalcony, setAddonBalcony] = useState<boolean>(false);
 
   // Form contact & submission state
   const [email, setEmail] = useState<string>('');
@@ -63,23 +80,33 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   // Dynamic field visibility rules based on selected service
-  const showPropertyType = ['home-cleaning', 'move-out-package', 'kitchen-cleaning'].includes(selectedService);
-  const showBathrooms = ['home-cleaning', 'move-out-package', 'commercial-cleaning'].includes(selectedService);
-  const showFloors = ['home-cleaning', 'move-out-package', 'staircase-cleaning', 'commercial-cleaning'].includes(selectedService);
+  const showAreaSize = ['home-cleaning', 'move-out-package'].includes(selectedService);
+  const showPropertyType = ['home-cleaning', 'move-out-package'].includes(selectedService);
+  const showBathrooms = ['home-cleaning', 'move-out-package'].includes(selectedService);
+  const showFloors = ['home-cleaning', 'move-out-package'].includes(selectedService);
   const showWindows = ['home-cleaning', 'move-out-package', 'window-cleaning'].includes(selectedService);
-  const showAddons = ['home-cleaning', 'move-out-package', 'window-cleaning'].includes(selectedService);
+  const showCondition = ['home-cleaning', 'move-out-package'].includes(selectedService);
 
   // Compute pricing values on the fly during render for instant feedback
   const rateData = CLIENT_RATES[selectedService];
   const rate = rateData ? rateData[selectedLevel] : 0;
-  const rawBase = rate * areaSize;
+  
+  const windowRate = windowGlassType === '3-glass' ? WINDOW_3GLASS_RATE : WINDOW_2GLASS_RATE;
+  
+  let rawBase = 0;
+  if (selectedService === 'window-cleaning') {
+    rawBase = windows * windowRate;
+  } else {
+    rawBase = rate * areaSize;
+  }
+
   const minPrice = rateData ? rateData.min : 0;
   const isMinApplied = rawBase < minPrice;
   const basePrice = isMinApplied ? minPrice : rawBase;
 
   // Apply multipliers
   const typeMultiplier = showPropertyType ? (TYPE_MULTIPLIERS[propertyType] ?? 1.0) : 1.0;
-  const conditionMultiplier = CONDITION_MULTIPLIERS[condition] ?? 1.0;
+  const conditionMultiplier = showCondition ? (CONDITION_MULTIPLIERS[condition] ?? 1.0) : 1.0;
   
   const floorsNum = showFloors ? floors : 1;
   const floorFactor = 1.0 + Math.max(0, floorsNum - 1) * FLOOR_MULTIPLIER;
@@ -88,42 +115,24 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
 
   // Bathrooms flat cost
   const bathroomsNum = showBathrooms ? bathrooms : 1;
-  const bathroomsCost = Math.max(0, bathroomsNum - 1) * BATHROOM_RATE;
+  const bathroomsCost = showBathrooms ? Math.max(0, bathroomsNum - 1) * BATHROOM_RATE : 0;
 
   // Add-ons cost
   let addonsCost = 0;
   let hasActiveAddons = false;
 
   let computedWindowCost = 0;
-  if (['home-cleaning', 'move-out-package', 'window-cleaning'].includes(selectedService)) {
-    computedWindowCost = windows * WINDOW_RATE;
+  if (['home-cleaning', 'move-out-package'].includes(selectedService)) {
+    computedWindowCost = windows * windowRate;
     addonsCost += computedWindowCost;
     if (windows > 0) {
       hasActiveAddons = true;
     }
   }
 
-  let computedBasementCost = 0;
-  if (addonBasement && showAddons && selectedService !== 'window-cleaning') {
-    computedBasementCost = ADDON_BASEMENT_FLAT;
-    addonsCost += computedBasementCost;
-    hasActiveAddons = true;
-  }
-
-  let computedBalconyCost = 0;
-  if (addonBalcony && showAddons) {
-    computedBalconyCost = ADDON_BALCONY_FLAT;
-    addonsCost += computedBalconyCost;
-    hasActiveAddons = true;
-  }
-
   // Travel cost
-  let travelCost = 0;
   const trimmedZip = zipCode.trim();
-  const isOuterRegion = trimmedZip !== '' && !/^(00|01|02)/.test(trimmedZip);
-  if (isOuterRegion) {
-    travelCost = TRAVEL_FEE_OUTER;
-  }
+  const travelCost = getTravelCostForZip(trimmedZip);
 
   const totalExclVat = subtotalBeforeAddons + bathroomsCost + addonsCost + travelCost;
   const vatAmount = totalExclVat * 0.255; // 25.5% VAT in Finland
@@ -132,9 +141,6 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
   const servicesList = [
     { slug: 'move-out-package', title: dict.services.moveout_title, icon: '/assets/img/icon/service-icon-1-3.svg' },
     { slug: 'home-cleaning', title: dict.services.home_title, icon: '/assets/img/icon/service-icon-1-1.svg' },
-    { slug: 'kitchen-cleaning', title: dict.services.kitchen_title, icon: '/assets/img/icon/service-icon-1-2.svg' },
-    { slug: 'staircase-cleaning', title: dict.services.staircase_title, icon: '/assets/img/icon/service-icon-1-4.svg' },
-    { slug: 'commercial-cleaning', title: dict.services.office_title, icon: '/assets/img/icon/service-icon-1-4.svg' },
     { slug: 'window-cleaning', title: dict.services.window_title, icon: '/assets/img/icon/service-icon-1-1.svg' },
   ];
 
@@ -151,20 +157,21 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
         body: JSON.stringify({
           service: selectedService,
           level: selectedLevel,
-          area: areaSize,
+          area: showAreaSize ? areaSize : 0,
           email,
           phone,
           sendEmail,
           locale,
-          propertyType,
-          bathrooms: bathroomsNum,
-          floors: floorsNum,
+          propertyType: showPropertyType ? propertyType : 'apartment',
+          bathrooms: showBathrooms ? bathroomsNum : 1,
+          floors: showFloors ? floorsNum : 1,
           windows: showWindows ? windows : 0,
-          condition,
+          windowGlassType: showWindows ? windowGlassType : '2-glass',
+          condition: showCondition ? condition : 'normal',
           zipCode,
           addonWindows: false,
-          addonBasement: addonBasement && selectedService !== 'window-cleaning',
-          addonBalcony,
+          addonBasement: false,
+          addonBalcony: false,
         }),
       });
 
@@ -236,13 +243,8 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
                           // Reset and adjust values when switching
                           if (service.slug === 'window-cleaning') {
                             setWindows(10);
-                            setAddonBasement(false);
-                          } else if (['home-cleaning', 'move-out-package'].includes(service.slug)) {
-                            setWindows(0);
                           } else {
                             setWindows(0);
-                            setAddonBasement(false);
-                            setAddonBalcony(false);
                           }
                         }}
                         className="p-3 rounded-3 border text-center h-100 position-relative transition"
@@ -268,6 +270,14 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
                   );
                 })}
               </div>
+
+              {/* Business customer notice */}
+              <div className="mt-4 p-3 bg-light border-start border-success border-4 rounded-end text-start">
+                <p className="mb-0 fw-semibold text-dark" style={{ fontSize: '14px' }}>
+                  <i className="fas fa-building me-2 text-success"></i>
+                  {dict.calculator.business_notice}
+                </p>
+              </div>
             </div>
 
             {/* Step 2: Property Details */}
@@ -277,42 +287,44 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
                 {dict.calculator.enter_details}
               </h4>
 
-              {/* Property size (Always shown) */}
-              <div className="mb-4 text-start">
-                <label className="form-label small fw-bold text-muted mb-2">
-                  {locale === 'fi' ? 'Pinta-ala' : locale === 'sv' ? 'Storlek' : 'Area Size'} ({areaSize} m²)
-                </label>
-                <div className="row align-items-center g-3">
-                  <div className="col-12 col-sm-8">
-                    <input
-                      type="range"
-                      min="10"
-                      max="500"
-                      className="form-range"
-                      value={areaSize}
-                      onChange={(e) => setAreaSize(parseInt(e.target.value))}
-                      style={{ accentColor: '#00d084' }}
-                    />
-                  </div>
-                  <div className="col-12 col-sm-4">
-                    <div className="input-group">
+              {/* Property size (Only shown if applicable) */}
+              {showAreaSize && (
+                <div className="mb-4 text-start">
+                  <label className="form-label small fw-bold text-muted mb-2">
+                    {locale === 'fi' ? 'Pinta-ala' : locale === 'sv' ? 'Storlek' : 'Area Size'} ({areaSize} m²)
+                  </label>
+                  <div className="row align-items-center g-3">
+                    <div className="col-12 col-sm-8">
                       <input
-                        type="number"
+                        type="range"
                         min="10"
-                        max="1000"
-                        className="form-control text-center fw-bold"
+                        max="500"
+                        className="form-range"
                         value={areaSize}
-                        onChange={(e) => {
-                          const val = parseInt(e.target.value);
-                          setAreaSize(isNaN(val) ? 10 : val);
-                        }}
-                        style={{ height: '45px', borderColor: '#eef2f5', borderTopLeftRadius: '8px', borderBottomLeftRadius: '8px', borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
+                        onChange={(e) => setAreaSize(parseInt(e.target.value))}
+                        style={{ accentColor: '#00d084' }}
                       />
-                      <span className="input-group-text bg-light text-muted fw-bold" style={{ borderTopRightRadius: '8px', borderBottomRightRadius: '8px', borderTopLeftRadius: 0, borderBottomLeftRadius: 0, borderColor: '#eef2f5' }}>m²</span>
+                    </div>
+                    <div className="col-12 col-sm-4">
+                      <div className="input-group">
+                        <input
+                          type="number"
+                          min="10"
+                          max="1000"
+                          className="form-control text-center fw-bold"
+                          value={areaSize}
+                          onChange={(e) => {
+                            const val = parseInt(e.target.value);
+                            setAreaSize(isNaN(val) ? 10 : val);
+                          }}
+                          style={{ height: '45px', borderColor: '#eef2f5', borderTopLeftRadius: '8px', borderBottomLeftRadius: '8px', borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
+                        />
+                        <span className="input-group-text bg-light text-muted fw-bold" style={{ borderTopRightRadius: '8px', borderBottomRightRadius: '8px', borderTopLeftRadius: 0, borderBottomLeftRadius: 0, borderColor: '#eef2f5' }}>m²</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
 
               <div className="row g-4">
                 {/* Property type selection (apartment, townhouse, house) */}
@@ -334,20 +346,22 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
                 )}
 
                 {/* Property condition (normal, dirty, very dirty) */}
-                <div className="col-md-6 text-start">
-                  <label htmlFor="property_condition_select" className="form-label small fw-bold text-muted mb-1">{dict.calculator.condition}</label>
-                  <select
-                    id="property_condition_select"
-                    className="form-select"
-                    value={condition}
-                    onChange={(e) => setCondition(e.target.value)}
-                    style={{ height: '45px', borderColor: '#eef2f5', borderRadius: '8px' }}
-                  >
-                    <option value="normal">{dict.calculator.condition_normal}</option>
-                    <option value="dirty">{dict.calculator.condition_dirty}</option>
-                    <option value="very_dirty">{dict.calculator.condition_very_dirty}</option>
-                  </select>
-                </div>
+                {showCondition && (
+                  <div className="col-md-6 text-start">
+                    <label htmlFor="property_condition_select" className="form-label small fw-bold text-muted mb-1">{dict.calculator.condition}</label>
+                    <select
+                      id="property_condition_select"
+                      className="form-select"
+                      value={condition}
+                      onChange={(e) => setCondition(e.target.value)}
+                      style={{ height: '45px', borderColor: '#eef2f5', borderRadius: '8px' }}
+                    >
+                      <option value="normal">{dict.calculator.condition_normal}</option>
+                      <option value="dirty">{dict.calculator.condition_dirty}</option>
+                      <option value="very_dirty">{dict.calculator.condition_very_dirty}</option>
+                    </select>
+                  </div>
+                )}
 
                 {/* ZIP Code */}
                 <div className="col-md-6 text-start">
@@ -465,75 +479,25 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
                     </div>
                   </div>
                 )}
+
+                {/* Glass type selection (2-glass, 3-glass) */}
+                {showWindows && windows > 0 && (
+                  <div className="col-md-6 text-start">
+                    <label htmlFor="window_glass_select" className="form-label small fw-bold text-muted mb-1">{dict.calculator.glass_type}</label>
+                    <select
+                      id="window_glass_select"
+                      className="form-select"
+                      value={windowGlassType}
+                      onChange={(e) => setWindowGlassType(e.target.value)}
+                      style={{ height: '45px', borderColor: '#eef2f5', borderRadius: '8px' }}
+                    >
+                      <option value="2-glass">{dict.calculator.glass_2}</option>
+                      <option value="3-glass">{dict.calculator.glass_3}</option>
+                    </select>
+                  </div>
+                )}
               </div>
             </div>
-
-            {/* Step 3: Add-on choices (Only shown if service is Home/Move-out or Balcony option on Window cleaning) */}
-            {showAddons && (
-              <div className="mb-4">
-                <h4 className="fw-bold mb-4 d-flex align-items-center" style={{ fontSize: '18px', color: '#1a1a1a' }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#00d084', color: '#fff', borderRadius: '50%', width: '26px', height: '26px', fontSize: '12px', fontWeight: 'bold', marginRight: '8px', flexShrink: 0 }}>3</span>
-                  {dict.calculator.add_ons}
-                </h4>
-
-                <div className="row g-3">
-
-                  {/* Basement Cleaning Add-on (Hidden for window cleaning) */}
-                  {selectedService !== 'window-cleaning' && (
-                    <div className="col-12 text-start">
-                      <div
-                        onClick={() => setAddonBasement(!addonBasement)}
-                        className="p-3 rounded-3 border d-flex align-items-center justify-content-between transition"
-                        style={{
-                          cursor: 'pointer',
-                          backgroundColor: addonBasement ? 'rgba(0, 208, 132, 0.02)' : '#fff',
-                          borderColor: addonBasement ? '#00d084' : '#eef2f5',
-                          borderWidth: '2px',
-                        }}
-                      >
-                        <div className="d-flex align-items-center gap-3">
-                          <input
-                            type="checkbox"
-                            checked={addonBasement}
-                            readOnly
-                            style={{ accentColor: '#00d084', transform: 'scale(1.2)' }}
-                          />
-                          <div>
-                            <span className="fw-bold d-block text-dark" style={{ fontSize: '14px' }}>{dict.calculator.addon_basement}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Balcony Add-on */}
-                  <div className="col-12 text-start">
-                    <div
-                      onClick={() => setAddonBalcony(!addonBalcony)}
-                      className="p-3 rounded-3 border d-flex align-items-center justify-content-between transition"
-                      style={{
-                        cursor: 'pointer',
-                        backgroundColor: addonBalcony ? 'rgba(0, 208, 132, 0.02)' : '#fff',
-                        borderColor: addonBalcony ? '#00d084' : '#eef2f5',
-                        borderWidth: '2px',
-                      }}
-                    >
-                      <div className="d-flex align-items-center gap-3">
-                        <input
-                          type="checkbox"
-                          checked={addonBalcony}
-                          readOnly
-                          style={{ accentColor: '#00d084', transform: 'scale(1.2)' }}
-                        />
-                        <div>
-                          <span className="fw-bold d-block text-dark" style={{ fontSize: '14px' }}>{dict.calculator.addon_balcony}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         </div>
 
@@ -581,7 +545,12 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
                 </h5>
                 
                 <div className="d-flex justify-content-between mb-2">
-                  <span className="text-white-50">{locale === 'fi' ? 'Pinta-alahinta' : locale === 'sv' ? 'Storlekspris' : 'Area Subtotal'}</span>
+                  <span className="text-white-50">
+                    {selectedService === 'window-cleaning'
+                      ? (locale === 'fi' ? 'Ikkunanpesun hinta' : locale === 'sv' ? 'Fönsterputsning pris' : 'Window cleaning price')
+                      : (locale === 'fi' ? 'Pinta-alahinta' : locale === 'sv' ? 'Storlekspris' : 'Area Subtotal')
+                    }
+                  </span>
                   <span>{basePrice.toFixed(2)} €</span>
                 </div>
 
@@ -592,7 +561,7 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
                   </div>
                 )}
 
-                {conditionMultiplier !== 1.0 && (
+                {showCondition && conditionMultiplier !== 1.0 && (
                   <div className="d-flex justify-content-between mb-2 text-success" style={{ color: '#00d084 !important' }}>
                     <span>{locale === 'fi' ? 'Kuntokerroin' : locale === 'sv' ? 'Skick faktor' : 'Condition factor'} ({condition})</span>
                     <span>+{((conditionMultiplier - 1.0) * 100).toFixed(0)}%</span>
@@ -613,17 +582,19 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
                   </div>
                 )}
 
-                {hasActiveAddons && addonsCost > 0 && (
+                {selectedService !== 'window-cleaning' && windows > 0 && (
                   <div className="d-flex justify-content-between mb-2">
-                    <span className="text-white-50">{dict.calculator.add_ons}</span>
-                    <span>+{addonsCost.toFixed(2)} €</span>
+                    <span className="text-white-50">
+                      {locale === 'fi' ? 'Ikkunat' : locale === 'sv' ? 'Fönster' : 'Windows'} ({windows} {locale === 'fi' ? 'kpl' : 'st'}, {windowGlassType === '3-glass' ? (locale === 'fi' ? '3-lasinen' : locale === 'sv' ? '3-glas' : '3-glass') : (locale === 'fi' ? '2-lasinen' : locale === 'sv' ? '2-glas' : '2-glass')})
+                    </span>
+                    <span>+{computedWindowCost.toFixed(2)} €</span>
                   </div>
                 )}
 
-                {travelCost > 0 && (
-                  <div className="d-flex justify-content-between mb-2 text-warning" style={{ color: '#ffb900' }}>
+                {trimmedZip !== '' && (
+                  <div className="d-flex justify-content-between mb-2" style={{ color: travelCost > 0 ? '#ffb900' : '#00d084' }}>
                     <span>{locale === 'fi' ? 'Matkakulu' : locale === 'sv' ? 'Resekostnad' : 'Travel cost'}</span>
-                    <span>+{travelCost.toFixed(2)} €</span>
+                    <span>{travelCost > 0 ? `+${travelCost.toFixed(2)} €` : (locale === 'fi' ? 'Ilmainen' : locale === 'sv' ? 'Gratis' : 'Free')}</span>
                   </div>
                 )}
 
@@ -661,7 +632,7 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
             {/* Proposal Details Form */}
             <div className="bg-white p-4 p-md-5 rounded-4 border shadow-sm flex-fill d-flex flex-column">
               <h4 className="fw-bold mb-4 d-flex align-items-center" style={{ fontSize: '18px', color: '#1a1a1a' }}>
-                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#00d084', color: '#fff', borderRadius: '50%', width: '26px', height: '26px', fontSize: '12px', fontWeight: 'bold', marginRight: '8px', flexShrink: 0 }}>4</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#00d084', color: '#fff', borderRadius: '50%', width: '26px', height: '26px', fontSize: '12px', fontWeight: 'bold', marginRight: '8px', flexShrink: 0 }}>3</span>
                 {dict.calculator.contact_info}
               </h4>
 
