@@ -4,6 +4,9 @@ import '@/app/globals.css'; // Standard next.js global overrides
 export const metadata: Metadata = {
   title: 'Nordo Clean | Siivouspalvelut',
   description: 'Premium cleaning services for your home and office.',
+  verification: {
+    google: 'WYh1u1BH04DsYFssGjD8LMY0E54kVpPi5miFrp1lC4Q',
+  },
 };
 
 export default async function LocaleLayout({
