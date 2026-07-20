@@ -10,7 +10,7 @@
     "call_helpline": "Soita asiakaspalveluun",
     "email_us": "Lähetä sähköpostia",
     "working_hours": "Maanantai - Perjantai 8:00 - 17:00",
-    "call_hours": "Ma-Pe 8-16",
+    "call_hours": "Ma-Pe 8-17",
     "follow_us": "Seuraa meitä:",
     "read_more": "Lue lisää",
     "discover_more": "Tutustu lisää",
@@ -129,6 +129,11 @@
     "glass_type": "Ikkunoiden lasisuus",
     "glass_2": "2-kertaiset lasit",
     "glass_3": "3-kertaiset lasit",
+    "reached_from_ground": "Voidaanko ikkunat pestä maasta käsin?",
+    "reached_yes": "Kyllä",
+    "reached_no": "Ei (Vain tarjous)",
+    "quote_only_title": "Hinta annetaan tarjouksena",
+    "quote_only_desc": "Koska ikkunoita ei voida pestä maasta käsin, teemme hinta-arvion manuaalisesti. Lähetä tarjouspyyntö niin otamme sinuun yhteyttä.",
     "business_notice": "Oletko yritysasiakas? Ota yhteyttä suoraan saadaksesi räätälöidyn tarjouksen yrityssiivouksesta."
   }
 }

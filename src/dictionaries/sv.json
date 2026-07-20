@@ -10,7 +10,7 @@
     "call_helpline": "Ring kundtjänst",
     "email_us": "Skicka e-post",
     "working_hours": "Måndag - fredag 8:00 - 17:00",
-    "call_hours": "Mån-Fre 8-16",
+    "call_hours": "Mån-Fre 8-17",
     "follow_us": "Följ oss:",
     "read_more": "Läs mer",
     "discover_more": "Upptäck mer",
@@ -129,6 +129,11 @@
     "glass_type": "Fönstertyp (glas)",
     "glass_2": "2-glasfönster",
     "glass_3": "3-glasfönster",
+    "reached_from_ground": "Nås fönstren från marken?",
+    "reached_yes": "Ja",
+    "reached_no": "Nej (Endast offert)",
+    "quote_only_title": "Pris ges per offert",
+    "quote_only_desc": "Eftersom fönstren inte kan nås från marken kan vi endast ge prisförslag via offert. Vänligen fyll i dina kontaktuppgifter nedan så återkommer vi med en offert.",
     "business_notice": "Är du ett företag? Kontakta oss direkt för en anpassad offert för företagsstädning."
   }
 }

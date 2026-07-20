@@ -24,8 +24,8 @@ const TYPE_MULTIPLIERS: Record<string, number> = {
 
 const CONDITION_MULTIPLIERS: Record<string, number> = {
   normal: 1.00,
-  dirty: 1.25,
-  very_dirty: 1.50,
+  dirty: 1.50,
+  very_dirty: 2.00,
 };
 
 const BATHROOM_RATE = 35.00;
@@ -70,6 +70,7 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
   const [floors, setFloors] = useState<number>(1);
   const [windows, setWindows] = useState<number>(0);
   const [windowGlassType, setWindowGlassType] = useState<string>('2-glass');
+  const [reachedFromGround, setReachedFromGround] = useState<string>('yes');
   const [condition, setCondition] = useState<string>('normal');
   const [zipCode, setZipCode] = useState<string>('');
 
@@ -172,6 +173,7 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
           addonWindows: false,
           addonBasement: false,
           addonBalcony: false,
+          reachedFromGround: showWindows ? reachedFromGround : 'yes',
         }),
       });
 
@@ -240,6 +242,7 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
                       <div
                         onClick={() => {
                           setSelectedService(service.slug);
+                          setReachedFromGround('yes');
                           // Reset and adjust values when switching
                           if (service.slug === 'window-cleaning') {
                             setWindows(10);
@@ -496,6 +499,23 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
                     </select>
                   </div>
                 )}
+
+                {/* Reached from ground selection */}
+                {showWindows && windows > 0 && (
+                  <div className="col-md-6 text-start">
+                    <label htmlFor="reached_from_ground_select" className="form-label small fw-bold text-muted mb-1">{dict.calculator.reached_from_ground}</label>
+                    <select
+                      id="reached_from_ground_select"
+                      className="form-select"
+                      value={reachedFromGround}
+                      onChange={(e) => setReachedFromGround(e.target.value)}
+                      style={{ height: '45px', borderColor: '#eef2f5', borderRadius: '8px' }}
+                    >
+                      <option value="yes">{dict.calculator.reached_yes}</option>
+                      <option value="no">{dict.calculator.reached_no}</option>
+                    </select>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -530,87 +550,101 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
                 <span className="text-uppercase fw-bold tracking-wider text-success d-block mb-1" style={{ fontSize: '13px', color: '#00d084 !important' }}>
                   {dict.calculator.estimated_price}
                 </span>
-                <h3 className="display-4 fw-extrabold mb-1" style={{ fontSize: '46px', color: '#00d084' }}>
-                  {totalPrice.toFixed(2)} €
+                <h3 className="display-4 fw-extrabold mb-1" style={{ fontSize: reachedFromGround === 'no' ? '38px' : '46px', color: '#00d084' }}>
+                  {reachedFromGround === 'no' ? (locale === 'fi' ? 'Tarjous' : locale === 'sv' ? 'Offert' : 'Quote') : `${totalPrice.toFixed(2)} €`}
                 </h3>
                 <p className="mb-0 text-white-50 small">
-                  {dict.calculator.vat_included}
+                  {reachedFromGround === 'no' ? '' : dict.calculator.vat_included}
                 </p>
               </div>
 
               {/* Price Breakdown Details */}
               <div className="border-top border-white-10 pt-3 flex-fill z-index position-relative" style={{ fontSize: '13px' }}>
-                <h5 className="h6 fw-bold mb-3 text-white-50 text-uppercase tracking-wide">
-                  {locale === 'fi' ? 'Arvion erittely' : locale === 'sv' ? 'Kalkylspecifikation' : 'Estimate specification'}
-                </h5>
-                
-                <div className="d-flex justify-content-between mb-2">
-                  <span className="text-white-50">
-                    {selectedService === 'window-cleaning'
-                      ? (locale === 'fi' ? 'Ikkunanpesun hinta' : locale === 'sv' ? 'Fönsterputsning pris' : 'Window cleaning price')
-                      : (locale === 'fi' ? 'Pinta-alahinta' : locale === 'sv' ? 'Storlekspris' : 'Area Subtotal')
-                    }
-                  </span>
-                  <span>{basePrice.toFixed(2)} €</span>
-                </div>
-
-                {showPropertyType && typeMultiplier !== 1.0 && (
-                  <div className="d-flex justify-content-between mb-2 text-success" style={{ color: '#00d084 !important' }}>
-                    <span>{locale === 'fi' ? 'Asuntotyyppikerroin' : locale === 'sv' ? 'Bostadstyp faktor' : 'Property type factor'} ({propertyType})</span>
-                    <span>+{((typeMultiplier - 1.0) * 100).toFixed(0)}%</span>
+                {reachedFromGround === 'no' ? (
+                  <div className="py-2">
+                    <p className="fw-semibold text-white mb-2" style={{ fontSize: '14px' }}>
+                      <i className="fas fa-info-circle me-2 text-success" style={{ color: '#00d084 !important' }}></i>
+                      {locale === 'fi' ? 'Huomautus' : locale === 'sv' ? 'Information' : 'Notice'}
+                    </p>
+                    <p className="text-white-50" style={{ fontSize: '13px', lineHeight: '1.6' }}>
+                      {dict.calculator.quote_only_desc}
+                    </p>
                   </div>
+                ) : (
+                  <>
+                    <h5 className="h6 fw-bold mb-3 text-white-50 text-uppercase tracking-wide">
+                      {locale === 'fi' ? 'Arvion erittely' : locale === 'sv' ? 'Kalkylspecifikation' : 'Estimate specification'}
+                    </h5>
+                    
+                    <div className="d-flex justify-content-between mb-2">
+                      <span className="text-white-50">
+                        {selectedService === 'window-cleaning'
+                          ? (locale === 'fi' ? 'Ikkunanpesun hinta' : locale === 'sv' ? 'Fönsterputsning pris' : 'Window cleaning price')
+                          : (locale === 'fi' ? 'Pinta-alahinta' : locale === 'sv' ? 'Storlekspris' : 'Area Subtotal')
+                        }
+                      </span>
+                      <span>{basePrice.toFixed(2)} €</span>
+                    </div>
+
+                    {showPropertyType && typeMultiplier !== 1.0 && (
+                      <div className="d-flex justify-content-between mb-2 text-success" style={{ color: '#00d084 !important' }}>
+                        <span>{locale === 'fi' ? 'Asuntotyyppikerroin' : locale === 'sv' ? 'Bostadstyp faktor' : 'Property type factor'} ({propertyType})</span>
+                        <span>+{((typeMultiplier - 1.0) * 100).toFixed(0)}%</span>
+                      </div>
+                    )}
+
+                    {showCondition && conditionMultiplier !== 1.0 && (
+                      <div className="d-flex justify-content-between mb-2 text-success" style={{ color: '#00d084 !important' }}>
+                        <span>{locale === 'fi' ? 'Kuntokerroin' : locale === 'sv' ? 'Skick faktor' : 'Condition factor'} ({condition})</span>
+                        <span>+{((conditionMultiplier - 1.0) * 100).toFixed(0)}%</span>
+                      </div>
+                    )}
+
+                    {showFloors && floorsNum > 1 && (
+                      <div className="d-flex justify-content-between mb-2 text-success" style={{ color: '#00d084 !important' }}>
+                        <span>{locale === 'fi' ? 'Kerroskerroin' : locale === 'sv' ? 'Våning faktor' : 'Floor factor'} ({floorsNum} {locale === 'fi' ? 'krs' : locale === 'sv' ? 'vån' : 'floors'})</span>
+                        <span>+{((floorFactor - 1.0) * 100).toFixed(0)}%</span>
+                      </div>
+                    )}
+
+                    {bathroomsCost > 0 && (
+                      <div className="d-flex justify-content-between mb-2">
+                        <span className="text-white-50">{locale === 'fi' ? 'Kylpyhuonelisä' : locale === 'sv' ? 'Badrumstillägg' : 'Additional bathrooms'} ({bathroomsNum - 1})</span>
+                        <span>+{bathroomsCost.toFixed(2)} €</span>
+                      </div>
+                    )}
+
+                    {selectedService !== 'window-cleaning' && windows > 0 && (
+                      <div className="d-flex justify-content-between mb-2">
+                        <span className="text-white-50">
+                          {locale === 'fi' ? 'Ikkunat' : locale === 'sv' ? 'Fönster' : 'Windows'} ({windows} {locale === 'fi' ? 'kpl' : 'st'}, {windowGlassType === '3-glass' ? (locale === 'fi' ? '3-lasinen' : locale === 'sv' ? '3-glas' : '3-glass') : (locale === 'fi' ? '2-lasinen' : locale === 'sv' ? '2-glas' : '2-glass')})
+                        </span>
+                        <span>+{computedWindowCost.toFixed(2)} €</span>
+                      </div>
+                    )}
+
+                    {trimmedZip !== '' && (
+                      <div className="d-flex justify-content-between mb-2" style={{ color: travelCost > 0 ? '#ffb900' : '#00d084' }}>
+                        <span>{locale === 'fi' ? 'Matkakulu' : locale === 'sv' ? 'Resekostnad' : 'Travel cost'}</span>
+                        <span>{travelCost > 0 ? `+${travelCost.toFixed(2)} €` : (locale === 'fi' ? 'Ilmainen' : locale === 'sv' ? 'Gratis' : 'Free')}</span>
+                      </div>
+                    )}
+
+                    <div className="border-top border-white-10 my-3"></div>
+
+                    <div className="d-flex justify-content-between mb-2">
+                      <span className="text-white-50">{locale === 'fi' ? 'Hinta ALV 0%' : locale === 'sv' ? 'Exkl. moms' : 'Excl. VAT'}</span>
+                      <span>{totalExclVat.toFixed(2)} €</span>
+                    </div>
+                    <div className="d-flex justify-content-between mb-2 text-white-50">
+                      <span>{locale === 'fi' ? 'ALV 25,5%' : locale === 'sv' ? 'MOMS 25,5%' : 'VAT 25.5%'}</span>
+                      <span>{vatAmount.toFixed(2)} €</span>
+                    </div>
+                  </>
                 )}
-
-                {showCondition && conditionMultiplier !== 1.0 && (
-                  <div className="d-flex justify-content-between mb-2 text-success" style={{ color: '#00d084 !important' }}>
-                    <span>{locale === 'fi' ? 'Kuntokerroin' : locale === 'sv' ? 'Skick faktor' : 'Condition factor'} ({condition})</span>
-                    <span>+{((conditionMultiplier - 1.0) * 100).toFixed(0)}%</span>
-                  </div>
-                )}
-
-                {showFloors && floorsNum > 1 && (
-                  <div className="d-flex justify-content-between mb-2 text-success" style={{ color: '#00d084 !important' }}>
-                    <span>{locale === 'fi' ? 'Kerroskerroin' : locale === 'sv' ? 'Våning faktor' : 'Floor factor'} ({floorsNum} {locale === 'fi' ? 'krs' : locale === 'sv' ? 'vån' : 'floors'})</span>
-                    <span>+{((floorFactor - 1.0) * 100).toFixed(0)}%</span>
-                  </div>
-                )}
-
-                {bathroomsCost > 0 && (
-                  <div className="d-flex justify-content-between mb-2">
-                    <span className="text-white-50">{locale === 'fi' ? 'Kylpyhuonelisä' : locale === 'sv' ? 'Badrumstillägg' : 'Additional bathrooms'} ({bathroomsNum - 1})</span>
-                    <span>+{bathroomsCost.toFixed(2)} €</span>
-                  </div>
-                )}
-
-                {selectedService !== 'window-cleaning' && windows > 0 && (
-                  <div className="d-flex justify-content-between mb-2">
-                    <span className="text-white-50">
-                      {locale === 'fi' ? 'Ikkunat' : locale === 'sv' ? 'Fönster' : 'Windows'} ({windows} {locale === 'fi' ? 'kpl' : 'st'}, {windowGlassType === '3-glass' ? (locale === 'fi' ? '3-lasinen' : locale === 'sv' ? '3-glas' : '3-glass') : (locale === 'fi' ? '2-lasinen' : locale === 'sv' ? '2-glas' : '2-glass')})
-                    </span>
-                    <span>+{computedWindowCost.toFixed(2)} €</span>
-                  </div>
-                )}
-
-                {trimmedZip !== '' && (
-                  <div className="d-flex justify-content-between mb-2" style={{ color: travelCost > 0 ? '#ffb900' : '#00d084' }}>
-                    <span>{locale === 'fi' ? 'Matkakulu' : locale === 'sv' ? 'Resekostnad' : 'Travel cost'}</span>
-                    <span>{travelCost > 0 ? `+${travelCost.toFixed(2)} €` : (locale === 'fi' ? 'Ilmainen' : locale === 'sv' ? 'Gratis' : 'Free')}</span>
-                  </div>
-                )}
-
-                <div className="border-top border-white-10 my-3"></div>
-
-                <div className="d-flex justify-content-between mb-2">
-                  <span className="text-white-50">{locale === 'fi' ? 'Hinta ALV 0%' : locale === 'sv' ? 'Exkl. moms' : 'Excl. VAT'}</span>
-                  <span>{totalExclVat.toFixed(2)} €</span>
-                </div>
-                <div className="d-flex justify-content-between mb-2 text-white-50">
-                  <span>{locale === 'fi' ? 'ALV 25,5%' : locale === 'sv' ? 'MOMS 25,5%' : 'VAT 25.5%'}</span>
-                  <span>{vatAmount.toFixed(2)} €</span>
-                </div>
               </div>
 
-              {isMinApplied && (
+              {reachedFromGround !== 'no' && isMinApplied && (
                 <div className="mt-3 text-center">
                   <span className="badge bg-warning text-dark px-3 py-2 fw-bold" style={{ fontSize: '11px' }}>
                     <i className="fas fa-info-circle me-1"></i>
@@ -619,7 +653,7 @@ export default function PriceCalculator({ locale, dict }: PriceCalculatorProps) 
                 </div>
               )}
 
-              {travelCost > 0 && (
+              {reachedFromGround !== 'no' && travelCost > 0 && (
                 <div className="mt-2 text-center">
                   <span className="badge bg-info text-white px-3 py-2 fw-bold" style={{ fontSize: '11px', backgroundColor: '#0ea5e9' }}>
                     <i className="fas fa-truck-moving me-1"></i>

@@ -10,7 +10,7 @@
     "call_helpline": "Call helpline",
     "email_us": "Email us",
     "working_hours": "Monday - Friday 8:00 am - 5:00 pm",
-    "call_hours": "Mon-Fri 8-4",
+    "call_hours": "Mon-Fri 8-5",
     "follow_us": "Follow us on:",
     "read_more": "Read more",
     "discover_more": "Discover more",
@@ -129,6 +129,11 @@
     "glass_type": "Window glass type",
     "glass_2": "2-glass windows",
     "glass_3": "3-glass windows",
+    "reached_from_ground": "Can the windows be reached from the ground?",
+    "reached_yes": "Yes",
+    "reached_no": "No (Quote only)",
+    "quote_only_title": "Price given as quote",
+    "quote_only_desc": "Since the windows cannot be reached from the ground, a manual estimate is required. Please submit your request and we will contact you with a quote.",
     "business_notice": "Are you a business? Contact us directly to get a customized commercial cleaning quote."
   }
 }

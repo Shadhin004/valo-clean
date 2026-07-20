@@ -97,6 +97,7 @@ export async function POST(req: NextRequest) {
       addonWindows = false,
       addonBasement = false,
       addonBalcony = false,
+      reachedFromGround = 'yes',
     } = body;
 
     // Validate inputs
@@ -148,7 +149,7 @@ export async function POST(req: NextRequest) {
 
     // 3. Condition Multiplier
     const condKey = `MULTIPLIER_CONDITION_${condition.toUpperCase()}`;
-    const fallbackCondMult = condition === 'dirty' ? 1.25 : condition === 'very_dirty' ? 1.50 : 1.00;
+    const fallbackCondMult = condition === 'dirty' ? 1.50 : condition === 'very_dirty' ? 2.00 : 1.00;
     const conditionMultiplier = service === 'window-cleaning' ? 1.00 : (process.env[condKey] ? parseFloat(process.env[condKey]!) : fallbackCondMult);
 
     // 4. Floors Multiplier (+10% per floor above 1)
@@ -222,6 +223,10 @@ export async function POST(req: NextRequest) {
         <th>${locale === 'fi' ? 'Ikkunat' : locale === 'sv' ? 'Fönster' : 'Windows'}</th>
         <td>${windowsNum} ${locale === 'fi' ? 'kpl' : 'st'} (${windowGlassType === '3-glass' ? (locale === 'fi' ? '3-kertaiset' : locale === 'sv' ? '3-glas' : '3-glass') : (locale === 'fi' ? '2-kertaiset' : locale === 'sv' ? '2-glas' : '2-glass')}) (Perushinta: ${basePrice.toFixed(2)} € ${isMinApplied ? `[${locale === 'fi' ? 'Minimihinta' : locale === 'sv' ? 'Minimipris' : 'Min Price'}]` : ''})</td>
       </tr>
+      <tr>
+        <th>${locale === 'fi' ? 'Ylettyykö maasta?' : locale === 'sv' ? 'Nås från marken?' : 'Reached from ground?'}</th>
+        <td>${reachedFromGround === 'no' ? (locale === 'fi' ? 'Ei (Vain tarjous)' : locale === 'sv' ? 'Nej (Endast offert)' : 'No (Quote only)') : (locale === 'fi' ? 'Kyllä' : locale === 'sv' ? 'Ja' : 'Yes')}</td>
+      </tr>
       ` : `
       <tr>
         <th>${locale === 'fi' ? 'Pinta-ala' : locale === 'sv' ? 'Storlek' : 'Area Size'}</th>
@@ -251,6 +256,10 @@ export async function POST(req: NextRequest) {
       <tr>
         <th>${locale === 'fi' ? 'Ikkunat' : locale === 'sv' ? 'Fönster' : 'Windows'}</th>
         <td>${windowsNum} ${locale === 'fi' ? 'kpl' : 'st'} (${windowGlassType === '3-glass' ? (locale === 'fi' ? '3-lasiset' : locale === 'sv' ? '3-glas' : '3-glass') : (locale === 'fi' ? '2-lasiset' : locale === 'sv' ? '2-glas' : '2-glass')}) (+${(windowsNum * windowRate).toFixed(2)} €)</td>
+      </tr>
+      <tr>
+        <th>${locale === 'fi' ? 'Ylettyykö maasta?' : locale === 'sv' ? 'Nås från marken?' : 'Reached from ground?'}</th>
+        <td>${reachedFromGround === 'no' ? (locale === 'fi' ? 'Ei (Vain tarjous)' : locale === 'sv' ? 'Nej (Endast offert)' : 'No (Quote only)') : (locale === 'fi' ? 'Kyllä' : locale === 'sv' ? 'Ja' : 'Yes')}</td>
       </tr>` : ''}
       ${addonBasement && basementCost > 0 ? `
       <tr>
@@ -317,15 +326,15 @@ export async function POST(req: NextRequest) {
               </tr>
               <tr>
                 <th>${locale === 'fi' ? 'Perushinta yhteensä (ALV 0%)' : locale === 'sv' ? 'Total exkl. moms' : 'Subtotal (excl. VAT)'}</th>
-                <td><strong>${totalExclVat.toFixed(2)} €</strong></td>
+                <td><strong>${reachedFromGround === 'no' ? (locale === 'fi' ? 'Tarjous' : locale === 'sv' ? 'Offert' : 'Quote') : `${totalExclVat.toFixed(2)} €`}</strong></td>
               </tr>
               <tr>
                 <th>${locale === 'fi' ? 'ALV (25,5%)' : locale === 'sv' ? 'MOMS (25,5%)' : 'VAT (25.5%)'}</th>
-                <td>${vatAmount.toFixed(2)} €</td>
+                <td>${reachedFromGround === 'no' ? (locale === 'fi' ? 'Tarjous' : locale === 'sv' ? 'Offert' : 'Quote') : `${vatAmount.toFixed(2)} €`}</td>
               </tr>
               <tr class="price-total" style="background-color: rgba(0, 208, 132, 0.05);">
                 <th>${locale === 'fi' ? 'Arvioitu hinta yhteensä' : locale === 'sv' ? 'Arimerat totalpris' : 'Estimated total price'}</th>
-                <td>${totalPrice.toFixed(2)} €</td>
+                <td>${reachedFromGround === 'no' ? (locale === 'fi' ? 'Tarjous' : locale === 'sv' ? 'Offert' : 'Quote') : `${totalPrice.toFixed(2)} €`}</td>
               </tr>
             </table>
 
@@ -391,15 +400,15 @@ export async function POST(req: NextRequest) {
             </tr>
             <tr>
               <th>Perushinta (excl. VAT)</th>
-              <td>${totalExclVat.toFixed(2)} €</td>
+              <td>${reachedFromGround === 'no' ? 'Offert / Tarjous / Quote' : `${totalExclVat.toFixed(2)} €`}</td>
             </tr>
             <tr>
               <th>ALV (25.5%)</th>
-              <td>${vatAmount.toFixed(2)} €</td>
+              <td>${reachedFromGround === 'no' ? 'Offert / Tarjous / Quote' : `${vatAmount.toFixed(2)} €`}</td>
             </tr>
             <tr>
               <th>Yhteensä (incl. VAT)</th>
-              <td><strong>${totalPrice.toFixed(2)} €</strong></td>
+              <td><strong>${reachedFromGround === 'no' ? 'Offert / Tarjous / Quote' : `${totalPrice.toFixed(2)} €`}</strong></td>
             </tr>
             <tr>
               <th>Kopio lähetetty asiakkaalle?</th>
